@@ -12,24 +12,26 @@
         <script src="<?php echo base_url();?>librerias/js/masked.js"></script>
         <script src="<?php echo base_url();?>librerias/js/jquery.uniform.js"></script>
         <script src="<?php echo base_url();?>librerias/js/select2.min.js"></script>
-        <script src="<?php echo base_url();?>librerias/js/matrix.js"></script> 
+        <script src="<?php echo base_url();?>librerias/js/matrix.js"></script>
+        <script src="<?php echo base_url();?>librerias/js/matrix.tables.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/matrix.form_common.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/wysihtml5-0.3.0.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/jquery.peity.min.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/bootstrap-wysihtml5.js"></script> 
-        <!--
-        <script src="<?php echo base_url();?>librerias/js/jquery.flot.min.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.flot.resize.min.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/fullcalendar.min.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.dashboard.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.gritter.min.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.interface.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.chat.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.validate.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.form_validation.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.wizard.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.popover.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.dataTables.min.js"></script> 
-      --> 
+        <?php
+            if(isset ($add_table) && $add_table=='si'){    
+        ?>    
+           <!--link href="<?= base_url(); ?>librerias/css/datatables/jquery.dataTables.css" rel="stylesheet" type="text/css" /--> 
+           <!--script src="<?= base_url(); ?>librerias/js/jquery.dataTables.min.js" type="text/javascript"></script-->
+           <script src="<?= base_url(); ?>librerias/js/datatables/jquery.dataTables.js" type="text/javascript"></script>
+           <!--script src="<?= base_url(); ?>librerias/js/datatables/dataTables.buttons.min.js" type="text/javascript"></script-->
+
+           <script src="<?= base_url(); ?>application/views/<?= $this->uri-> segment(1);?>/run_table.js" type="text/javascript"></script>
+           
+        <?php
+            }
+        ?>
+        
+        
     </body>
 

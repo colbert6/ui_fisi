@@ -1,117 +1,261 @@
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Registrar Alumno</center></h1>
+    <h1><center>Alumnos</center></h1>
   </div>
   <div class="container-fluid">
-      <hr>
+      <hr style="margin:0px">
       <div class="row-fluid">
-        <div class="span6"> <!-- Fomulario de Informacion Personal -->
-          <div class="widget-box">
-              <div class="widget-title"> <span class="icon"> <i class="icon-user"></i> </span>
-                <h5>Informacion Personal</h5>
-              </div>
-              <div class="widget-content nopadding">
-                <form action="#" method="get" class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label">Apellido Paterno :</label>
-                    <div class="controls">
-                      <input type="text" class="span11" placeholder="Apellido Paterno" />
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Apellido Materno :</label>
-                    <div class="controls">
-                      <input type="text" class="span11" placeholder="Apellido Materno" />
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Nombre(s) :</label>
-                    <div class="controls">
-                      <input type="text" class="span11" placeholder="Nombre(s)" />
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">DNI :</label>
-                    <div class="controls">
-                      <input type="text"  class="span11" placeholder="Enter DNI"  />
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Sexo :</label>
-                    <div class="controls">
-                      <label>
-                        <input type="radio" name="radios"/>Masculino</label>
-                      <label>
-                        <input type="radio" name="radios" />Femenino</label>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Fecha Nacimiento :</label>
-                    <div class="controls">
-                      <input type="date"  class="span11" placeholder="fecha nacimiento"  />
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Select input</label>
-                    <div class="controls">
-                      <select >
-                        <option>First option</option>
-                        <option>Second option</option>
-                        <option>Third option</option>
-                        <option>Fourth option</option>                        
-                      </select>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Estado Civil :</label>
-                    <div class="controls">
-                      <label>
-                        <input type="radio" name="radios"/>Soltero</label>
-                      <label>
-                        <input type="radio" name="radios" />Casado</label>
-                    </div>
-                  </div>
-                  
-                </form>
-              </div>
-          </div>
-        </div> <!-- FIN de Fomulario de Informacion Personal -->
 
-        <div class="span6"><!-- Fomulario de Contacto -->
+        <div class="span12">
           <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
-              <h5>Información Adicional</h5>
+
+            <div class="widget-title">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab1">Tabla</a></li>
+                <li><a data-toggle="tab" href="#tab2">Formulario</a></li>
+              </ul>
             </div>
-            <div class="widget-content nopadding">
-              <form action="#" class="form-horizontal">
-                <div class="control-group">
-                  <label class="control-label">Foto :</label>
-                  <div class="controls">
-                    <input type="file" />
+
+            <div class="widget-content tab-content">
+              <div id="tab1" class="tab-pane active">
+                <p>Tabla</p>
+
+                <div class="widget-box">
+                  <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                    <h5>Alumnos Registrados</h5>
+                  </div>
+                  <div class="widget-content nopadding">
+                    <table class="table table-bordered data-table" id="tab">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Codigo</th>
+                          <th>Nombre</th>                    
+                          <th>Escuela</th>
+                          <th>Correo</th>
+                          <th>Movil</th>
+                          <th colspan="2">Acciones</th>                          
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      </tbody>
+
+                    </table>
                   </div>
                 </div>
-                <div class="control-group">
-                  <label for="normal" class="control-label">Telefono Fijo :</label>
-                  <div class="controls">
-                    <input type="text" id="mask-phone" class="span8 mask text">
-                    <span class="help-block blue span8">(999) 999-999</span> </div>
-                </div>
-                <div class="control-group">
-                  <label for="normal" class="control-label">Telefono Movil :</label>
-                  <div class="controls">
-                    <input type="text" id="mask-phoneExt" class="span8 mask text">
-                    <span class="help-block blue span8">999-999-999</span> </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Correo :</label>
-                    <div class="controls">
-                      <input type="text"  class="span11" placeholder="Correo"  />
+
+              </div>
+              <div id="tab2" class="tab-pane"> 
+                <p>Formulario</p>
+
+                <div class="span6">
+                  <div class="widget-box">
+                      <div class="widget-title"> <span class="icon"> <i class="icon-user"></i> </span>
+                        <h5>Informacion Personal</h5>
+                      </div>
+                      <div class="widget-content nopadding">
+                        <form action="#" method="get" class="form-horizontal">
+                          <div class="control-group">
+                            <label class="control-label">Codigo :</label>
+                            <div class="controls">
+                              <input type="text"  class="span11" placeholder="Enter codigo"  />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Apellido Paterno :</label>
+                            <div class="controls">
+                              <input type="text" class="span11" placeholder="Apellido Paterno" />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Apellido Materno :</label>
+                            <div class="controls">
+                              <input type="text" class="span11" placeholder="Apellido Materno" />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Nombre(s) :</label>
+                            <div class="controls">
+                              <input type="text" class="span11" placeholder="Nombre(s)" />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">DNI :</label>
+                            <div class="controls">
+                              <input type="text"  class="span11" placeholder="Enter DNI"  />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Sexo :</label>
+                            <div class="controls">
+                              <label>
+                                <input type="radio" name="radios"/>Masculino</label>
+                              <label>
+                                <input type="radio" name="radios" />Femenino</label>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Fecha Nacimiento :</label>
+                            <div class="controls">
+                              <input type="date"  class="span11" placeholder="fecha nacimiento"  />
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Departamento :</label>
+                            <div class="controls">
+                              <select >
+                                <option>Amazonas</option>
+                                <option>San Martin</option>
+                                <option>Loreto</option>
+                                <option>Tacna</option>                        
+                              </select>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Estado Civil :</label>
+                            <div class="controls">
+                              <label>
+                                <input type="radio" name="radios"/>Soltero</label>
+                              <label>
+                                <input type="radio" name="radios" />Casado</label>
+                            </div>
+                          </div>
+                          
+                        </form>
+                      </div>
+                  </div>
+                </div> <!-- FIN de Fomulario de Informacion Personal -->
+
+                <div class="span5"><!-- Fomulario de Contacto -->
+                  <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
+                      <h5>Información Adicional</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                      <form action="#" class="form-horizontal">
+                        <div class="control-group">
+                          <label class="control-label">Foto :</label>
+                          <div class="controls">
+                            <input type="file" />
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label">Escuela :</label>
+                          <div class="controls">
+                            <select >
+                              <option>Sistemas</option>
+                              <option>Civil</option>
+                              <option>Medicina</option>
+                              <option>Ambiental</option>                        
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label">Grado Academico :</label>
+                          <div class="controls">
+                            <select >
+                              <option>Estudiante</option>
+                              <option>Bachiller</option>                     
+                            </select>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label for="normal" class="control-label">Telefono Fijo :</label>
+                          <div class="controls">
+                            <input type="text" id="mask-phone" class="span8 mask text">
+                            <span class="help-block blue span8">(999) 999-999</span> </div>
+                        </div>
+                        <div class="control-group">
+                          <label for="normal" class="control-label">Telefono Movil :</label>
+                          <div class="controls">
+                            <input type="text" id="mask-phoneExt" class="span8 mask text">
+                            <span class="help-block blue span8">999-999-999</span> </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Correo :</label>
+                            <div class="controls">
+                              <input type="text"  class="span11" placeholder="Correo"  />
+                            </div>
+                          </div>
+                      </form>
                     </div>
                   </div>
-              </form>
+                </div><!-- FIN de Fomulario de contacto -->
+
+              </div>
             </div>
-          </div>
-        </div><!-- FIN de Fomulario de contacto -->
+          </div>           
+        </div>        
 
       </div>
     </div>
+
+<style type="text/css">
+  .modal {
+    width: 950px;
+    left: 38%;
+  }
+
+  .text_detail {
+    padding: 7px 10px;
+  }  
+
+</style>
+
+<!-- MODAL  -->
+
+  <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-hidden="true" >
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title"><i class="fa fa-users"></i> Detalle de Alumno</h4>
+              </div>
+              <form role="form" action="" method="post">
+                  <div class="modal-body">
+                    <div class="span4">
+                      <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"><i class="icon-repeat"></i></span>
+                          <h5>Informacion Personal</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                          <ul class="activity-list">
+                            <li class="text_detail"><i class="icon-file"></i> <strong>Codigo : </strong><span id="codigo"> </span> </li>
+                            <li class="text_detail"><i class="icon-user"></i> <strong>Nombre : </strong><span id="nombre"></span> </li>
+                            <li class="text_detail"><i class="icon-credit-card"></i> <strong>DNI : </strong><span id="dni"> </span> </li>
+                            <li class="text_detail"><i class="icon-info-sign"></i> <strong>Sexo : </strong><span id="sexo"></span> </li>
+                            <li class="text_detail"><i class="icon-calendar"></i> <strong>Fecha Nac. : </strong><span  id="fec_nac"> </span> </li>
+                            <li class="text_detail"><i class="icon-map-marker"></i> <strong>Ubigeo : </strong><span id="ubigeo"></span> </li>
+                            <li class="text_detail"><i class="icon-heart"></i> <strong>Estado Civil : </strong><span  id="est_civil"> </span> </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="span4">
+                      <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"><i class="icon-repeat"></i></span>
+                          <h5>Informacion Adicional</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                          <ul class="activity-list">
+                            <li class="text_detail"><i class="icon-camera"></i> <strong>Foto : </strong><span id="codigo"> </span> </li>
+                            <li class="text_detail"><i class="icon-group"></i> <strong>Escuela : </strong><span id="nombre"></span> </li>
+                            <li class="text_detail"><i class="icon-credit-card"></i> <strong>Grado Academico : </strong><span id="dni"> </span> </li>
+                            <li class="text_detail"><i class="icon-phone-sign"></i> <strong>Fijo : </strong><span id="sexo"></span> </li>
+                            <li class="text_detail"><i class="icon-phone"></i> <strong>Movil : </strong><span  id="fec_nac"> </span> </li>
+                            <li class="text_detail"><i class="icon-envelope"></i> <strong>Correo : </strong><span id="ubigeo"></span> </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer clearfix">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                      <button type="button" id='submit_form' class="btn btn-primary pull-left"><i class="fa fa-check"></i> Guardar</button>
+                  </div>
+              </form>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->                

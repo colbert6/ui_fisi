@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/uniform.css" />
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/select2.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/fullcalendar.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-style.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-media.css" />
@@ -18,6 +19,7 @@
         <div id="header">
           <h2>Innóvate <b>FISI</b></h2>
         </div>
+        <script>   var base_url="<?= base_url(); ?>";  </script>
         <div id="search">
             <div style="height: 6px;"></div>
             <a href=""><i class="icon-user user"></i> Bienvenido,<b> Samuel </b></a> &nbsp;  &nbsp;
