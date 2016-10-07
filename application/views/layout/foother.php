@@ -27,11 +27,8 @@
            <!--script src="<?= base_url(); ?>librerias/js/datatables/dataTables.buttons.min.js" type="text/javascript"></script-->
 
            <script src="<?= base_url(); ?>application/views/<?= $this->uri-> segment(1);?>/run_table.js" type="text/javascript"></script>
-           
         <?php
             }
         ?>
-        
-        
     </body>
 

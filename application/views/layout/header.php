@@ -30,7 +30,7 @@
             <div id="breadcrumb">
                 <a href="#">
                     <i class="icon-time"></i> Tiempo Restante: 2:19:29 <i class="icon-repeat"></i>
-                    <span style="margin-left: 980px;">Innóvate FISI</span>
+                    <span style="margin-left: 970px;">Innóvate FISI</span>
                 </a>
             </div>
         </div>
