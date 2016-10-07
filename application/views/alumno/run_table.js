@@ -71,15 +71,22 @@
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
     } );
     
-    $('#nuevo_modal').on('click', function () {      //Limpiar los datos del modal-form
-        $("#id").val('');
-        $("#descripcion").val('');
-        $("#abreviatura").val('');
-
-        var campos_form = ["descripcion","abreviatura"];
-        quitar_formato(campos_form);
+     $('#ir_form').on('click', function () {      //Limpiar los datos del modal-form
+        for (var i = 1; i <=8 ; i++) {
+            $("#text_"+i).val("1");            
+            if (i <= 3){
+                $("#select_"+i).val("");
+            }
+            if (i <= 2){
+                $('input:radio[name=radio_1]').attr('checked',false);
+            }
+            if (i <= 1){
+                $("#date_"+i).val("");
+            } 
+        };
 
     } );
+
 
     $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
         var tr = $(this).closest('tr');
@@ -115,7 +122,7 @@
         $("#dni").html(row.data().alu_dni);
         $("#sexo").html(row.data().alu_sexo);
         $("#fec_nac").html(row.data().alu_fecha_nacimiento);
-        $("#ubigeo").html(row.data().ubi_id);// arreglar
+        $("#ubigeo").html(row.data().ubigeo);// arreglar
         $("#est_civil").html(row.data().alu_estado_civil);
 
         $("#codigo").html(row.data().alu_codigo);
@@ -123,7 +130,7 @@
         $("#dni").html(row.data().alu_dni);
         $("#sexo").html(row.data().alu_sexo);
         $("#fec_nac").html(row.data().alu_fecha_nacimiento);
-        $("#ubigeo").html(row.data().ubi_id);// arreglar
+        $("#ubigeo").html(row.data().ubigeo);// arreglar
         $("#est_civil").html(row.data().alu_estado_civil);
 
     });

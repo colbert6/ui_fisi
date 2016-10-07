@@ -2,22 +2,22 @@
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Alumnos</center></h1>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
       <div class="row-fluid">
 
         <div class="span12">
           <div class="widget-box">
 
-            <div class="widget-title">
+            <div class="widget-title" >
               <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab1">Tabla</a></li>
-                <li><a data-toggle="tab" href="#tab2">Formulario</a></li>
+                <li ><a data-toggle="tab" href="#tab1">Tabla</a></li>
+                <li class="active"><a data-toggle="tab" href="#tab2" id="ir_form">Formulario</a></li>
               </ul>
             </div>
 
             <div class="widget-content tab-content">
-              <div id="tab1" class="tab-pane active">
+              <div id="tab1" class="tab-pane">
                 <p>Tabla</p>
 
                 <div class="widget-box">
@@ -46,7 +46,7 @@
                 </div>
 
               </div>
-              <div id="tab2" class="tab-pane"> 
+              <div id="tab2" class="tab-pane active"> 
                 <p>Formulario</p>
 
                 <div class="span6">
@@ -59,56 +59,57 @@
                           <div class="control-group">
                             <label class="control-label">Codigo :</label>
                             <div class="controls">
-                              <input type="text"  class="span11" placeholder="Enter codigo"  />
+                              <input type="text" class="span11" placeholder="Enter codigo" id="text_1" />
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Apellido Paterno :</label>
                             <div class="controls">
-                              <input type="text" class="span11" placeholder="Apellido Paterno" />
+                              <input type="text" class="span11" placeholder="Apellido Paterno" id="text_2" />
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Apellido Materno :</label>
                             <div class="controls">
-                              <input type="text" class="span11" placeholder="Apellido Materno" />
+                              <input type="text" class="span11" placeholder="Apellido Materno" id="text_3" />
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Nombre(s) :</label>
                             <div class="controls">
-                              <input type="text" class="span11" placeholder="Nombre(s)" />
+                              <input type="text" class="span11" placeholder="Nombre(s)" id="text_4"/>
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">DNI :</label>
                             <div class="controls">
-                              <input type="text"  class="span11" placeholder="Enter DNI"  />
+                              <input type="text"  class="span11" placeholder="Enter DNI" id="text_5" />
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Sexo :</label>
                             <div class="controls">
                               <label>
-                                <input type="radio" name="radios"/>Masculino</label>
+                                <input type="radio" name="radio_1"/>Masculino</label>
                               <label>
-                                <input type="radio" name="radios" />Femenino</label>
+                                <input type="radio" name="radio_1"/>Femenino</label>
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Fecha Nacimiento :</label>
                             <div class="controls">
-                              <input type="date"  class="span11" placeholder="fecha nacimiento"  />
+                              <input type="date"  class="span11" placeholder="fecha nacimiento" id="date_1"/>
                             </div>
                           </div>
                           <div class="control-group">
                             <label class="control-label">Departamento :</label>
                             <div class="controls">
-                              <select >
-                                <option>Amazonas</option>
-                                <option>San Martin</option>
-                                <option>Loreto</option>
-                                <option>Tacna</option>                        
+                              <select id="select_1">
+                                <option value=""></option>
+                                <option value="010101">CHACHAPOYAS</option>
+                                <option value="010102">ASUNCION</option>
+                                <option value="010103">BALSAS</option>
+                                <option value="010104">CHETO</option>                        
                               </select>
                             </div>
                           </div>
@@ -116,15 +117,17 @@
                             <label class="control-label">Estado Civil :</label>
                             <div class="controls">
                               <label>
-                                <input type="radio" name="radios"/>Soltero</label>
+                                <input type="radio" name="radio_2"/>Soltero</label>
                               <label>
-                                <input type="radio" name="radios" />Casado</label>
+                                <input type="radio" name="radio_2"/>Casado</label>
                             </div>
                           </div>
                           
                         </form>
                       </div>
                   </div>
+                  <button class="btn btn-success ">GUARDAR</button>
+                  <button class="btn btn-danger">CANCELAR</button>
                 </div> <!-- FIN de Fomulario de Informacion Personal -->
 
                 <div class="span5"><!-- Fomulario de Contacto -->
@@ -143,39 +146,41 @@
                         <div class="control-group">
                           <label class="control-label">Escuela :</label>
                           <div class="controls">
-                            <select >
-                              <option>Sistemas</option>
-                              <option>Civil</option>
-                              <option>Medicina</option>
-                              <option>Ambiental</option>                        
+                            <select id="select_2">
+                                <?php for($i=0;$i<count($escuela);$i++){ //Aca va la lista de los modulos padres ?> 
+                                        <option value="<?php echo $escuela[$i]['esc_id'];?>"><?php echo $escuela[$i]['esc_descripcion']?></option>
+                                    
+                                <?php } ?>                     
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label class="control-label">Grado Academico :</label>
                           <div class="controls">
-                            <select >
-                              <option>Estudiante</option>
-                              <option>Bachiller</option>                     
+                            <select id="select_3">
+                                <?php for($i=0;$i<count($grado_academico);$i++){ //Aca va la lista de los modulos padres ?> 
+                                        <option value="<?php echo $grado_academico[$i]['grac_id'];?>"><?php echo $grado_academico[$i]['grac_descripcion']?></option>
+                                    
+                                <?php } ?>                        
                             </select>
                           </div>
                         </div>
                         <div class="control-group">
                           <label for="normal" class="control-label">Telefono Fijo :</label>
                           <div class="controls">
-                            <input type="text" id="mask-phone" class="span8 mask text">
+                            <input type="text" id="mask-phone" class="span8 mask text" id="text_6">
                             <span class="help-block blue span8">(999) 999-999</span> </div>
                         </div>
                         <div class="control-group">
                           <label for="normal" class="control-label">Telefono Movil :</label>
                           <div class="controls">
-                            <input type="text" id="mask-phoneExt" class="span8 mask text">
+                            <input type="text" id="mask-phoneExt" class="span8 mask text" id="text_7">
                             <span class="help-block blue span8">999-999-999</span> </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label">Correo :</label>
                             <div class="controls">
-                              <input type="text"  class="span11" placeholder="Correo"  />
+                              <input type="text"  class="span11" placeholder="Correo" id="text_8" />
                             </div>
                           </div>
                       </form>
@@ -185,6 +190,7 @@
 
               </div>
             </div>
+
           </div>           
         </div>        
 
@@ -195,6 +201,7 @@
   .modal {
     width: 950px;
     left: 38%;
+
   }
 
   .text_detail {
