@@ -8,11 +8,20 @@
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap-responsive.min.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-login.css" />
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/uniform.css" />
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/fullcalendar.css" />
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-style.css" />
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-media.css" />
         <link href="<?php echo base_url();?>librerias/font-awesome/css/font-awesome.css" rel="stylesheet" />
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/jquery.gritter.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
         <script type="text/javascript">
             function Validar(obj){
+                opcion = document.getElementById("opciones").selectedIndex;
+                if( opcion == '') {
+                    alert("Seleccione Tipo de Usuario");return 0;
+                }
                 if(obj.nombre.value==""){
                     $('#nombre').focus();
                     alert("Ingrese Nombre Usuario"); return 0;
@@ -27,36 +36,71 @@
     </head>
 
     <body>
-        <div id="loginbox">            
-            <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
-				 <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>img/logofisi.png" alt="Logo" /></h3></div>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" name="nombre" id="nombre" placeholder="Usuario" />
-                        </div>
+        <script src="<?php echo base_url();?>Librerias/Validaciones.js"></script>
+        <center>
+            <div class="row-fliud"><br><br><br><br><br><br><br>
+                <h2>Bienvenido</h2>
+                <div class="span4"></div>
+                <div class="span5">
+                    <div class="widget-box">       
+                        <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
+                            <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>img/logofisi.png" alt="Logo" /></h3></div>
+                            <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div> <br>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="span1 control-label">Tipo: </label>
+                                    <div class="span3">
+                                        <select id="opciones" name="opciones">
+                                          <option>Seleccione Tipo Usuario</option>
+                                          <option value="docente">Docente</option>
+                                          <option value="estudiante">Estudiante</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="span1 control-label">Usuario: </label>
+                                    <div class="span3">
+                                        <input type="text" name="nombre" id="nombre" placeholder="Usuario" maxlength="20" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label class="span1 control-label">  Clave: </label>
+                                    <div class="span3">
+                                        <input type="password" name="contra" id="contra" placeholder="Ingrese Contraseña" maxlength="20"/>
+                                    </div>
+                                </div>
+                            </div><br><br><br><br><br>
+                            
+                            <div class="form-actions">
+                                <center>
+                                    <button type="button" class="btn btn-success" onclick="Validar(this.form);">
+                                        <span class="pull-top" aria-hidden="true"></span> Iniciar
+                                    </button>
+                                </center>
+                            </div>
+                        </form>     
                     </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="main_input_box">
-                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" name="contra" id="contra" placeholder="Contraseña" />
-                        </div>
+                </div> 
+
+                <div id="AlertaLogin" class="modal hide">
+                    <div class="modal-header">
+                        <button data-dismiss="modal" class="close" type="button">×</button>
+                        <h3>Alert modal</h3>
                     </div>
-                </div>
-                <div class="form-actions">
-                    <center>
-                        <button type="button" class="btn btn-success" onclick="Validar(this.form);">
-                            <span class="pull-top" aria-hidden="true"></span> Aceptar
-                        </button>
-                        <button type="button" data-dismiss="modal" class="btn btn-danger">
-                            <span class="pull-top" aria-hidden="true"></span> Cancelar
-                        </button>
-                    </center>
-                </div>
-    
-            </form>
-        </div>
+
+                    <div class="modal-body">
+                        <center> <span aria-hidden='true'></span> <b> El Usuario no Existe </b> </center>
+                    </div>
+
+                    <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" href="#">Confirmar</a></div>
+                </div>        
+            </div>
+        </center>
         
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>  
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script> 

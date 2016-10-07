@@ -4,7 +4,15 @@
 			parent::__construct();
 		}
 
-		function loguear($user,$clave){
+		function logueardocente($user,$clave){
+			$this->db->where('doc_usuario',$user);
+			$this->db->where('doc_clave',$clave);
+			$this->db->from('docente');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		function loguearalumno($user,$clave){
 			$this->db->where('alu_usuario',$user);
 			$this->db->where('alu_clave',$clave);
 			$this->db->from('alumno');
