@@ -25,12 +25,20 @@
            <!--script src="<?= base_url(); ?>librerias/js/jquery.dataTables.min.js" type="text/javascript"></script-->
            <script src="<?= base_url(); ?>librerias/js/datatables/jquery.dataTables.js" type="text/javascript"></script>
            <!--script src="<?= base_url(); ?>librerias/js/datatables/dataTables.buttons.min.js" type="text/javascript"></script-->
-
            <script src="<?= base_url(); ?>application/views/<?= $this->uri-> segment(1);?>/run_table.js" type="text/javascript"></script>
            
         <?php
             }
         ?>
+        <?php
+            if(count($js)>0){    
+              for ($i=0; $i <count($js) ; $i++) { 
+                echo "<script src='".base_url()."application/views/".$this->uri-> segment(1)."/".$js[$i].".js' type='text/javascript'></script>";
+              }
+            }
+        ?> 
+
+        
         
         
     </body>

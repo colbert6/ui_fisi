@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-media.css" />
         <link href="<?php echo base_url();?>librerias/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/jquery.gritter.css" />
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+        <!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'-->
     </head>
 
     <body>

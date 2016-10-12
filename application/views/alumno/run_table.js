@@ -88,7 +88,7 @@
     } );
 
 
-    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+    /*$('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         $("#id").val(row.data().id_marca);
@@ -102,7 +102,7 @@
         $("#modal_form").modal({show: true});
     } );
 
-    /*$('#tab tbody').on('click', 'td.eliminar-data', function () { //Agregar los datos correspondientes al modal-delete
+    $('#tab tbody').on('click', 'td.eliminar-data', function () { //Agregar los datos correspondientes al modal-delete
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         $("#modal_delete").modal({show: true});
@@ -136,16 +136,21 @@
     });
 
     $('#submit_form').on('click', function () {        //Enviar los datos del modal-form a guardar en el controlador
-        var campos_form = ["descripcion","abreviatura"];//campos que queremos que se validen
-        if(!validar_form(campos_form)){
-            return false;            
-        }
-
-        id = $("#id").val();
-        descripcion = $("#descripcion").val();
-        abreviatura = $("#abreviatura").val();
         
-        $.post(base_url+"marca/guardar",{id:id,descripcion:descripcion,abreviatura:abreviatura},function(valor){
+        for (var i = 1; i <=8 ; i++) {
+            $("#text_"+i).val("1");            
+            if (i <= 3){
+                $("#select_"+i).val("");
+            }
+            if (i <= 2){
+                $('input:radio[name=radio_1]').attr('checked',false);
+            }
+            if (i <= 1){
+                $("#date_"+i).val("");
+            } 
+        };
+        
+        $.post(base_url+"marca/guardar",{},function(valor){
             if(!isNaN(valor)){
                 alert('Guardado exitoso');
                 table.ajax.reload( null, false);
@@ -157,7 +162,7 @@
         
     } );
 
-    $('#delete_click').on('click', function () {   //Enviar los datos del modal-form a eliminar en el controlador
+    /*$('#delete_click').on('click', function () {   //Enviar los datos del modal-form a eliminar en el controlador
         var id = $("#id_dato_eliminar").val();
         $.post(base_url+"marca/eliminar",{id:id},function(valor){
             if(!isNaN(valor)){
@@ -168,5 +173,5 @@
                 alert('eliminar error:'+valor);
             }
         });
-    } );
+    } );*/
 
