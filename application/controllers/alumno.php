@@ -52,7 +52,6 @@
                  "recordsFiltered"=>$consulta->num_rows(),
                  "data"=>$consulta->result());
             
-            
             echo json_encode($result);
         }
 

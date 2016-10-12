@@ -84,7 +84,7 @@
                             <a href="#"><i class="icon-check-empty"></i> Dedicación Docente</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Tipo Asesor</a>
+                            <a href="<?php echo base_url();?>tipo_asesor"><i class="icon-check-empty"></i> Tipo Asesor</a>
                         </li>
                         <li>
                             <a href="#"><i class="icon-check-empty"></i> Grado Académico</a>

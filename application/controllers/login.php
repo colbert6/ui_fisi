@@ -40,19 +40,6 @@ class login extends CI_Controller {
 			}
 			else{
 				echo "<center> <span class='modal hide' aria-hidden='true'></span> <b> El Estudiante no existe </b> </center>";
-
-				echo "<div id='AlertaLogin' class='modal hide'>
-	                    <div class='modal-header'>
-	                        <button data-dismiss='modal' class='close' type='button'>×</button>
-	                        <h3>Alert modal</h3>
-	                    </div>
-
-	                    <div class='modal-body'>
-	                        <center> <span aria-hidden='true'></span> <b> El Usuario no Existe </b> </center>
-	                    </div>
-
-	                    <div class='modal-footer'> <a data-dismiss='modal' class='btn btn-primary' href='#''>Confirmar</a></div>
-	                </div>";
 				redirect(base_url(),'refresh');
 			}
 		}

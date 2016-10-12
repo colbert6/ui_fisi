@@ -38,7 +38,7 @@
     <body>
         <script src="<?php echo base_url();?>Librerias/Validaciones.js"></script>
         <center>
-            <div class="row-fliud"><br><br><br><br><br><br><br>
+            <div class="row-fliud"><br><br><br><br><br>
                 <h2>Bienvenido</h2>
                 <div class="span4"></div>
                 <div class="span5">
@@ -51,7 +51,7 @@
                                     <label class="span1 control-label">Tipo: </label>
                                     <div class="span3">
                                         <select id="opciones" name="opciones">
-                                          <option>Seleccione Tipo Usuario</option>
+                                          <option>Seleccione Tipo de Usuario</option>
                                           <option value="docente">Docente</option>
                                           <option value="estudiante">Estudiante</option>
                                         </select>
@@ -63,7 +63,7 @@
                                 <div class="controls">
                                     <label class="span1 control-label">Usuario: </label>
                                     <div class="span3">
-                                        <input type="text" name="nombre" id="nombre" placeholder="Usuario" maxlength="20" />
+                                        <input type="text" name="nombre" id="nombre" placeholder="Ingrese Usuario" maxlength="20" />
                                     </div>
                                 </div>
                             </div>
