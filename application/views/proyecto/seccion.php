@@ -15,16 +15,12 @@
   }
   .sub_seccion{
     padding-top: 10px;
-    font-size: 1em;
-  }
-  .sub_seccion{
-    padding-top: 10px;
     font-size: 12px;
     font-weight: bold;
   }
-  .sub_seccion{
+  .seccion_text{
     padding-top: 10px;
-    font-size: 1em;
+    font-size: 12px;
   }
   .base_documento {
     background: #C0C0C0!important;
@@ -45,6 +41,13 @@
     border-spacing: 2px;
     border-color: silver;
   }
+  .parte_text{
+    border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    padding: 5px;
+    height: 30px;
+    overflow:auto;
+  }
 
 </style>
 
@@ -56,7 +59,7 @@
     <table class="table_seccion" name="seccion_A">
       <tbody>
         <tr>
-          <td class="nombre">
+          <td class="nombre" id="prue">
             FORMATO DE PROYECTO DE TESIS
           </td>
         </tr>
@@ -77,16 +80,20 @@
             echo "<tr>";
             echo "<td class='".$class."'>";
             echo "<span>".$parte[$j]['nompar_descripcion']."</span>";
-            if(!in_array($parte[$j]['nompar_id'], array_column($parte, 'parent_nompar_id'))){
+
+            if(!in_array($parte[$j]['nompar_id'], array_column($parte, 'parent_nompar_id'))){//No es padre de ninguna parte
               $info=$parte[$j]['nompar_informacion']; 
-            echo "<a class='btn btn-danger btn-mini'  data-original-title='Edit Task' info_parte='".$info."'><i class='icon-pencil'></i></a>"; 
+              $id=$parte[$j]['nompar_id']; 
+            echo "<a class='btn btn-danger btn-mini' data-original-title='Edit Task' id='editar_parte'".
+                  "info_parte='".$info."'  id_parte='".$id."'  ><i class='icon-pencil'></i></a>"; 
             //------------------
             echo "</td>";
             echo "</tr>";
             echo "<tr>";
-            echo "<td class='".$class."'>";
-            echo "<input type='text' disabled class'campo_text'>"; 
+            echo "<td class='seccion_text'>";
+            echo "<div class='parte_text ' id='parte_".$id."_text'></div>"; 
             }
+
             echo "</td>";
             echo "</tr>";
 
@@ -103,39 +110,3 @@
   </div>
 </div>
 
-<style type="text/css">
-  .modal {
-    width: 950px;
-    left: 38%;
-
-  }
-
- 
-
-</style>
-
-<!-- MODAL  -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        
-        <div class="alert alert-info">
-          <button class="close" data-dismiss="alert">×</button>
-
-          <p id='informacion_parte'></p> 
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->    

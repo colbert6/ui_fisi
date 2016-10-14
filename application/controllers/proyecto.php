@@ -22,6 +22,23 @@
             $this->load->view('layout/foother.php',$dato_foother);              
         }
 
+        public function guardar()
+        {   
+            if(!empty($_POST['id'])) {
+                $data= array ( 'id'=> $this->input->post('id'),
+                                'descripcion'=> $this->input->post('descripcion'),
+                                'abreviatura'=> $this->input->post('abreviatura'));
+                $guardar=$this->marca_model->editar($data);   
+
+            }else{
+                $data= array ( 'descripcion'=> $this->input->post('descripcion'),
+                                'abreviatura'=> $this->input->post('abreviatura') );
+                $guardar=$this->marca_model->crear($data);
+                
+            } 
+            echo json_encode($guardar);            
+            
+        }
        
         
 
