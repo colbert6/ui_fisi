@@ -3,7 +3,7 @@
               Innóvate FISI &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
           </div>
         </div>
-
+        <script src="<?php echo base_url();?>librerias/js/jquery-1.12.3.min.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/jquery.ui.custom.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
@@ -14,6 +14,7 @@
         <script src="<?php echo base_url();?>librerias/js/select2.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.tables.js"></script> 
+        <script src="<?php echo base_url();?>librerias/js/matrix.popover.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.form_common.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/wysihtml5-0.3.0.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/jquery.peity.min.js"></script> 
