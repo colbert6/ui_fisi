@@ -70,17 +70,17 @@
             descripcion+= 
             "<tr class=''>"+
               "<td>"+
-              "<a title='' id='example4' data-content='"+obj[i].crit_descripcion+"'"+
+              "<a criterio='"+(i+1)+"' id='example4' data-content='"+obj[i].crit_descripcion+"'"+
                 "data-placement='left' data-toggle='popover' class='btn btn-success'  "+
                 "data-original-title='Criterio "+(i+1)+"'>Criterio "+(i+1)+"</a>" +                        
               "</td>"+
               "<td>"+ptj_min+" - "+ptj_max+"</td>"+
-              "<td><input style='width:50px'></td>"+              
+              "<td><input class='nota' style='width:50px' criterio='"+(i+1)+"' ></td>"+              
             "</tr>";
           }
           
           $('#tabla_criterio_modal div table tbody').html(descripcion); 
-          $("#example, #example2, #example3, #example4").popover();
+          $(" #example4").popover();
         }
         
     });
@@ -100,8 +100,6 @@
 
       
   }
-
-
 
 
 //Buscar los datos relacionados con el proyecto
@@ -133,4 +131,10 @@
     $('#contenido_modal').css('overflow','auto');
 
     $('#guardar_cambio').attr("id_parte",id);//Cambiar atributo id_parte del Boton
+  });
+
+ $('#example4 .btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
+    alert('222');
+    var criterio=$(this).attr("criterio"); 
+    $('.nota[criterio='+criterio+']').focus();
   });

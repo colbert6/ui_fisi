@@ -66,7 +66,7 @@
     left: 30%;
   }
   .modal-body {
-    height: 430px;
+    height: 435px;
     max-height: 600px;
   }
   .modal.fade.in {
