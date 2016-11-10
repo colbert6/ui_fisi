@@ -5,7 +5,7 @@
 		}
 
 		function logueardocente($user,$clave){
-			$this->db->where('doc_usuario',$user);
+			$this->db->where('doc_correo',$user);
 			$this->db->where('doc_clave',$clave);
 			$this->db->from('docente');
 			$query = $this->db->get();
@@ -13,7 +13,7 @@
 		}
 
 		function loguearalumno($user,$clave){
-			$this->db->where('alu_usuario',$user);
+			$this->db->where('alu_correo',$user);
 			$this->db->where('alu_clave',$clave);
 			$this->db->from('alumno');
 			$query = $this->db->get();

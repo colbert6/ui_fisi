@@ -1,6 +1,6 @@
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Tipo Asesor</center></h1>
+    <h1><center>Fase Comision</center></h1>
   </div>
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
@@ -20,14 +20,15 @@
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                    <h5>Lista de Tipo de Asesor Registrados</h5>
+                    <h5>Lista de Fases de Comisión Registrados</h5>
                   </div>
                   <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table" id="tablatipoasesor">
+                    <table class="table table-bordered data-table" id="tablafasecomision">
                       <thead>
                         <tr>
-                          <th>Nro</th>
+                          <th>Id</th>
                           <th>Descripción</th>
+                          <th>Plazo</th>
                           <th colspan="2">Acciones</th>                          
                         </tr>
                       </thead>
@@ -40,25 +41,31 @@
 
               <div id="tab2" class="tab-pane"> 
                 <div class="span12" align="center">
-                  <div class="widget-box">
+                  <div class="widget-box" align="center">
                       <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
                         <h5>Información</h5>
                       </div>
                       <div class="widget-content nopadding">
-                        <form class="form-horizontal" id="ForTipoAsesor">
-                          <div class="control-group span4">
+                        <form class="form-horizontal" id="ForFaseComision">
+                          <div class="control-group span3" align="left">
                             <label class="control-label">Nro :</label>
                             <div class="controls">
-                              <input type="text" class="span11" name="tipase_id" id="tipase_id" disabled="" />
+                              <input type="text" class="span12" id="fascom_id" name="fascom_id" disabled="" />
                             </div>
                           </div>
-                          <div class="control-group span6">
+                          <div class="control-group span5" align="left">
                             <label class="control-label">Descripción :</label>
                             <div class="controls">
-                              <input type="text" class="span12" placeholder="Ingrese Descripción" name="tipase_descripcion" id="tipase_descripcion" disabled="" />
+                              <input type="text" class="span11" id="fascom_descripcion" name="fascom_descripcion" disabled="" placeholder="Ingrese Descripción"/>
+                            </div>
+                          </div>
+                          <div class="control-group span3" align="left">
+                            <label class="control-label">Plazo: </label>
+                            <div class="controls">
+                                <input type="text" class="span12" id="fascom_plazo" name="fascom_plazo" disabled="" placeholder="Nro de Dias" />
                             </div>
                           </div><br><br><br>
-                        </form>
+                        </form>              
                       </div><br>
                       <div class="row-fluid">
                           <button class="btn btn-success" id="NuevoBTN" onclick="Nuevo();"><span class="icon-plus" aria-hidden="true"></span> Nuevo </button>
@@ -76,27 +83,19 @@
       </div>
   </div>
 
-<div id="Alerta" class="modal hide">
-    <div class="modal-header">
-        <button data-dismiss="modal" class="close" type="button">×</button>
-        <h3>
-            <center> <div id="Mensaje"></div> </center>
-        </h3>
-    </div>
-    <div class="modal-body" align="center">
-        <a data-dismiss="modal" class="btn btn-primary" onclick="Actualizar();">Aceptar</a>
-    </div>
-</div>
-
 <style type="text/css">
   .modal {
     width: 950px;
     left: 38%;
-
   }
 
   .text_detail {
     padding: 7px 10px;
-  }  
+  } 
+
+  .form-horizontal .control-label {
+    padding-top: 15px;
+    width: 190px;
+  } 
 
 </style>

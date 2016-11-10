@@ -1,11 +1,12 @@
+
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Tipo Asesor</center></h1>
+    <h1><center>Linea de Investigación</center></h1>
   </div>
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
-      <div class="row-fluid">
 
+      <div class="row-fluid">
         <div class="span12">
           <div class="widget-box">
 
@@ -20,17 +21,19 @@
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                    <h5>Lista de Tipo de Asesor Registrados</h5>
+                    <h5>Lista de Lineas de Investigación Registrada</h5>
                   </div>
                   <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table" id="tablatipoasesor">
+                    <table class="table table-bordered data-table" id="tablalineainvestigacion">
                       <thead>
                         <tr>
-                          <th>Nro</th>
+                          <th>Id</th>
                           <th>Descripción</th>
+                          <th>Eje</th>
                           <th colspan="2">Acciones</th>                          
                         </tr>
                       </thead>
+
                       <tbody>
                       </tbody>
                     </table>
@@ -40,22 +43,30 @@
 
               <div id="tab2" class="tab-pane"> 
                 <div class="span12" align="center">
-                  <div class="widget-box">
+                  <div class="widget-box" align="center">
                       <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
                         <h5>Información</h5>
                       </div>
                       <div class="widget-content nopadding">
-                        <form class="form-horizontal" id="ForTipoAsesor">
-                          <div class="control-group span4">
-                            <label class="control-label">Nro :</label>
-                            <div class="controls">
-                              <input type="text" class="span11" name="tipase_id" id="tipase_id" disabled="" />
-                            </div>
-                          </div>
+                        <form class="form-horizontal" id="ForLineaInvestigacion">
+                          <input type="hidden" id="eje_id" name="eje_id" disabled="" />
+
                           <div class="control-group span6">
                             <label class="control-label">Descripción :</label>
                             <div class="controls">
-                              <input type="text" class="span12" placeholder="Ingrese Descripción" name="tipase_descripcion" id="tipase_descripcion" disabled="" />
+                              <input type="text" class="span11" placeholder="Ingrese Descripción" id="linin_descripcion" disabled="" />
+                            </div>
+                          </div>
+                          <div class="control-group span5">
+                            <label class="control-label">Eje Tematico :</label>
+                            <div class="controls">
+                              <select id="linin_eje" disabled="disabled">
+                                <option value="linin_eje"> Seleccione Eje... </option>
+                                <?php for($i=0;$i<count($eje_tematico);$i++){ //Aca va la lista de los modulos padres ?> 
+                                        <option value="<?php echo $eje_tematico[$i]['eje_id'];?>"><?php echo $eje_tematico[$i]['eje_descripcion']?></option>
+                                    
+                                <?php } ?>
+                              </select>
                             </div>
                           </div><br><br><br>
                         </form>
@@ -75,6 +86,7 @@
         </div>        
       </div>
   </div>
+
 
 <div id="Alerta" class="modal hide">
     <div class="modal-header">

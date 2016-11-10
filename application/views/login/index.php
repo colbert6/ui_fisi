@@ -18,13 +18,9 @@
 
         <script type="text/javascript">
             function Validar(obj){
-                opcion = document.getElementById("opciones").selectedIndex;
-                if( opcion == '') {
-                    alert("Seleccione Tipo de Usuario");return 0;
-                }
-                if(obj.nombre.value==""){
-                    $('#nombre').focus();
-                    alert("Ingrese Nombre Usuario"); return 0;
+                if(obj.email.value==""){
+                    $('#email').focus();
+                    alert("Ingrese su Email"); return 0;
                 }
                 if(obj.contra.value==""){
                     $('#contra').focus();
@@ -45,25 +41,14 @@
                     <div class="widget-box">       
                         <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
                             <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>img/logofisi.png" alt="Logo" /></h3></div>
-                            <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div> <br>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="span1 control-label">Tipo: </label>
-                                    <div class="span3">
-                                        <select id="opciones" name="opciones">
-                                          <option>Seleccione Tipo de Usuario</option>
-                                          <option value="docente">Docente</option>
-                                          <option value="estudiante">Estudiante</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div> 
+                            <br><br>
 
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="span1 control-label">Usuario: </label>
                                     <div class="span3">
-                                        <input type="text" name="nombre" id="nombre" placeholder="Ingrese Usuario" maxlength="20" />
+                                        <input type="text" name="email" id="email" placeholder="Ingrese Email" maxlength="50" />
                                     </div>
                                 </div>
                             </div>
@@ -74,12 +59,12 @@
                                         <input type="password" name="contra" id="contra" placeholder="Ingrese Contraseña" maxlength="20"/>
                                     </div>
                                 </div>
-                            </div><br><br><br><br><br>
+                            </div><br><br><br><br>
                             
                             <div class="form-actions">
                                 <center>
                                     <button type="button" class="btn btn-success" onclick="Validar(this.form);">
-                                        <span class="pull-top" aria-hidden="true"></span> Iniciar
+                                        <span class="pull-top" aria-hidden="true"></span> Iniciar Sesión
                                     </button>
                                 </center>
                             </div>

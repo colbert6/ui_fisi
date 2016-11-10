@@ -1,6 +1,6 @@
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Tipo Asesor</center></h1>
+    <h1><center>Grado Academico</center></h1>
   </div>
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
@@ -20,13 +20,13 @@
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                    <h5>Lista de Tipo de Asesor Registrados</h5>
+                    <h5>Lista de Grados Academicos Registrados</h5>
                   </div>
                   <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table" id="tablatipoasesor">
+                    <table class="table table-bordered data-table" id="tablagradoacademico">
                       <thead>
                         <tr>
-                          <th>Nro</th>
+                          <th>Id</th>
                           <th>Descripción</th>
                           <th colspan="2">Acciones</th>                          
                         </tr>
@@ -45,17 +45,17 @@
                         <h5>Información</h5>
                       </div>
                       <div class="widget-content nopadding">
-                        <form class="form-horizontal" id="ForTipoAsesor">
+                        <form class="form-horizontal" id="ForGradoAcademico">
                           <div class="control-group span4">
                             <label class="control-label">Nro :</label>
                             <div class="controls">
-                              <input type="text" class="span11" name="tipase_id" id="tipase_id" disabled="" />
+                              <input type="text" class="span11" name="grac_id" id="grac_id" disabled="" />
                             </div>
                           </div>
                           <div class="control-group span6">
                             <label class="control-label">Descripción :</label>
                             <div class="controls">
-                              <input type="text" class="span12" placeholder="Ingrese Descripción" name="tipase_descripcion" id="tipase_descripcion" disabled="" />
+                              <input type="text" class="span12" placeholder="Ingrese Descripción" name="grac_descripcion" id="grac_descripcion" disabled="" />
                             </div>
                           </div><br><br><br>
                         </form>
