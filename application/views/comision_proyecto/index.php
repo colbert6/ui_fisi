@@ -43,22 +43,22 @@
                                 <td><center> <?php echo $value->alu_nombre." ".$value->alu_apellido_paterno." ".$value->alu_apellido_materno; ?></center></td>
                                 <td><center> <?php echo $value->pro_nombre; ?></center></td>
                                 <?php 
-                                  if ($value->tipro_id==1) { ?>
+                                  if ($value->tipro_id == 1) { ?>
                                       <td><center> <img src="<?php echo base_url();?>img/celeste.png"></center></td>
                                     <?php }else 
                                     { ?>
                                       <td><center> <img src="<?php echo base_url();?>img/azul.png"></center></td>
                                     <?php }
-                                  ?>
+                                ?>
                                 <td><center> <?php echo $value->pro_fecha_registro; ?></center></td>
                                   <td> 
                                       <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
                                   </td>
 
                                   <td>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#DetalleDocente" data-toggle="modal" id="AgregarComision" onclick=""></button>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#DetalleDocente" data-toggle="modal" id="AgregarComision"></button>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#DetalleDocente" data-toggle="modal" id="AgregarComision"></button>
+                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
                                     </a>
                                   </td>
                               </tr>
@@ -202,9 +202,8 @@
                         </div>
                       </div>
                     </div>
-               
 
-                    <div class="span11">
+                    <div class="span11" id="tabladetalle1">
                       <div class="widget-box">
                         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                           <h5>Lista de Comisión</h5>
@@ -229,6 +228,34 @@
                         </div>
                       </div>
                     </div> 
+
+                    <div class="span11" id="tabladetalle2">
+                      <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                          <h5>Lista de Comisión</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                          <form id="form_detalle_comisiones">
+                            <input type="hidden" id="proyecto_id_detalle" name="proyecto_id">
+                            <table class="table table-bordered data-table" id="TablaDetalleComisionAsignada">
+                              <thead>
+                                <tr>
+                                  <th>Proyecto</th>
+                                  <th>Docente</th>
+                                  <th>Cargo</th>
+                                  <th>Fecha Asignación</th>
+                                  <th>Fecha Notificación</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                              </tbody>
+                            </table>
+                          </form>
+                        </div>
+                      </div>
+                    </div> 
+
                   </div>
               </div>
 
@@ -302,17 +329,20 @@
                   success: function(respuesta){
                       var datos = eval(respuesta);
                       $("#FomularioProyecto").hide();
+                      $("#tabladetalle1").hide();
                       //$("#TablaDetalleComision tbody").empty();
                       html="";
                       for (var i = 0; i < datos.length; i++){
                           html += "<tr>";
-                          html += "<td>"+datos[i]['pro_id'] +"</td>";
-                          html += "<td>"+datos[i]['doc_id'] +"</td>";
+                          html += "<td>"+datos[i]['pro_nombre'] +"</td>";
+                          html += "<td>"+datos[i]['doc_nombre'] +"</td>";
+                          html += "<td>"+datos[i]['carg_descripcion'] +"</td>";
                           html += "<td>"+datos[i]['comeva_fecha_designacion'] +"</td>";
+                          html += "<td>"+datos[i]['comeva_fecha_notificacion'] +"</td>";
                           html += "</tr>";
                       }
-                      $("#TablaDetalleComision tbody").append(html);
-                      
+                      $("#TablaDetalleComisionAsignada tbody").append(html); 
+  
                   }
               });
           }else{
@@ -322,6 +352,7 @@
                   data:'cargar='+codigo,
                   success: function(respuesta){
                       var datos = eval(respuesta);
+                      $("#tabladetalle2").hide();
                       $("#codproyecto").val(datos[0]['pro_id']);
                       $("#nombre").val(datos[0]['pro_nombre']);
                   }
