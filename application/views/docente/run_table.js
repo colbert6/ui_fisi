@@ -1,20 +1,20 @@
 
     
     //var base_url definida en header
-    var table =$('#tab').DataTable( {
+    var table =$('#tabladocente').DataTable( {
 
         "processing": true,
         "ajax": {
-            "url": base_url+"alumno/cargar_datos/",
+            "url": base_url+"docente/cargar_datos/",
             "type": "POST"
         },
         "columns": [
-            { "data": "alu_id" },
-            { "data": "alu_codigo" },
-            { "data": "nombre" }, 
-            { "data": "esc_descripcion" }, 
-            { "data": "alu_correo" },
-            { "data": "alu_movil" }, 
+            { "data": "doc_id"},
+            { "data": "nombre"}, 
+            { "data": "grac_descripcion"},
+            { "data": "catdoc_descripcion"},
+            { "data": "dep_descripcion"},  
+            { "data": "doc_correo"}, 
             {
                 "className":      'editar-data',
                 "orderable":      false,

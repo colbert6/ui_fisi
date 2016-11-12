@@ -261,7 +261,7 @@
 
                   <div class="modal-footer clearfix">
                       <button type="button" onclick="Cancelar()" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                      <button type="button" onclick="enviar_detalle_comision()" class="btn btn-primary pull-left"><i class="fa fa-check"></i> Guardar</button>
+                      <button type="button" onclick="enviar_detalle_comision()" class="btn btn-primary pull-left" id="BTNGuardar"><i class="fa fa-check"></i> Guardar</button>
                   </div>
 
           </div><!-- /.modal-content -->
@@ -330,12 +330,13 @@
                       var datos = eval(respuesta);
                       $("#FomularioProyecto").hide();
                       $("#tabladetalle1").hide();
+                      $("#BTNGuardar").hide();
                       //$("#TablaDetalleComision tbody").empty();
                       html="";
                       for (var i = 0; i < datos.length; i++){
                           html += "<tr>";
                           html += "<td>"+datos[i]['pro_nombre'] +"</td>";
-                          html += "<td>"+datos[i]['doc_nombre'] +"</td>";
+                          html += "<td>"+datos[i]['doc_nombre'] +" "+datos[i]['doc_apellido_paterno'] +" "+datos[i]['doc_apellido_materno'] +"</td>";
                           html += "<td>"+datos[i]['carg_descripcion'] +"</td>";
                           html += "<td>"+datos[i]['comeva_fecha_designacion'] +"</td>";
                           html += "<td>"+datos[i]['comeva_fecha_notificacion'] +"</td>";

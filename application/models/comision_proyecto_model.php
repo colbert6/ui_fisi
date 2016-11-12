@@ -51,8 +51,8 @@
 		}
 
 		function MostrarProyectosAsignados($cod){
-			$query = $this->db->query("select * FROM comision_evaluadora where pro_id ='".$cod."'");
-			$query = $this->db->query("select p.pro_nombre, d.doc_nombre, c.carg_descripcion, 			ce.comeva_fecha_designacion, ce.comeva_fecha_notificacion 
+			
+			$query = $this->db->query("select p.pro_nombre, d.doc_nombre, d.doc_apellido_paterno, 			d.doc_apellido_materno, c.carg_descripcion,ce.comeva_fecha_designacion, 		ce.comeva_fecha_notificacion 
 						from comision_evaluadora as ce
 						inner join proyecto as p on p.pro_id = ce.pro_id
 						inner join docente as d on d.doc_id = ce.doc_id

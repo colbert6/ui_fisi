@@ -44,16 +44,16 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Facultad</a>
+                            <a href="<?php echo base_url();?>facultad"><i class="icon-check-empty"></i> Facultad</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Escuela</a>
+                            <a href="<?php echo base_url();?>escuela"><i class="icon-check-empty"></i> Escuela</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Comisión</a>
+                            <a href="<?php echo base_url();?>comision"><i class="icon-check-empty"></i> Comisión</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Departamento</a>
+                            <a href="<?php echo base_url();?>departamento"><i class="icon-check-empty"></i> Departamento</a>
                         </li>
                     </ul>
                 </li>
