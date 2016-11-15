@@ -13,7 +13,8 @@
          
         <script src="<?php echo base_url();?>librerias/js/bootstrap-colorpicker.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/bootstrap-datepicker.js"></script>  
-        <script src="<?php echo base_url();?>librerias/js/masked.js"></script>
+        <script src="<?php echo base_url();?>librerias/js/masked.js"></script>        
+        <script src="<?php echo base_url();?>librerias/js/matrix.popover.js"></script>
         <script src="<?php echo base_url();?>librerias/js/jquery.uniform.js"></script>
         <script src="<?php echo base_url();?>librerias/js/select2.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.js"></script>
@@ -34,7 +35,7 @@
 
 
         <?php
-            if(count($js)>0){    
+            if(@count($js)>0){    
               for ($i=0; $i <count($js) ; $i++) { 
                 echo "<script src='".base_url()."application/views/".$this->uri-> segment(1)."/".$js[$i].".js' type='text/javascript'></script>";
               }

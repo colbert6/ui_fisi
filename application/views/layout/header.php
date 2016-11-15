@@ -2,10 +2,10 @@
     session_start();
     $CI =& get_instance();
     $CI->load->database('default');
-    $id = $_SESSION['codtipousuario'];
+    $tipo_usu = $_SESSION['codtipousuario'];
     $_SESSION['email'];
     $_SESSION['usuario'];
-    $_SESSION['codusuario']
+    $cod_usu = $_SESSION['codusuario']
 ?>
 <!DOCTYPE html>
     <head>
@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/matrix-media.css" />
         <link href="<?php echo base_url();?>librerias/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/jquery.gritter.css" />
+        
+        <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap-wysihtml5.css" />
         <!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'-->
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
@@ -39,7 +41,7 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="#"><i class="icon-user user"></i> Bienvenido,<b><?php echo $_SESSION['usuario']; ?></b></a> &nbsp;  &nbsp;
-                <a href="#"><i class="icon-ok-circle"></i> Id Tipo Usuario = <b><?php echo $id;?></b></a> &nbsp;  &nbsp;
+                <a href="#"><i class="icon-ok-circle"></i> Id Tipo Usuario = <b><?php echo $tipo_usu;?></b></a> &nbsp;  &nbsp;
                 <a href="<?php echo base_url();?>login/cerrarsession"><i class=" icon-off"></i> Salir</a> &nbsp;  &nbsp;
             </div>
 
@@ -48,9 +50,11 @@
                     <a href="#">
                         <i class="icon-time"></i> Tiempo Restante: 2:19:29 <i class="icon-repeat"></i>
                         <span style="margin-left: 970px;">Innóvate FISI</span>
+                        <input value="<?=$cod_usu?>" id="cod_usu" type="hidden" >
                     </a>
                 </div>
             </div>
+
 
         
 

@@ -96,7 +96,7 @@
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Proyecto</center></h1>
-    <input value="<?= $pro_id?>" id="pro_id" type="hidden" >
+    <input value="<?=$pro_id?>" id="pro_id" type="hidden" >
   </div>
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
