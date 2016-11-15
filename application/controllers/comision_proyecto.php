@@ -13,10 +13,10 @@ class comision_proyecto extends CI_Controller
         $dato_foother= array ('add_table'=> 'si');
 
 
-         $query1 = $this->db->query("select count(ce.doc_id) as total , d.doc_nombre
+         $query1 = $this->db->query("select count(ce.doc_id) as total, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre
                                     from comision_evaluadora as ce 
                                     inner join docente as d on d.doc_id = ce.doc_id 
-                                    group by ce.doc_id , d.doc_nombre order by ce.doc_id");
+                                    group by ce.doc_id , d.doc_nombre,d.doc_apellido_paterno order by ce.doc_id");
 
          $query2 = $this->db->query("select count(p.linin_id) as total ,li.linin_descripcion
                         from proyecto as p 

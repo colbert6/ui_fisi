@@ -536,7 +536,7 @@
           //legendText: "MMbbl = one million barrels",
           dataPoints: [   
             <?php foreach ($DocentesChart as $key => $value) {
-              echo '{y: '.(int)$value["total"].', label: "'.$value["doc_nombre"].'"},';
+              echo '{y: '.(int)$value["total"].', label: "'.$value["nombre"].'"},';
             } ?>   
           ]
         }   

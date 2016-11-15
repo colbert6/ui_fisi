@@ -128,7 +128,7 @@
         '<div class="control-group">'+
           '<form>'+
             '<div class="controls">'+
-              '<textarea class="textarea_editor span12" rows="6" placeholder="Enter text ..." id="form_parte">'+
+              '<textarea class="textarea_editor" rows="6" placeholder="Enter text ..." id="form_parte">'+
                 parte_text+
               '</textarea>'+
             '</div>'+
@@ -137,7 +137,7 @@
       '</div>';
       $('#contenido_modal').html(cont_modal);
       $('.textarea_editor').wysihtml5();//Activar wysihtml5 
-      $('.textarea_editor').removeClass('span12');
+      
 
       agregar_tabla_criterios(id);//Manda el nompar_id para traer sus criterios
       $('#tabla_criterio_modal').show();
@@ -146,6 +146,13 @@
 
   	$('#informacion_parte').html("<i class='icon-info-sign'></i> "+$(this).attr("info_parte")); //Mostrar Informacion de la parte    
   	$('#guardar_cambio').attr("id_parte",id);//Cambiar atributo id_parte del Boton
+
+
+    //$('#id_alert').attr("class","widget-box observaciones");
+    var observacion= "<i class='icon-ok-circle'></i> OBSERVACIONES : <br>"+
+                    "Aca iran las observaciones de esta parte del proyecto";
+        
+    $('#observaciones_parte').html(observacion); 
   });
 
 

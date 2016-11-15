@@ -25,7 +25,11 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url();?>proyecto"><i class="icon-check-empty"></i> Mis Proyectos</a>
+                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Mis Proyectos</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>proyecto/elaborar_proyecto"><i class="icon-check-empty"></i> Elaborar</a>
+
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>comision_proyecto"><i class="icon-check-empty"></i> Comisión del Proyecto</a>
