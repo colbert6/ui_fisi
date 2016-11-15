@@ -146,6 +146,13 @@
 
   	$('#informacion_parte').html("<i class='icon-info-sign'></i> "+$(this).attr("info_parte")); //Mostrar Informacion de la parte    
   	$('#guardar_cambio').attr("id_parte",id);//Cambiar atributo id_parte del Boton
+
+
+    //$('#id_alert').attr("class","widget-box observaciones");
+    var observacion= "<i class='icon-ok-circle'></i> OBSERVACIONES : <br>"+
+                    " Falta agregar antecentes del problema";
+        
+    $('#observaciones_parte').html(observacion); 
   });
 
 

@@ -25,6 +25,9 @@
                     </a>
                     <ul>
                         <li>
+                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Proyectos</a>
+                        </li>
+                        <li>
                             <a href="<?php echo base_url();?>proyecto/elaborar_proyecto"><i class="icon-check-empty"></i> Elaborar</a>
                         </li>
                         <li>
