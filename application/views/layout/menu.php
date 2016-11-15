@@ -12,7 +12,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?= base_url(); ?>alumno/"><i class="icon-check-empty"></i> Alumno</a>
+                            <a href="<?php echo base_url();?>alumno/"><i class="icon-check-empty"></i> Alumno</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>docente"><i class="icon-check-empty"></i> Docente</a>
@@ -25,13 +25,14 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Proyectos</a>
+                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Mis Proyectos</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>proyecto/elaborar_proyecto"><i class="icon-check-empty"></i> Elaborar</a>
+
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>proyecto/revisar_proyecto"><i class="icon-check-empty"></i> Revision</a>
+                            <a href="<?php echo base_url();?>comision_proyecto"><i class="icon-check-empty"></i> Comisión del Proyecto</a>
                         </li>
                         <li>
                             <a href="#"><i class="icon-check-empty"></i> Asesor</a>
@@ -47,16 +48,16 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Facultad</a>
+                            <a href="<?php echo base_url();?>facultad"><i class="icon-check-empty"></i> Facultad</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Escuela</a>
+                            <a href="<?php echo base_url();?>escuela"><i class="icon-check-empty"></i> Escuela</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Comisión</a>
+                            <a href="<?php echo base_url();?>comision"><i class="icon-check-empty"></i> Comisión</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Departamento</a>
+                            <a href="<?php echo base_url();?>departamento"><i class="icon-check-empty"></i> Departamento</a>
                         </li>
                     </ul>
                 </li>
@@ -66,31 +67,28 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Linea de Investigación</a>
+                            <a href="<?php echo base_url();?>linea_investigacion"><i class="icon-check-empty"></i> Linea de Investigación</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Eje Temático</a>
+                            <a href="<?php echo base_url();?>eje_tematico"><i class="icon-check-empty"></i> Eje Temático</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Tipo Proyecto</a>
+                            <a href="<?php echo base_url();?>tipo_proyecto"><i class="icon-check-empty"></i> Tipo Proyecto</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Fase Comisión</a>
+                            <a href="<?php echo base_url();?>fase_comision"><i class="icon-check-empty"></i> Fase Comisión</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Fase Docente</a>
+                            <a href="<?php echo base_url();?>categoria_docente"><i class="icon-check-empty"></i> Categoria Docente</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Categoria Docente</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Dedicación Docente</a>
+                            <a href="<?php echo base_url();?>dedicacion_docente"><i class="icon-check-empty"></i> Dedicación Docente</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>tipo_asesor"><i class="icon-check-empty"></i> Tipo Asesor</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Grado Académico</a>
+                            <a href="<?php echo base_url();?>grado_academico"><i class="icon-check-empty"></i> Grado Académico</a>
                         </li>
                         <li>
                             <a href="#"><i class="icon-check-empty"></i> Ubigeo</a>

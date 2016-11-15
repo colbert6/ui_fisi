@@ -11,13 +11,13 @@
 
             <div class="widget-title" >
               <ul class="nav nav-tabs">
-                <li ><a data-toggle="tab" href="#tab1">Tabla</a></li>
-                <li class="active"><a data-toggle="tab" href="#tab2" id="ir_form">Formulario</a></li>
+                <li class="active"><a data-toggle="tab" href="#tab1">Tabla</a></li>
+                <li><a data-toggle="tab" href="#tab2" id="ir_form">Formulario</a></li>
               </ul>
             </div>
 
             <div class="widget-content tab-content">
-              <div id="tab1" class="tab-pane">
+              <div id="tab1" class="tab-pane active">
                 <p>Tabla</p>
 
                 <div class="widget-box">
@@ -46,7 +46,7 @@
                 </div>
 
               </div>
-              <div id="tab2" class="tab-pane active"> 
+              <div id="tab2" class="tab-pane"> 
                 <p>Formulario</p>
 
                 <div class="span6">
