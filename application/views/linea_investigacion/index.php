@@ -33,7 +33,7 @@
                           <th colspan="2">Acciones</th>                          
                         </tr>
                       </thead>
-
+                        
                       <tbody>
                       </tbody>
                     </table>
@@ -110,5 +110,14 @@
   .text_detail {
     padding: 7px 10px;
   }  
+
+  .table th, .table td {
+    padding: 5px;
+
+  }
+
+  .table th {
+    font-size: 12px; */
+  }
 
 </style>

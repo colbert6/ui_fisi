@@ -33,13 +33,13 @@
         ?>
 
 
-        <?php
+        <!--?php
             if(count($js)>0){    
               for ($i=0; $i <count($js) ; $i++) { 
                 echo "<script src='".base_url()."application/views/".$this->uri-> segment(1)."/".$js[$i].".js' type='text/javascript'></script>";
               }
             }
-        ?> 
+        ?> -->
 
     </body>
 </html>

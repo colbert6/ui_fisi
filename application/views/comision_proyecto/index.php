@@ -21,52 +21,51 @@
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
-                  <h5>Lista de Proyectos Registrados</h5>
-                </div>
-                <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table" id="tablaproyecto">
-                        <thead>
-                            <tr>
-                              <th>Nro</th>
-                              <th>Alumno</th>
-                              <th>Nombre de Proyecto</th>
-                              <th>Tipo</th>
-                              <th>Fecha Registro</th>
-                              <th colspan="2">Jurado</th>                         
-                            </tr>
-                        </thead>
-                        <tbody>
-                          <?php 
-                            foreach ($Proyectos as $value): ?>
+                    <h5>Lista de Proyectos Registrados</h5>
+                  </div>
+                  <div class="widget-content nopadding">
+                      <table class="table table-bordered data-table" id="tablaproyecto">
+                          <thead>
                               <tr>
-                                <td><center> <?php echo $value->pro_id; ?></center></td>
-                                <td><center> <?php echo $value->alu_nombre." ".$value->alu_apellido_paterno." ".$value->alu_apellido_materno; ?></center></td>
-                                <td><center> <?php echo $value->pro_nombre; ?></center></td>
-                                <?php 
-                                  if ($value->tipro_id == 1) { ?>
-                                      <td><center> <img src="<?php echo base_url();?>img/celeste.png"></center></td>
-                                    <?php }else 
-                                    { ?>
-                                      <td><center> <img src="<?php echo base_url();?>img/azul.png"></center></td>
-                                    <?php }
-                                ?>
-                                <td><center> <?php echo $value->pro_fecha_registro; ?></center></td>
-                                  <td> 
-                                      <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
-                                  </td>
-
-                                  <td>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    </a>
-                                  </td>
+                                <th>Nro</th>
+                                <th>Alumno</th>
+                                <th>Nombre de Proyecto</th>
+                                <th>Tipo</th>
+                                <th>Fecha Registro</th>
+                                <th colspan="2">Jurado</th>                         
                               </tr>
-                            <?php endforeach 
-                          ?>
-                        </tbody>
-                    </table>        
-                </div> <!-- FIN de Fomulario de Informacion -->
+                          </thead>
+                          <tbody>
+                            <?php 
+                              foreach ($Proyectos as $value): ?>
+                                <tr>
+                                  <td><center> <?php echo $value->pro_id; ?></center></td>
+                                  <td><center> <?php echo $value->alu_nombre." ".$value->alu_apellido_paterno." ".$value->alu_apellido_materno; ?></center></td>
+                                  <td><center> <?php echo $value->pro_nombre; ?></center></td>
+                                  <?php 
+                                    if ($value->tipro_id == 1) { ?>
+                                        <td><center> <img src="<?php echo base_url();?>img/celeste.png"></center></td>
+                                      <?php }else 
+                                      { ?>
+                                        <td><center> <img src="<?php echo base_url();?>img/azul.png"></center></td>
+                                      <?php }
+                                  ?> 
+                                  <td><center> <?php echo $value->pro_fecha_registro; ?></center></td>
+                                    <td> 
+                                        <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
+                                    </td>
+
+                                    <td>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                    </td>
+                                </tr>
+                              <?php endforeach 
+                            ?>
+                          </tbody>
+                      </table>        
+                  </div> <!-- FIN de Fomulario de Informacion -->
                 </div>
                 <div class="row-fluid">
                     <div class="span12">
@@ -575,7 +574,7 @@
     });
     circulo.render();
   }
-
+/*
   var tablapro = $('#tablaproyecto').DataTable( {
       "processing": true,
       "bJQueryUI": true,
@@ -619,7 +618,7 @@
       'aaSorting': [[ 0, 'asc' ]],//ordenar
       'iDisplayLength': 10,
       'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
-  });
+  });*/
 </script>
 
 <style type="text/css">

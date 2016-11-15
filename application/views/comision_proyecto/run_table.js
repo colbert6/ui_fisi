@@ -1,4 +1,4 @@
-/*
+
 var tablapro = $('#tablaproyecto').DataTable( {
     "processing": true,
     "bJQueryUI": true,
@@ -44,4 +44,3 @@ var tablapro = $('#tablaproyecto').DataTable( {
     'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
 });
 
-*/

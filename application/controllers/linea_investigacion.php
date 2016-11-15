@@ -3,16 +3,19 @@
     class linea_investigacion extends CI_Controller
     {    
         function __construct(){
-            parent::__construct();    
-            $this->load->database('default');
-            $this->load->model('linea_investigacion_model');
+            parent::__construct();      
             $this->load->model('eje_tematico_model');   
         }
 
         public function index()
         {   
+            $this->load->database('default');
+            $this->load->model('linea_investigacion_model');
+
             $dato_foother= array ( 'add_table'=> 'si');
-            $data= array ( 'eje_tematico'=> $this->eje_tematico_model->select()->result_array());
+            $data = array ( 'eje_tematico'=> $this->eje_tematico_model->select()->result_array());
+
+            //$Lineas = $this->linea_investigacion_model->MostrarLineas();
 
             $this->load->view('layout/header.php');
             $this->load->view('layout/menu.php');

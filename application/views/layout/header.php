@@ -27,6 +27,11 @@
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
         <script src="<?php echo base_url();?>librerias/Chart-2.3.0.min.js"></script>
+
+        <script src="<?php echo base_url();?>librerias/amcharts.js"></script>
+        <script src="<?php echo base_url();?>librerias/serial.js"></script>
+        <script src="<?php echo base_url();?>librerias/export.min.js">
+
         <script src="<?php echo base_url();?>librerias/js/datatables/jquery.dataTables.js"></script>
 
     </head>

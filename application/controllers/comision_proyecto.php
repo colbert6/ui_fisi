@@ -53,6 +53,7 @@ class comision_proyecto extends CI_Controller
     public function grabardetallecomision(){
         $this->load->database('default');
         $this->load->model('comision_proyecto_model');
+        //$this->load->library('email');
         $this->comision_proyecto_model->GrabarDetalle();
         echo json_encode(array("msg"=>"ok"));
     }
@@ -111,33 +112,17 @@ class comision_proyecto extends CI_Controller
         
     }
 
-    //GRAFICO PARA MOSTAR PROYECTOS ASIGNADOS A CADA DOCENTE
-    public function GraficoProDocentes(){
+    public function Grafico(){
         $this->load->database('default');
 
-        $query = $this->db->query("select count(ce.doc_id) , d.doc_nombre
-from comision_evaluadora as ce 
-inner join docente as d on d.doc_id = ce.doc_id 
-group by ce.doc_id , d.doc_nombre order by ce.doc_id");
+        $query = $this->db->query("select count(ce.doc_id) as total , c.carg_descripcion
+                                    from comision_evaluadora as ce 
+                                    inner join docente as d on d.doc_id = ce.doc_id 
+                                    inner join cargo as c on c.carg_id = ce.carg_id 
+                                    where ce.doc_id=".$_POST['coddocente']."
+                                    group by ce.carg_id , c.carg_descripcion order by ce.carg_id");
 
-        $narray = array();
-        $proyectos = array();
-        $Docentes = $query->result_array();
-
-        foreach ($Docentes as $key => $value) {
-            $narray[] = $value["doc_id"];
-        }
-
-        foreach ($proyectos as $key => $value) {
-            
-        }
-
-        $envio = array();
-
-        $envio["docente"] = $narray;
-        $envio["cantidad"] = $proyectos;
-
-        echo json_encode($envio);
+        $DocenteModal = $query->result_array();
     }
 
 }

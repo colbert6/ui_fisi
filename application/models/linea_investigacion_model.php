@@ -4,8 +4,8 @@
 			parent::__construct();
 		}
 
-		function MostrarLineaInvestigacion(){
-			$this->db->select('*');
+		function MostrarLineas(){
+			$this->db->select('linea_investigacion.linin_id, linea_investigacion.linin_descripcion, eje_tematico.eje_descripcion');
 			$this->db->from('linea_investigacion');
 			$this->db->join('eje_tematico', 'eje_tematico.eje_id = linea_investigacion.eje_id');
 			
