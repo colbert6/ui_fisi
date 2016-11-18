@@ -60,13 +60,13 @@
                       ),
                       $styleFont1, $styleParagraph
                     );
-            $section->addTextBreak(2);
+            $section->addTextBreak(1);
             $section->addText(
                       utf8_decode('FACULTAD DE INGENIERÍA DE SISTEMAS E INFORMÁTICA'),
                       $styleFont2, $styleParagraph
                     );
 
-            $section->addTextBreak(2);
+            $section->addTextBreak(1);
 
             $section->addText(
                       utf8_decode('ESCUELA ACADÉMICO PROFESIONAL DE INGENIERÍA DE SISTEMAS E INFORMÁTICA'),
@@ -75,7 +75,7 @@
             $section->addImage('logo_unsm.jpg',array('width'=>230, 'height'=>210, 'align'=>'center'));
 
 
-            $section->addTextBreak(2);
+            $section->addTextBreak(1);
 
             $section->addText(
                       utf8_decode('PROYECTO DE TESIS '),
@@ -113,7 +113,7 @@
                       utf8_decode($alumno_name),
                       $styleFont6, $styleParagraph
                     );
-            $section->addTextBreak(2);
+            $section->addTextBreak(1);
 
             $section->addText(
                       utf8_decode('Asesor:'),
@@ -142,14 +142,14 @@
                       $styleFont5, $styleParagraph
                     );
 
-            $section->addTextBreak(5);
+            $section->addTextBreak(1);
             $data = $this->getData();
             foreach ($data as $title) {
                 $section->addText(
                       utf8_decode($title["nompar_descripcion"]),
                       $styleFont5
                     );
-                $section->addTextBreak(2);
+                
                 foreach ($title["subs"] as $sub) {
                     $section->addText(
                           utf8_decode($sub["nompar_descripcion"]),

@@ -28,7 +28,7 @@
         <?php
             if(isset ($add_table) && $add_table=='si'){    
         ?>
-           <script src="<?= base_url();?>application/views/<?= $this->uri-> segment(1);?>/<?= $this->uri-> segment(2);?>.js" type="text/javascript"></script>
+           <script src="<?= base_url();?>application/views/<?= $this->uri-> segment(1);?>/run_table.js" type="text/javascript"></script>
         <?php
             }
         ?>

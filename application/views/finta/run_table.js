@@ -5,7 +5,7 @@ alu_id=$('#cod_usu').val() ;
 
         "processing": true,
         "ajax": {
-            "url": base_url+"proyecto/cargar_proyectos_alumno/"+alu_id,
+            "url": base_url+"proyecto/cargar_mis_proyectos/"+alu_id,
             "type": "POST"
         },
         "columns": [
