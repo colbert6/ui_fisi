@@ -19,7 +19,7 @@
                 "defaultContent": ''
             },
             {
-                "className":      'detail-control',
+                "className":      'eliminar-close',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''

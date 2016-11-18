@@ -135,7 +135,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="#"><i class="icon-check-empty"></i> Proyectos</a>
+                            <a href="<?php echo base_url();?>reportes/proyectos"><i class="icon-check-empty"></i> Proyectos</a>
                         </li>
                         <li>
                             <a href="#"><i class="icon-check-empty"></i> Alumnos</a>
