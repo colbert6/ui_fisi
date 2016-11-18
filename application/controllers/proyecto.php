@@ -12,7 +12,7 @@
 
 
         public function proyectos(){//Del Admin
-            $dato_foother= array ( 'add_table'=> 'si');
+            $dato_foother= array ( 'js'=>array ('proyectos') );
             //echo"<pre>";print_r($data);exit();
 
             $this->load->view('layout/header.php');
@@ -23,8 +23,8 @@
 
         public function mis_proyectos()//Del Alumno
         {               
-            $dato_foother= array ( 'add_table'=> 'si');
-         
+            $dato_foother= array ( 'js'=>array ('mis_proyectos') );
+            
             $this->load->view('layout/header.php');
             $this->load->view('layout/menu.php');
             $this->load->view('proyecto/mis_proyectos.php');
@@ -33,7 +33,7 @@
 
         public function proyecto_asesor()//Del docente
         {               
-            $dato_foother= array ( 'add_table'=> 'si');
+            $dato_foother= array ( 'js'=>array ('proyecto_asesor') );
          
             $this->load->view('layout/header.php');
             $this->load->view('layout/menu.php');
@@ -44,7 +44,7 @@
         public function proyecto_evaluador()//Del docente
         {               
             
-            $dato_foother= array ( 'add_table'=> 'si');
+            $dato_foother= array ( 'js'=>array ('proyecto_evaluador') );
         
             $this->load->view('layout/header.php');
             $this->load->view('layout/menu.php');
