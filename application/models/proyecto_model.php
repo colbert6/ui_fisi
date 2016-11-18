@@ -7,9 +7,31 @@
             $this->load->database('default');              
         }
 
-        function select_proyecto_alumno($alu_id){
-            $this->db->where("alu_id",$alu_id);  
+        function select_proyectos(){
+            //$this->db->where("alu_id",$alu_id);   // Validar solo proyectos vigentes
             $query=$this->db->get("proyecto");      
+            return $query;            
+        }
+
+        function select_proyecto_alumno($id){
+            $this->db->where("alu_id",$id);  
+            $query=$this->db->get("proyecto");      
+            return $query;            
+        }
+
+        function select_proyecto_asesor($id){
+            $sql="SELECT p.*
+                  FROM proyecto p, asesor a
+                  WHERE a.pro_id=p.pro_id and a.doc_id=$id";
+            $query=$this->db->query($sql);  
+            return $query;            
+        }
+
+        function select_proyecto_evaluador($id){
+            $sql="SELECT p.*
+                  FROM proyecto p, comision_evaluadora ce
+                  WHERE ce.pro_id=p.pro_id and ce.doc_id=$id";
+            $query=$this->db->query($sql);  
             return $query;            
         }
 

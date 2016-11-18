@@ -1,11 +1,11 @@
 
-alu_id=$('#cod_usu').val() ;
+cod_usu=$('#cod_usu').val() ;
     //var base_url definida en header
     var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
-            "url": base_url+"proyecto/cargar_proyectos_alumno/"+alu_id,
+            "url": base_url+"proyecto/cargar_mis_proyectos/"+cod_usu,
             "type": "POST"
         },
         "columns": [
@@ -14,6 +14,12 @@ alu_id=$('#cod_usu').val() ;
             { "data": "pro_fecha_registro" }, 
             {
                 "className":      'editar-data',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            {
+                "className":      'bajar-doc',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -58,11 +64,6 @@ alu_id=$('#cod_usu').val() ;
                 'sSortDescending': ': Activar para ordenar la columna de manera descendente'
             }
         },
-        "columnDefs": [
-                    {
-                        "targets": [ 2 ],
-                        "visible": true
-                    }],
         'aaSorting': [[ 0, 'asc' ]],//ordenar
         'iDisplayLength': 10,
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
@@ -75,29 +76,11 @@ alu_id=$('#cod_usu').val() ;
         window.location=base_url+"proyecto/elaborar_proyecto/"+row.data().pro_id;
     } );
 
-    /*$('#tab tbody').on('click', 'td.eliminar-data', function () { //Agregar los datos correspondientes al modal-delete
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
-        $("#modal_delete").modal({show: true});
-        $("#id_dato_eliminar").val(row.data().id_marca);
-        $('#desc_dato_eliminar').html(row.data().descripcion);
-
-    });*/
-
     $('#tab tbody').on('click', 'td.detail-control', function () { //Agregar los datos correspondientes al modal-delete
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         $("#modal_detail").modal({show: true});
-
         
-        $("#codigo").html(row.data().alu_codigo);
-        $("#nombre").html(row.data().nombre);
-        $("#dni").html(row.data().alu_dni);
-        $("#sexo").html(row.data().alu_sexo);
-        $("#fec_nac").html(row.data().alu_fecha_nacimiento);
-        $("#ubigeo").html(row.data().ubigeo);// arreglar
-        $("#est_civil").html(row.data().alu_estado_civil);
-
         $("#codigo").html(row.data().alu_codigo);
         $("#nombre").html(row.data().nombre);
         $("#dni").html(row.data().alu_dni);

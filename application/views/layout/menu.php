@@ -25,11 +25,16 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Mis Proyectos</a>
+                            <a href="<?php echo base_url();?>proyecto/proyectos"><i class="icon-check-empty"></i>Proyectos</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>proyecto/elaborar_proyecto"><i class="icon-check-empty"></i> Elaborar</a>
-
+                            <a href="<?php echo base_url();?>proyecto/mis_proyectos"><i class="icon-check-empty"></i>Mis Proyectos</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>proyecto/proyecto_asesor"><i class="icon-check-empty"></i>Proyectos Asesor</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url();?>proyecto/proyecto_evaluador"><i class="icon-check-empty"></i>Proyectos Evaluador</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>comision_proyecto"><i class="icon-check-empty"></i> Comisión del Proyecto</a>

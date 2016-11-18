@@ -85,26 +85,34 @@ div.tagsinput div { display:block; float: left; }
 
 
 td.detail-control {
-    background: url('../img/details_open.png') no-repeat center center;
+    background: url('../img/icons/16/details_open.png') no-repeat center center;
     cursor: pointer;
 }
 tr.shown td.detail-control {
-    background: url('../img/details_close.png') no-repeat center center;
+    background: url('../img/icons/16/details_close.png') no-repeat center center;
+}
+td.evaluar-data {
+    background: url("../img/icons/16/tag.png") no-repeat center center;
+    cursor: pointer;
 }
 td.editar-data {
-    background: url("../img/edit.png") no-repeat center center;
+    background: url("../img/icons/16/edit.png") no-repeat center center;
     cursor: pointer;
 }
 td.eliminar-data {
-    background: url("../img/eliminar.png") no-repeat center center;
+    background: url("../img/icons/16/eliminar.png") no-repeat center center;
+    cursor: pointer;
+}
+td.bajar-doc {
+    background: url("../img/icons/16/download.png") no-repeat center center;
     cursor: pointer;
 }
 td.inventariar-data {
-    background: url("../img/inventariar.png") no-repeat center center;
+    background: url("../img/icons/16/inventariar.png") no-repeat center center;
     cursor: pointer;
 }
 td.editar_precio-data {
-    background: url("../img/editar_precio.png") no-repeat center center;
+    background: url("../img/icons/16/editar_precio.png") no-repeat center center;
     cursor: pointer;
 }
 .resaltar{

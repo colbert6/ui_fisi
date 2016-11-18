@@ -28,16 +28,15 @@
         <?php
             if(isset ($add_table) && $add_table=='si'){    
         ?>
-           <script src="<?= base_url(); ?>application/views/<?= $this->uri-> segment(1);?>/run_table.js" type="text/javascript"></script>
+           <script src="<?= base_url();?>application/views/<?= $this->uri-> segment(1);?>/<?= $this->uri-> segment(2);?>.js" type="text/javascript"></script>
         <?php
             }
         ?>
 
-
         <?php
             if(@count($js)>0){    
               for ($i=0; $i <count($js) ; $i++) { 
-                echo "<script src='".base_url()."application/views/".$this->uri-> segment(1)."/".$js[$i].".js' type='text/javascript'></script>";
+                echo "<script src='".base_url()."application/views/".$this->uri-> segment(1)."/ext/".$js[$i].".js' type='text/javascript'></script>";
               }
             }
         ?> 
