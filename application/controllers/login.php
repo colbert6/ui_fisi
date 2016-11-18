@@ -12,27 +12,27 @@ class login extends CI_Controller {
 	{
 		$this->load->database('default');
 		$this->load->model('login_model');
-		
+		#print_r($_POST); exit;
 		$usuario = $this->login_model->logueardocente($this->input->post("email"),$this->input->post("contra"));
 
-		if(count($usuario) == 1){			
+		if(count($usuario) == 1){
 			if(true){
 				$_SESSION['email']=$usuario[0]['doc_correo'];
 				$_SESSION['usuario']=$usuario[0]['doc_nombre'].' '.$usuario[0]['doc_apellido_paterno'].' '.$usuario[0]['doc_apellido_materno'];
 				$_SESSION['codusuario']=$usuario[0]['doc_id'];
-	            $_SESSION['codtipousuario'] = $usuario[0]['tipusu_id'];		
+	            $_SESSION['codtipousuario'] = $usuario[0]['tipusu_id'];
 				redirect(base_url().'uifisi','refresh');
 			}
 		}
-		else 
+		else
 		{	$usuario = $this->login_model->loguearalumno($this->input->post("email"),$this->input->post("contra"));
 
-			if(count($usuario) == 1){			
-				if(true){	
+			if(count($usuario) == 1){
+				if(true){
 					$_SESSION['email']=$usuario[0]['alu_correo'];
 					$_SESSION['usuario']=$usuario[0]['alu_nombre'].' '.$usuario[0]['alu_apellido_paterno'].' '.$usuario[0]['alu_apellido_materno'];
 					$_SESSION['codusuario']=$usuario[0]['alu_id'];
-		            $_SESSION['codtipousuario'] = $usuario[0]['tipusu_id'];	
+		            $_SESSION['codtipousuario'] = $usuario[0]['tipusu_id'];
 					redirect(base_url().'uifisi','refresh');
 				}
 			}
@@ -41,7 +41,7 @@ class login extends CI_Controller {
 				redirect(base_url(),'refresh');
 			}
 
-		}	
+		}
 	}
 
 	public function cerrarsession(){

@@ -38,10 +38,10 @@
                 <h2>Bienvenido</h2>
                 <div class="span4"></div>
                 <div class="span5">
-                    <div class="widget-box">       
+                    <div class="widget-box">
                         <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
                             <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>img/logofisi.png" alt="Logo" /></h3></div>
-                            <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div> 
+                            <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div>
                             <br><br>
 
                             <div class="control-group">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </div><br><br><br><br>
-                            
+
                             <div class="form-actions">
                                 <center>
                                     <button type="button" class="btn btn-success" onclick="Validar(this.form);">
@@ -68,9 +68,9 @@
                                     </button>
                                 </center>
                             </div>
-                        </form>     
+                        </form>
                     </div>
-                </div> 
+                </div>
 
                 <div id="AlertaLogin" class="modal hide">
                     <div class="modal-header">
@@ -83,12 +83,12 @@
                     </div>
 
                     <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" href="#">Confirmar</a></div>
-                </div>        
+                </div>
             </div>
         </center>
-        
-        <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>  
-        <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script> 
+
+        <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>
+        <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
     </body>
 
 </html>
