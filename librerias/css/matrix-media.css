@@ -92,7 +92,11 @@ tr.shown td.detail-control {
     background: url('../img/icons/16/details_close.png') no-repeat center center;
 }
 td.evaluar-data {
-    background: url("../img/icons/16/tag.png") no-repeat center center;
+    background: url("../img/icons/16/evaluar.png") no-repeat center center;
+    cursor: pointer;
+}
+td.mostrar-proyecto {
+    background: url("../img/icons/16/read.png") no-repeat center center;
     cursor: pointer;
 }
 td.editar-data {
@@ -120,9 +124,35 @@ td.word {
     cursor: pointer;
 
 }
+th.dt-center, td.dt-center { text-align: center; }
 .resaltar{
 	border-width: 4px;
 	border-style: double;
 	border-color: blue;
 	padding:4px;
+}
+td.falta-req {
+    background: url("../img/icons/16/falta.png") no-repeat center center;
+    cursor: pointer;
+
+}
+td.listo-req {
+    background: url("../img/icons/16/listo.png") no-repeat center center;
+    cursor: pointer;
+
+}
+td.subir-req {
+    background: url("../img/icons/16/subir.png") no-repeat center center;
+    cursor: pointer;
+
+}
+
+.logo-universidad{
+    width: 23.076923076923077%;
+    padding-right: 5%; 
+}
+.logo-facultad{
+    padding-left:5%; 
+    width: 23.076923076923077%;
+
 }

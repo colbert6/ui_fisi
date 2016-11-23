@@ -24,7 +24,13 @@
     $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
         var obj = JSON.parse(datos);
         if(obj.length){
-          $('#parte_pro_nombre_text').html(obj["0"].pro_nombre);
+          $('#parte_pro_nombre_text').html(obj["0"].pro_nombre);          
+          $('#pro_fac').html(obj["0"].fac_descripcion.toUpperCase());
+          $('#pro_esc').html(obj["0"].esc_descripcion.toUpperCase());
+          $('#pro_alu').html(obj["0"].alu_nombres.toUpperCase());
+          $('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
+          $('#pro_fecha').html(obj["0"].fecha);
+        }
         }
         
     });

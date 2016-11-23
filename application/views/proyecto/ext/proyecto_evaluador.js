@@ -1,5 +1,5 @@
 
-cod_usu=1 ;
+cod_usu=$('#cod_usu').val() ;
     //var base_url definida en header
     var table =$('#tab').DataTable( {
 

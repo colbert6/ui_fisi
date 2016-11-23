@@ -38,12 +38,12 @@
     background: white!important;
     padding: 20px;
   }
-  table {
+  /*table {
     display: table;
     border-collapse: separate;
     border-spacing: 2px;
     border-color: silver;
-  }
+  }*/
   .parte_text{
     border-radius: 5px;
     border: 1px solid #DCDCDC;
@@ -76,6 +76,7 @@
   li{
     line-height: 15px; 
   }
-  .widget-content {
-     border-bottom: 0px; 
+.widget-content {
+  border-bottom: 0px; 
 }
+

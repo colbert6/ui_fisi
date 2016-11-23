@@ -1,6 +1,6 @@
         <div class="row-fluid">
           <div id="footer" class="span12"> 
-              Innóvate FISI &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+              FISI - Facultad Lider &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
           </div>
         </div>
 

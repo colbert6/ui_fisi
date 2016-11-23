@@ -20,7 +20,7 @@
             function Validar(obj){
                 if(obj.email.value==""){
                     $('#email').focus();
-                    alert("Ingrese su Email"); return 0;
+                    alert("Ingrese su Usuario"); return 0;
                 }
                 if(obj.contra.value==""){
                     $('#contra').focus();
@@ -40,15 +40,19 @@
                 <div class="span5">
                     <div class="widget-box">
                         <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
-                            <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>img/logofisi.png" alt="Logo" /></h3></div>
+                            <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>librerias/img/logo/ui_unsm.png" alt="Logo" /></h3></div>
                             <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div>
+                            <?php if ($error): ?>
+                               <p> <?php echo $error ?> </p>
+                            <?php endif; ?>
                             <br><br>
+
 
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="span1 control-label">Usuario: </label>
                                     <div class="span3">
-                                        <input type="text" name="email" id="email" placeholder="Ingrese Email" maxlength="50" />
+                                        <input type="text" name="email" id="email" placeholder="Ingrese Usuario" maxlength="50" />
                                     </div>
                                 </div>
                             </div>

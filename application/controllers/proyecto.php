@@ -7,9 +7,12 @@
             parent::__construct();    
             $this->load->database('default');  
             $this->load->model('nombre_parte_model');
-            $this->load->model('proyecto_model');  
-        }
+            $this->load->model('proyecto_model'); 
+            $this->load->model('requisito_model');
+            $this->load->model('linea_investigacion_model');   
+            $this->load->model('tipo_proyecto_model');
 
+        }
 
         public function proyectos(){//Del Admin
             $dato_foother= array ( 'js'=>array ('proyectos') );
@@ -55,16 +58,19 @@
         public function registrar_proyecto()
         {               
             $dato_foother= array ( 'add_table'=> 'no');
-            //$data= array ( 'proyecto'=> $this->proyecto_model->select()->result_array());
+            $data= array ( 'linea_inv'=> $this->linea_investigacion_model->mostrar_tabla()->result_array(),
+                        'requisitos'=> $this->requisito_model->select_requisitos()->result_array(),
+                        'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
             //echo"<pre>";print_r($data);exit();
+            echo $this->session->userdata('alu_id');
 
-            $this->load->view('layout/header.php');
+            /*$this->load->view('layout/header.php');
             $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/registrar_proyecto.php');
-            $this->load->view('layout/foother.php',$dato_foother);             
+            $this->load->view('proyecto/registrar_proyecto.php',$data);
+            $this->load->view('layout/foother.php',$dato_foother);    */         
         }
         
-        public function elaborar_proyecto($pro_id=1)
+        public function elaborar_proyecto($pro_id)
         {   
             //Validar que el proyecto sea del usuario            
             $dato_foother= array ( 'js'=>array ('elaborar') );
@@ -79,10 +85,26 @@
             $this->load->view('layout/foother.php',$dato_foother);               
         }
 
-        public function evaluar_proyecto($pro_id=1)
+        public function evaluar_proyecto($pro_id)
         {   
             //Validar que el proyecto sea del usuario    
             $dato_foother= array ( 'js'=>array ('evaluar') );        
+            $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
+                          'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
+                          'pro_id'=>$pro_id );
+            //echo"<pre>";print_r($data);exit();
+
+            $this->load->view('layout/header.php');
+            $this->load->view('layout/menu.php');
+            $this->load->view('proyecto/formato.php',$data);
+            $this->load->view('layout/foother.php',$dato_foother);              
+        }
+
+        public function mostrar_proyecto()
+        {   
+            //Validar que el proyecto sea del usuario   
+            $pro_id= $this->input->post('pro_id');
+            $dato_foother= array ( 'js'=>array ('mostrar') );        
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
@@ -103,7 +125,7 @@
             // $this->load->view('proyecto/header_word.php',$data);
         }
 
-        public function guardar()
+        public function guardar()//Guardar Nombre_Proyecto/Parte
         {   
             if($_POST['id_campo']=='pro_nombre'){//editar el nombre del proyecto
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
@@ -227,16 +249,22 @@
             echo json_encode( $consulta->result());
         }
 
+        public function buscar_requisito_pro()//Requisito del proyecto
+        {   
+            $pro= $this->input->post('pro_id');
+            $consulta=$this->requisito_model->select_req_pro($pro);
+            echo json_encode( $consulta->result());
+        }
+
+        
+
         public function buscar_evaluacion()//Criterio en general
         {   
-            /*$data= array ( 'nompar'=> $this->input->post('nompar'),
+            $data= array ( 'nompar'=> $this->input->post('nompar'),
                             'pro'=> $this->input->post('pro'),
                             'doc'=> $this->input->post('doc'),
-                            'part'=> $this->input->post('part'));*/
-            $data= array ( 'nompar'=> 2,
-                            'pro'=>5,
-                            'doc'=> 1,
-                            'part'=> 4);
+                            'part'=> $this->input->post('part'));
+           
             $consulta=$this->proyecto_model->select_evaluacion($data);
             //echo "<pre>";            print_r($consulta->result());exit();
             echo json_encode( $consulta->result());
