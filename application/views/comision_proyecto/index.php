@@ -50,17 +50,28 @@
                                         <td><center> <img src="<?php echo base_url();?>img/azul.png"></center></td>
                                       <?php }
                                   ?> 
-                                  <td><center> <?php echo $value->pro_fecha_registro; ?></center></td>
-                                    <td> 
-                                        <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
-                                    </td>
-
-                                    <td>
+                                  <td><center> <?php echo $value->pro_fecha_registro; ?></center>
+                                  <td> 
+                                      <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
+                                  </td>
+                                  <td>
+                                    <?php 
+                                      $FechaActual = date("d-m-Y H:i:s");
+                                      if ($FechaActual < $value->pro_fecha_notificacion) { ?>
+                                          <button class="btn btn-success btn-xs" data-toggle="modal"></button>
+                                    <?php    
+                                      } elseif ($FechaActual == $value->pro_fecha_notificacion) { ?>
+                                          <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                    <!--?php 
+                                      } else ($FechaActual > $value->pro_fecha_notificacion) { ?>
+                                          <button class="btn btn-danger btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                    <?php
+                                      }
+                                    ?> -->
+                                      
                                       <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
                                       <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    </td>
-                                </tr>
+                                  </td>
                               <?php endforeach 
                             ?>
                           </tbody>
@@ -83,7 +94,7 @@
               <div id="tab3" class="tab-pane">
                 <div class="span12"> 
                   <div class="row-fluid">
-                      <div class="span12">
+                      <div class="span12 pop">
                           <div class="widget-box">
                               <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
                                   <h5>Reportes por Docente</h5>
@@ -228,7 +239,7 @@
                       </div>
                     </div> 
 
-                    <div class="span11" id="tabladetalle2">
+                    <div class="span10" id="tabladetalle2">
                       <div class="widget-box">
                         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                           <h5>Lista de Comisión</h5>
@@ -255,18 +266,22 @@
                       </div>
                     </div> 
 
+                    <div class="span1" id="Boton">
+                      <div>
+                          <br><br><br><br><br>
+                          <button class="btn btn-warning btn-xs" style="margin-bottom:1px;"><span class="icon-plus-sign"></span> Enviar Email</button>
+                      </div>
                   </div>
               </div>
 
-                  <div class="modal-footer clearfix">
-                      <button type="button" onclick="Cancelar()" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                      <button type="button" onclick="enviar_detalle_comision()" class="btn btn-primary pull-left" id="BTNGuardar"><i class="fa fa-check"></i> Guardar</button>
-                  </div>
+              <div class="modal-footer clearfix">
+                  <button type="button" onclick="Cancelar()" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                  <button type="button" onclick="enviar_detalle_comision()" class="btn btn-primary pull-left" id="BTNGuardar"><i class="fa fa-check"></i> Guardar</button>
+              </div>
 
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->   
-
 
 
 <!-- MODAL GRAFICO-->
@@ -278,14 +293,51 @@
     </div>
     <div class="modal-body">
       <div class="widget-content">
-          <canvas id="GraficoReporte" width="600" height="150"></canvas>
+          <!--canvas id="GraficoReporte" width="600" height="150"></canvas -->
+          <div id="ChartBarra" style="height: 370px; width: 100%; "></div>
       </div>
-         
     </div>
     <div class="modal-footer clearfix">
         <a data-dismiss="modal" class="btn btn-primary" onclick="Actualizar();">Aceptar</a>
     </div>
   </div>
+
+  <script type="text/javascript">
+     window.onload = function () {
+      //GRAFICO PROYECTO DOCENTES
+      var proyectobarra = new CanvasJS.Chart("Barra",
+      {
+        title:{
+          text: "Top Proyectos de Tesis",
+          fontSize: 16    
+        },
+        animationEnabled: true,
+        axisY: {
+          title: "N° Proyectos de Tesis"
+        },
+        legend: {
+          verticalAlign: "bottom",
+          horizontalAlign: "center"
+        },
+        width: 1000,
+        theme: "theme2",
+        data: [
+          {        
+            type: "column",  
+            //showInLegend: true, 
+            //legendMarkerColor: "grey",
+            //legendText: "MMbbl = one million barrels",
+            dataPoints: [   
+              <?php foreach ($DocenteProyectos as $key => $value) {
+                echo '{y: '.(int)$value["total"].', label: "'.$value["nombre"].'"},';
+              } ?>   
+            ]
+          }   
+        ]
+      });
+      proyectobarra.render();
+    }
+  </script>
 </div> 
 
 <script type="text/javascript">
@@ -330,7 +382,6 @@
                       $("#FomularioProyecto").hide();
                       $("#tabladetalle1").hide();
                       $("#BTNGuardar").hide();
-                      //$("#TablaDetalleComision tbody").empty();
                       html="";
                       for (var i = 0; i < datos.length; i++){
                           html += "<tr>";
@@ -342,7 +393,6 @@
                           html += "</tr>";
                       }
                       $("#TablaDetalleComisionAsignada tbody").append(html); 
-  
                   }
               });
           }else{
@@ -353,10 +403,10 @@
                   success: function(respuesta){
                       var datos = eval(respuesta);
                       $("#tabladetalle2").hide();
+                      $("#Boton").hide();
                       $("#codproyecto").val(datos[0]['pro_id']);
                       $("#nombre").val(datos[0]['pro_nombre']);
                   }
-
               });
           }
       },'json');
@@ -414,47 +464,11 @@
           "<td><button class='btn btn-primary btn-xs' style='margin-bottom:1px;' onclick=$(this).closest('tr').remove();><span class='icon-remove' style='color:#D01111'></span> </button></td></tr>";
 
           $("#TablaDetalleComision tbody").append(html);
-     
   }
 
-  
- 
-  var ctx = $("#GraficoReporte");
-  var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ["Miguel Valles","Carlos Grandes","Buenaventura Rios","Pamela Granda","Andy Rucoba","Jhon Ruiz","Quique Lopez","Miguel Arias","Janina Cotrina","Jorge Valverde","Juan Carlos","Pedro Gonzales"], 
-            datasets: [
-                {
-                    label: 'Proyectos',
-                    data: [30,15,35,9,40,11,8,20,38,6,25,50],
-                    backgroundColor: [
-                        'rgba(75,192,192,0.4)',
-
-                    ],
-
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                    ],
-
-                    borderwidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-      });
-
   window.onload = function () {
-
-      var chart = new CanvasJS.Chart("chartContainer",
-      {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
         theme: "theme3",
         animationEnabled: true,
         title:{
@@ -486,7 +500,6 @@
           type: "column", 
           name: "Tesis",
           legendText: "Tesis",
-          axisYType: "secondary",
           showInLegend: true,
           dataPoints:[
               <?php foreach ($Tesis as $key => $value) {
@@ -574,7 +587,7 @@
     });
     circulo.render();
   }
-/*
+
   var tablapro = $('#tablaproyecto').DataTable( {
       "processing": true,
       "bJQueryUI": true,
@@ -616,9 +629,9 @@
                       "visible": true
                   }],
       'aaSorting': [[ 0, 'asc' ]],//ordenar
-      'iDisplayLength': 10,
+      'iDisplayLength': 5,
       'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
-  });*/
+  });
 </script>
 
 <style type="text/css">

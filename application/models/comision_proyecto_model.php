@@ -40,18 +40,18 @@
 			$id_proyecto = $_POST["proyecto_id"];
 			foreach ($_POST["id_docente"] as $key => $value) {
 				$data = array(
-				   'pro_id' =>  $id_proyecto ,
-				   'doc_id' => $value ,
-				   'carg_id' => $_POST["id_cargo"][$key] ,
-				   'comeva_fecha_designacion'=> date("d-m-Y H:i:s")
+				   'pro_id' =>  $id_proyecto,
+				   'doc_id' => $value,
+				   'carg_id' => $_POST["id_cargo"][$key],
+				   'comeva_fecha_designacion'=> date("d-m-Y H:i:s"),
+				   'comeva_fecha_notificacion'=> date("d-m-Y H:i:s", strtotime("+10 day") )
 				   );
 				 
 				$this->db->insert('comision_evaluadora', $data); 
 			}
 		}
 
-		function MostrarProyectosAsignados($cod){
-			
+		function MostrarProyectosAsignados($cod){	
 			$query = $this->db->query("select p.pro_nombre, d.doc_nombre, d.doc_apellido_paterno, 			d.doc_apellido_materno, c.carg_descripcion,ce.comeva_fecha_designacion, 		ce.comeva_fecha_notificacion 
 						from comision_evaluadora as ce
 						inner join proyecto as p on p.pro_id = ce.pro_id
@@ -60,16 +60,9 @@
 						where ce.pro_id ='".$cod."'");
 			return $query->result();
 		}
-				/*		as ce
-						inner join proyecto as p on p.pro_id = ce.pro_id
-						inner join docente as d on d.doc_id = ce.doc_id  */
+				
 		function MostrarProyecto($cod){
 			$query = $this->db->query("select  pro_id, pro_nombre FROM proyecto where pro_id ='".$cod."'");
-			return $query->result();
-		}
-
-		function MostrarPresidente($cod){
-			$query = $this->db->query("select doc_id, pro_nombre FROM comision_evaluadora where pro_id ='".$cod."' and doc_id=1");
 			return $query->result();
 		}
 

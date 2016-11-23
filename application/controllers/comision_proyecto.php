@@ -38,6 +38,7 @@ class comision_proyecto extends CI_Controller
         $LinInvesChart = $query2->result_array();
         $ProyectoTesis = $query3->result_array();
         $Tesis = $query4->result_array();
+        $DocenteProyectos = $query1->result_array();
 
         $Proyectos = $this->comision_proyecto_model->MostrarProyectos();
         $ComisionProyecto = $this->comision_proyecto_model->MostrarComisionProyectos();
@@ -53,7 +54,6 @@ class comision_proyecto extends CI_Controller
     public function grabardetallecomision(){
         $this->load->database('default');
         $this->load->model('comision_proyecto_model');
-        //$this->load->library('email');
         $this->comision_proyecto_model->GrabarDetalle();
         echo json_encode(array("msg"=>"ok"));
     }
@@ -74,42 +74,15 @@ class comision_proyecto extends CI_Controller
     public function CargandoProyectosAsignados(){
         $this->load->database('default');
         $this->load->model('comision_proyecto_model');
-
-        $Proyecto= $this->comision_proyecto_model->MostrarProyectosAsignados($this->input->post("cargar"));
-            
+        $Proyecto= $this->comision_proyecto_model->MostrarProyectosAsignados($this->input->post("cargar")); 
         echo json_encode($Proyecto); 
     }
 
     public function CargandoProyectos(){
         $this->load->database('default');
         $this->load->model('comision_proyecto_model');
-
         $Proyecto= $this->comision_proyecto_model->MostrarProyecto($this->input->post("cargar"));
-
         echo json_encode($Proyecto); 
-    }
-
-    public function CargarPresidente(){
-        $this->load->database('default');
-        $this->load->model('comision_proyecto_model');
-
-        $Presidente= $this->comision_proyecto_model->MostrarPresidente($this->input->post("cargar"));
-        echo json_encode($Proyecto);
-    }
-
-    public function Eliminar(){
-        $this->load->database('default');
-        $this->load->model('comision_proyecto_model');
-        
-        $client= $this->comision_proyecto_model->ValidarCliente($this->input->post("eliminar"));
-    
-        if ($client == null) {
-            $NuevoCliente= $this->comision_proyecto_model->Eliminar($this->input->post("eliminar"));
-            echo "<center> <span class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span> <b> Cliente Eliminado Correctamente </b> </center>";
-        }else{
-            echo "<center> <span class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span> <b> No Puede Eliminar Este Cliente </b> </center>";
-        }   
-        
     }
 
     public function Grafico(){

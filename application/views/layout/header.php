@@ -27,9 +27,7 @@
         <!--link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'-->
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
-        <script src="<?php echo base_url();?>librerias/Chart-2.3.0.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/datatables/jquery.dataTables.js"></script>
-
     </head>
 
     <body>

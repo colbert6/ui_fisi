@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <!--?php 
+                          <?php 
                             foreach ($Proyectos as $value): ?>SS
                               <tr>
                                 <td><center> <?php echo $value->pro_id; ?></center></td>
@@ -53,7 +53,7 @@
                                   </td>
                               </tr>
                             <?php endforeach 
-                          ?> -->
+                          ?>
                         </tbody>
                     </table>
                   </div>
