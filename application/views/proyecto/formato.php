@@ -1,97 +1,12 @@
 <?php
-  $partes=$parte;
-
-  function nivel_parte($orden)  {
+    function nivel_parte($orden)  {
       $niveles = explode(".", $orden);
       return count($niveles);
   }
 
 ?>
-<style type="text/css">
-  .fix_hgt{ /*Clase de Div = Cuerpo de Secciones */
-    height: 410px;
-  }
-  .observaciones{ /*Clase de Div = Cuerpo de observaciones */
-    height: 100px;
-  }
-  .table_seccion {
-    width: 100%;
-  }
-  .nombre {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 20px 0;
-  }
-  .caratula {
-    text-align: center;
-  }
-  .seccion{
-    padding: 20px 5px 20px 5px;
-    font-weight: bold;
-    font-size: 17px;
-  }
-  .sub_seccion{
-    padding-top: 10px;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  .seccion_text{
-    padding-top: 10px;
-    font-size: 12px;
-  }
-  .base_documento {
-    background: #C0C0C0!important;
-    padding: 20px;
-  }
-  .documento {
-    background: white!important;
-    padding: 20px;
-  }
-  table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: silver;
-  }
-  .parte_text{
-    border-radius: 5px;
-    border: 1px solid #DCDCDC;
-    padding: 5px;
-    height: 40px;
-    overflow:auto;
-  }
-  .modal  {
-    width: 1180px;
-    left: 30%;
-  }
-  .modal-body {
-    overflow:hidden; 
-  }
-  .modal-body {
-    height: 435px;
-    max-height: 600px;
-  }
-  .modal.fade.in {
-    top: 6%;
-  }
-  textarea {
-    width: 98%;
-  }
-  #contenido_modal{
-    height: 260px;
-    text-align: justify;  
-  }
-
-  li{
-    line-height: 15px; 
-  }
-  .widget-content {
-     border-bottom: 0px; 
-}
-
- 
-</style>
+<!--link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" /-->
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/proyecto/ext/proyecto.css" />
 
 <div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">

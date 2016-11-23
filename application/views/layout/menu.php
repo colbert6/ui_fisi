@@ -1,147 +1,121 @@
-        <div id="sidebar"> 
-            <a href="#" class="visible-phone"><i class="icon icon-list"></i> OPCIONES</a>
-            <ul>
-                <li>
-                    <a href="<?= base_url(); ?>uifisi">
-                        <i class="icon icon-book"></i> <span> PRINCIPAL</span>
-                    </a> 
-                </li>
-                 <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-user"></i><span> ACTORES</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url();?>alumno/"><i class="icon-check-empty"></i> Alumno</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>docente"><i class="icon-check-empty"></i> Docente</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-book"></i><span> PROYECTOS</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url();?>proyecto/"><i class="icon-check-empty"></i>Mis Proyectos</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>proyecto/elaborar_proyecto"><i class="icon-check-empty"></i> Elaborar</a>
+<?php
+    $id_tipo_usu = $this->session->userdata('id_tipo');
+    echo "<input type='hidden' value='$id_tipo_usu' id='tipo_usu' >";        
+?>
 
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>comision_proyecto"><i class="icon-check-empty"></i> Comisión del Proyecto</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Asesor</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Evaluación</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-group"></i><span>COMISION DE LA FACULTAD</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url();?>facultad"><i class="icon-check-empty"></i> Facultad</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>escuela"><i class="icon-check-empty"></i> Escuela</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>comision"><i class="icon-check-empty"></i> Comisión</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>departamento"><i class="icon-check-empty"></i> Departamento</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-cogs"></i><span>ADMINISTRACION</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url();?>linea_investigacion"><i class="icon-check-empty"></i> Linea de Investigación</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>eje_tematico"><i class="icon-check-empty"></i> Eje Temático</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>tipo_proyecto"><i class="icon-check-empty"></i> Tipo Proyecto</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>fase_comision"><i class="icon-check-empty"></i> Fase Comisión</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>categoria_docente"><i class="icon-check-empty"></i> Categoria Docente</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>dedicacion_docente"><i class="icon-check-empty"></i> Dedicación Docente</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>tipo_asesor"><i class="icon-check-empty"></i> Tipo Asesor</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url();?>grado_academico"><i class="icon-check-empty"></i> Grado Académico</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Ubigeo</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-list-ol"></i><span>REGLAS</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Reglamento</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Criterio</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Nombre Parte</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-lock"></i><span>SEGURIDAD</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Modulos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu active"> 
-                    <a href="#">
-                        </i> <i class="icon-print"></i><span>REPORTES</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url();?>reportes/proyectos"><i class="icon-check-empty"></i> Proyectos</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Alumnos</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Asesores</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon-check-empty"></i> Comisiones</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<script type="text/javascript">
+$( document ).ready(function() {
+    
+    
+    function crear_menu(){
+        var tipo_usu=$('#tipo_usu').val();   
+
+        $.post(base_url+"login/buscar_menu",{tipo_user:tipo_usu},function(datos){//Buscar datos del proyecto
+            var obj = JSON.parse(datos);
+            if(obj.length){
+                menu="";
+                menu+="<li>"+
+                        "<a href='<?= base_url(); ?>uifisi'>"+
+                        "    <i class='icon icon-home'></i><span> PRINCIPAL</span>"+
+                        "</a> "+
+                       "</li>";
+
+                var  sgt_padre;
+                var cont;
+                
+                for (var i = 0; i <obj.length; i++) { 
+                    var padre=obj[i].menu_padre;
+                    cont=i+1;
+
+                    
+
+                    if(padre==null && obj[i].menu_url==null){
+
+                        menu+="<li class='submenu active' >"+
+                                "<a href='#' id='menu'>"+
+                                "   <i class='icon "+obj[i].menu_icono+"'></i><span> "+obj[i].menu_descripcion+"</span>"+
+                                "</a>"+
+                                "<ul>";
+                        
+                    }else if(padre!=null && obj[i].menu_url!=null){
+                        menu+="<li>"+
+                                "<a href='<?= base_url(); ?>"+obj[i].menu_url+"'>"+
+                                "    <i class='icon icon-check-empty'></i><span> "+obj[i].menu_descripcion+"</span>"+ 
+                                "</li>";
+
+                        if (cont<obj.length) {
+                            sgt_padre=obj[cont].menu_padre;
+                        }
+                        if(cont==obj.length || sgt_padre!=padre ){
+                         menu+="</ul></li>";
+                        }                       
+                    }
+                    
+                    
+                }   
+                $('#lista_menu').html(menu);
+
+            }else{
+                alert('No tiene permiso');
+            }
+
+            $('.submenu > a').click(function(e) {
+                e.preventDefault();
+                var submenu = $(this).siblings('ul');
+                var li = $(this).parents('li');
+                var submenus = $('#sidebar li.submenu ul');
+                var submenus_parents = $('#sidebar li.submenu');
+                if(li.hasClass('open'))
+                {
+                    if(($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenu.slideUp();
+                    } else {
+                        submenu.fadeOut(250);
+                    }
+                    li.removeClass('open');
+                } else 
+                {
+                    if(($(window).width() > 768) || ($(window).width() < 479)) {
+                        submenus.slideUp();         
+                        submenu.slideDown();
+                    } else {
+                        submenus.fadeOut(250);          
+                        submenu.fadeIn(250);
+                    }
+                    submenus_parents.removeClass('open');       
+                    li.addClass('open');    
+                }
+            });
+            
+            var ul = $('#sidebar > ul');
+            
+            $('#sidebar > a').click(function(e)
+            {
+                e.preventDefault();
+                var sidebar = $('#sidebar');
+                if(sidebar.hasClass('open'))
+                {
+                    sidebar.removeClass('open');
+                    ul.slideUp(250);
+                } else 
+                {
+                    sidebar.addClass('open');
+                    ul.slideDown(250);
+                }
+            });
+                        
+        });
+    }
+   crear_menu();
+
+   
+});
+
+
+</script>
+
+ <div id="sidebar"> 
+    <a href="#" class="visible-phone"><i class="icon icon-list"></i> OPCIONES hol</a>
+        <ul id='lista_menu'>
+        </ul>    
+ </div>   

@@ -1,15 +1,17 @@
 <?php
-    session_start();
-    $CI =& get_instance();
-    $CI->load->database('default');
-    $tipo_usu = $_SESSION['codtipousuario'];
-    $_SESSION['email'];
-    $_SESSION['usuario'];
-    $cod_usu = $_SESSION['codusuario']
+    
+    $tipo_usu = $this->session->userdata('tipo');
+    $correo_usu= $this->session->userdata('correo');  
+    $cod_usu =$this->session->userdata('id');
+    $nombre_usu =$this->session->userdata('nombre');
+    $facultad =$this->session->userdata('facultad');
+    $escuela =$this->session->userdata('escuela');
+    $fac_abreviatura =$this->session->userdata('fac_abreviatura');
 ?>
+
 <!DOCTYPE html>
     <head>
-        <title>Unidad de Investigacion FISI</title>
+        <title>Unidad de Investigacion</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" />
@@ -32,25 +34,29 @@
 
     <body>
             <div id="header">
-              <h2>Innóvate <b>FISI</b></h2>
+              <h2>Sist. Reg. Seg. Eva. <b>TESIS</b></h2>
             </div>
             <script>   var base_url="<?= base_url(); ?>";  </script>
             <div id="search">
                 <div style="height: 6px;"></div>
-                <a href="#"><i class="icon-user user"></i> Bienvenido,<b><?php echo $_SESSION['usuario']; ?></b></a> &nbsp;  &nbsp;
-                <a href="#"><i class="icon-ok-circle"></i> Id Tipo Usuario = <b><?php echo $tipo_usu;?></b></a> &nbsp;  &nbsp;
+                <a href="#"><b><?php echo "Bienvenido, ". $tipo_usu;?>: </b></a> &nbsp;  &nbsp;
+                <a href="#"><i class="icon-user user"></i> <b><?php echo  $nombre_usu; ?></b>    </a> &nbsp;&nbsp;&nbsp; &nbsp;                
                 <a href="<?php echo base_url();?>login/cerrarsession"><i class=" icon-off"></i> Salir</a> &nbsp;  &nbsp;
             </div>
 
             <div id="content-header">
                 <div id="breadcrumb">
-                    <a href="#">
-                        <i class="icon-time"></i> Tiempo Restante: 2:19:29 <i class="icon-repeat"></i>
-                        <span style="margin-left: 970px;">Innóvate FISI</span>
-                        <input value="<?=$cod_usu?>" id="cod_usu" type="hidden" >
+                    <a href="<?= base_url(); ?>uifisi">
+                        <i class="icon-book"></i> UNSM - <?php echo  $fac_abreviatura; ?></i>                        
                     </a>
+                        
+                    <span class="badge badge-important "style="float:right;margin-top:0.7%;"><?php echo  $correo_usu; ?></span>               
+
                 </div>
+
+
             </div>
+            <input value="<?=$cod_usu?>" id="cod_usu" type="hidden" >
 
 
         

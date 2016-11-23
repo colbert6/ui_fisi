@@ -1,3 +1,4 @@
+  
   <div id='tab_car' class='tab-pane active'> <!--Caratula-->
     <div class="base_documento">
       <div class="documento">
@@ -7,10 +8,10 @@
             <td class='caratula'><h2>UNIVERSIDAD NACIONAL DE SAN MARTIN</h2></td>
           </tr>
           <tr>
-            <td class='caratula'><h3>FACULTAD DE INGENIERIA DE SISTEMAS E INFORMATICA</h3></td>                    
+            <td class='caratula' ><h3 id="pro_fac"></h3></td>                    
           </tr>
           <tr>
-            <td class='caratula'><h5>ESCUELA ACADEMICO PROFESIONAL DE INGENIERIA DE SISTEMAS E INFORMATICA</h5></td>                    
+            <td class='caratula'><h5 id="pro_esc"></h5></td>                    
           </tr>
           <tr>
             <td class='caratula'><img src="<?= base_url();?>img/logo_unsm.jpg"> </td>                    
@@ -29,24 +30,23 @@
             </td>                    
           </tr>
           <tr>
-            <td class='caratula'><h5>COLBERT MOISES BRYAN CALAMPA TANTACHUCO</h5>
+            <td class='caratula'><h5 id="pro_alu" ></h5>
             </td>                    
           </tr>
           <tr>
             <td class='caratula seccion'><span>Asesor:</span> 
-              <a class='btn btn-success btn-mini' data-original-title='Edit Task' id='editar_parte' 
-                info_parte='Ingrese el Asesor del Proyecto' id_parte='asesor' par_id='' ><i class='icon-pencil' ></i></a></td>                    
+            </td>                    
           </tr>
           <tr>
             <td class='caratula'><h5><div class='parte_text ' id='parte_asesor_text' ></div></h5>
             </td>                    
           </tr>
           <tr>
-            <td class='caratula'><h4>Tarapoto -Perú</h4>
+            <td class='caratula'><h4 id="pro_lugar">Tarapoto -Perú</h4>
             </td>                    
           </tr>
           <tr>
-            <td class='caratula' ><h4>2016</h4>
+            <td class='caratula' ><h4 id="pro_fecha"></h4>
             </td>                    
           </tr>
     

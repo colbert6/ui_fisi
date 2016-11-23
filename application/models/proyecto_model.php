@@ -7,16 +7,43 @@
             $this->load->database('default');              
         }
 
-        function select_proyecto_alumno($alu_id){
-            $this->db->where("alu_id",$alu_id);  
+        function select_proyectos(){
+             $sql="SELECT P.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion
+       FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+       INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id ";
+            $query=$this->db->query($sql);  
+            return $query;         
+        }
+
+        function select_proyecto_alumno($id){
+            $this->db->where("alu_id",$id);  
             $query=$this->db->get("proyecto");      
             return $query;            
         }
 
-        function select_id($pro_id){
-            $this->db->where("pro_id",$pro_id);  
-            $query=$this->db->get("proyecto");      
+        function select_proyecto_asesor($id){
+            $sql="SELECT p.*
+                  FROM proyecto p, asesor a
+                  WHERE a.pro_id=p.pro_id and a.doc_id=$id";
+            $query=$this->db->query($sql);  
             return $query;            
+        }
+
+        function select_proyecto_evaluador($id){
+            $sql="SELECT p.*
+                  FROM proyecto p, comision_evaluadora ce
+                  WHERE ce.pro_id=p.pro_id and ce.doc_id=$id";
+            $query=$this->db->query($sql);  
+            return $query;            
+        }
+
+        function select_id($pro_id){
+            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
+           FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+           INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id INNER JOIN facultad as f ON f.fac_id=e.fac_id 
+           WHERE p.pro_id=$pro_id";
+            $query=$this->db->query($sql);  
+            return $query;  
         }
 
         function select_asesor($pro_id){

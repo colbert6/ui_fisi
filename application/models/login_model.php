@@ -5,19 +5,24 @@
 		}
 
 		function logueardocente($user,$clave){
-			$this->db->where('doc_correo',$user);
-			$this->db->where('doc_clave',$clave);
-			$this->db->from('docente');
-			$query = $this->db->get();
-			return $query->result_array();
+			$sql="SELECT d.*, dep.*, f.fac_descripcion,f.fac_logo,f.fac_abreviatura,
+					(SELECT c.com_funcion 
+					FROM comision as c INNER JOIN comision_docente cd ON c.com_id=cd.com_id
+					WHERE c.fac_id=dep.fac_id and cd.doc_id=d.doc_id)
+				 FROM  docente as d INNER JOIN departamento as dep ON d.dep_id=dep.dep_id  
+				 		INNER JOIN facultad as f ON f.fac_id=dep.fac_id 
+				 WHERE d.doc_usuario='$user' and d.doc_clave='$clave' ";
+			$query=$this->db->query($sql);  
+            return $query->result_array();    
 		}
 
 		function loguearalumno($user,$clave){
-			$this->db->where('alu_correo',$user);
-			$this->db->where('alu_clave',$clave);
-			$this->db->from('alumno');
-			$query = $this->db->get();
-			return $query->result_array();
+			$sql="SELECT a.*,e.*,f.*
+				FROM alumno as a INNER JOIN escuela as e  ON e.esc_id=a.esc_id 
+    							INNER JOIN facultad as f ON f.fac_id=e.fac_id
+				WHERE a.alu_usuario='$user' and a.alu_clave='$clave'";
+			$query=$this->db->query($sql);  
+            return $query->result_array();    
 		}
 	}
 ?>
