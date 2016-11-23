@@ -12,9 +12,8 @@
 
         public function index()
         {
-
-
-
+            /*echo "<pre>";
+            print_r($this->getData());exit;*/
             $dato_foother= array ( 'add_table'=> 'si');
 
             $this->load->view('layout/header.php');
@@ -51,6 +50,7 @@
             $styleFont6 = array('bold'=>false, 'size'=>14, 'name'=>'Arial');
             $styleFont7 = array('bold'=>true, 'size'=>12, 'name'=>'Arial');
             $styleFont8 = array('bold'=>false, 'size'=>12, 'name'=>'Arial');
+
 
             $styleParagraph = array('align'=>'center', 'spaceAfter'=>100);
 
@@ -149,20 +149,43 @@
                       utf8_decode($title["nompar_descripcion"]),
                       $styleFont5
                     );
-                
+
                 foreach ($title["subs"] as $sub) {
                     $section->addText(
                           utf8_decode($sub["nompar_descripcion"]),
                           $styleFont7
                         );
+                    $content_sub = $this->get_parte($sub["nompar_id"]);
+
+                    if(count($content_sub)>0) {
+                        $par_sub = strip_tags($content_sub->par_contenido);
+                        $par_sub = str_replace("&nbsp;","", $par_sub );
+                        //$par_sub = str_replace("·","<br>\n\n\n\n\n\n\n\n\n\n ·", $par_sub );
+
+                        $section->addText(
+                          utf8_decode($par_sub),
+                          $styleFont8
+                        );
+                    }
                     $section->addTextBreak(1);
                     if(isset($sub["sub_subs"]) && count($sub["sub_subs"])>0) {
 
                         foreach ($sub["sub_subs"] as $sub_sub) {
-                           $section->addText(
+                            $section->addText(
                                   utf8_decode($sub_sub["nompar_descripcion"]),
                                   $styleFont8
                                 );
+                            $content_subsub = $this->get_parte($sub_sub["nompar_id"]);
+
+                            if(count($content_subsub)>0) {
+                                $par_subsub = strip_tags($content_subsub->par_contenido);
+                                $par_subsub = str_replace("&nbsp;","", $par_subsub );
+                                //$par_subsub = str_replace("·","<br>\n\n\n\n\n\n\n\n\n\n ·", $par_subsub );
+                                $section->addText(
+                                  utf8_decode($par_subsub),
+                                  $styleFont8
+                                );
+                            }
                             $section->addTextBreak(1);
                         }
                     }
@@ -185,7 +208,7 @@
 
         }
 
-        public function download_word($proyecto) {
+     /*   public function download_word($proyecto) {
 
             $proyecto = str_replace("%20", "", $proyecto);
             $file = $proyecto.'.docx';
@@ -202,32 +225,35 @@
                 echo "no existe el archivo";
             }
 
-        }
+        }*/
 
         public function getData() {
             $array = $this->db->query("select * from nombre_parte WHERE parent_nompar_id is null")->result_array();
 
             foreach ($array as $key_title => $title) {
                 $subs = $this->db->get_where("nombre_parte",array("parent_nompar_id"=>$title["nompar_id"]))->result_array();
+
                 $array[$key_title]["subs"] = $subs;
+
 
             }
 
             foreach ($array as $key_title => $title) {
                 foreach ($title["subs"] as $key_sub => $sub) {
                     $sub_subs = $this->db->get_where("nombre_parte",array("parent_nompar_id"=>$sub["nompar_id"]))->result_array();
+
                     if(count($sub_subs)>0) {
                         $array[$key_title]["subs"][$key_sub]["sub_subs"] = $sub_subs;
-                   }
+                    }
+
                 }
 
             }
             return $array;
         }
 
-        public function nivel_parte($orden)  {
-            $niveles = explode(".", $orden);
-            return count($niveles);
+        public function get_parte($id) {
+            return $this->db->get_where("parte",array("nompar_id"=>$id))->row();
         }
 
         public function revisar_finta($pro_id=1)
