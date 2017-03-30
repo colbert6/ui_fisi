@@ -10,7 +10,7 @@
         
         public function index()
         {              
-            $this->load->view('alumno/index.php',$data);           
+            $this->load->view('alumno/index.php');           
         }
        
         public function cargar_datos($tabla='alumno')
