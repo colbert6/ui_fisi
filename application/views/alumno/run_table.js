@@ -1,5 +1,4 @@
 
-    
     //var base_url definida en header
     var table =$('#tab').DataTable( {
 

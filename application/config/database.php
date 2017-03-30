@@ -50,13 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'postgres';
-<<<<<<< HEAD
-$db['default']['password'] = '123';
-$db['default']['database'] = 'FISI';
-=======
 $db['default']['password'] = 'postgres';
-$db['default']['database'] = 'ui_fisi_a';
->>>>>>> 790ea8cc2a3756c6e5195b79dd239cf5eb86f09d
+$db['default']['database'] = 'tesis';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

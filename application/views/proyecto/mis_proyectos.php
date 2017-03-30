@@ -1,14 +1,14 @@
-<div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Mis Proyectos</center></h1>
   </div>
+
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:5px">
       <div class="row-fluid">
 
         <div class="span12">     
 
-          <a href="<?php echo base_url();?>proyecto/registrar_proyecto" type="button" class="btn btn-primary" id="guardar_cambio">Nuevo Proyecto</a>
+          <button onclick="loader('proyecto/registrar_proyecto');" url="" type="button" class="btn btn-primary">Nuevo Proyecto</button>
 
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
@@ -34,3 +34,6 @@
 
       </div>
     </div>
+</div>
+
+<script src="<?= base_url();?>application/views/proyecto/ext/mis_proyectos.js" type="text/javascript"></script>    

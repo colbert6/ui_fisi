@@ -1,7 +1,6 @@
-
     
     //var base_url definida en header
-    var table =$('#tablacatdocentes').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -13,12 +12,6 @@
             { "data": "catdoc_descripcion"}, 
             {
                 "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
-                "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -68,71 +61,50 @@
     } );
 
 
-function Nuevo(){
-    $.ajax({
-        url: base_url+'categoria_docente/Nuevo',
-        type:'POST',
-    }).done(function(resp){
-         var codigo = eval(resp);
-        if(codigo[0]['CATDOC_ID'] == null){
-            if (codigo[0]['catdoc_id']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['catdoc_id']);
-            }
-        }else{
-            if (codigo[0]['CATDOC_ID']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['CATDOC_ID']);
-            }
-        }
-        $("#catdoc_id").val(codigo+1);
-        $("#catdoc_descripcion").removeAttr("disabled").focus();
 
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
 
-        $("#NuevoBTN").attr("disabled","disabled");           
+    $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-CategoriaDocente").serialize(),
+            url:   base_url+'categoria_docente/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
+            }
+        });
+
+    } );
+
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().catdoc_id);
+        $("#descripcion").val(row.data().catdoc_descripcion);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion").val('');
     });
-}
 
-function Guardar(obj){
-    /*if(obj.catdoc_id.value==""){
-        $('#catdoc_id').focus();
-        $('#catdoc_id').popover('show'); return 0;
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
     }
-    if(obj.tipro_descripcion.value==""){
-        $('#tipro_descripcion').focus();
-        $('#tipro_descripcion').popover('show'); return 0;
-    }*/
-    $("#catdoc_id").removeAttr("disabled");
 
-    $.ajax({
-        type:"POST",
-        data: $('#ForCategoriaDocente').serialize(),
-        url: base_url +'categoria_docente/Guardar',
-        success: function(data){
-            $("#Mensaje").html(data);
-            $('#Alerta').modal({
-                show:true,
-                backdrop:'static'
-            });
-        }
-    });
-}
 
-function Cancelar(){
-    $("#catdoc_id").val('');
-    $("#catdoc_descripcion").val('');
 
-    $("#catdoc_id").attr("disabled","disabled");
-    $("#catdoc_descripcion").attr("disabled","disabled");
-
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarBTN").attr("disabled","disabled");
-
-    $("#NuevoBTN").removeAttr("disabled");
-}
-
-    
+     

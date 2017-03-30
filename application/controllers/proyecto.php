@@ -9,111 +9,79 @@
             $this->load->model('nombre_parte_model');
             $this->load->model('proyecto_model'); 
             $this->load->model('requisito_model');
+            $this->load->model('eje_tematico_model');  
             $this->load->model('linea_investigacion_model');   
             $this->load->model('tipo_proyecto_model');
 
         }
 
-        public function proyectos(){//Del Admin
-            $dato_foother= array ( 'js'=>array ('proyectos') );
-            //echo"<pre>";print_r($data);exit();
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/proyectos.php');
-            $this->load->view('layout/foother.php',$dato_foother);             
+        public function proyectos()//Del Admin
+        {
+           $this->load->view('proyecto/proyectos.php');         
         }
 
         public function mis_proyectos()//Del Alumno
-        {               
-            $dato_foother= array ( 'js'=>array ('mis_proyectos') );
-            
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/mis_proyectos.php');
-            $this->load->view('layout/foother.php',$dato_foother);             
+        {    
+            $this->load->view('proyecto/mis_proyectos.php');         
         }
 
         public function proyecto_asesor()//Del docente
-        {               
-            $dato_foother= array ( 'js'=>array ('proyecto_asesor') );
-         
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/proyecto_asesor.php');
-            $this->load->view('layout/foother.php',$dato_foother);             
+        {    
+            $this->load->view('proyecto/proyecto_asesor.php');         
         }
 
         public function proyecto_evaluador()//Del docente
         {               
-            
-            $dato_foother= array ( 'js'=>array ('proyecto_evaluador') );
-        
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/proyecto_evaluador.php');
-            $this->load->view('layout/foother.php',$dato_foother);           
+            $this->load->view('proyecto/proyecto_evaluador.php');       
         }
 
         public function registrar_proyecto()
         {               
-            $dato_foother= array ( 'add_table'=> 'no');
-            $data= array ( 'linea_inv'=> $this->linea_investigacion_model->mostrar_tabla()->result_array(),
+            $data= array ( 'eje'=> $this->eje_tematico_model->select($this->session->userdata('fac_id'))->result_array(),
                         'requisitos'=> $this->requisito_model->select_requisitos()->result_array(),
                         'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
             //echo"<pre>";print_r($data);exit();
-            echo $this->session->userdata('alu_id');
+            //echo $this->session->userdata('alu_id');
 
-            /*$this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/registrar_proyecto.php',$data);
-            $this->load->view('layout/foother.php',$dato_foother);    */         
+            
+            $this->load->view('proyecto/registrar_proyecto.php',$data);        
         }
         
         public function elaborar_proyecto($pro_id)
         {   
             //Validar que el proyecto sea del usuario            
-            $dato_foother= array ( 'js'=>array ('elaborar') );
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
 
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/formato.php',$data);
-            $this->load->view('layout/foother.php',$dato_foother);               
+            
+            $this->load->view('proyecto/formato.php',$data);           
         }
 
         public function evaluar_proyecto($pro_id)
         {   
-            //Validar que el proyecto sea del usuario    
-            $dato_foother= array ( 'js'=>array ('evaluar') );        
+            //Validar que el proyecto sea del usuario         
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
 
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/formato.php',$data);
-            $this->load->view('layout/foother.php',$dato_foother);              
+            
+            $this->load->view('proyecto/formato.php',$data);          
         }
 
         public function mostrar_proyecto()
         {   
             //Validar que el proyecto sea del usuario   
-            $pro_id= $this->input->post('pro_id');
-            $dato_foother= array ( 'js'=>array ('mostrar') );        
+            $pro_id= $this->input->post('pro_id');      
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
 
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('proyecto/formato.php',$data);
-            $this->load->view('layout/foother.php',$dato_foother);              
+            
+            $this->load->view('proyecto/formato.php',$data);          
         }
 
         public function proyecto_word()//Criterio en general

@@ -10,20 +10,43 @@
 
         <script src="<?php echo base_url();?>librerias/js/jquery.flot.min.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/jquery.flot.pie.min.js"></script> 
-         
-        <script src="<?php echo base_url();?>librerias/js/bootstrap-colorpicker.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/bootstrap-datepicker.js"></script>  
-        <script src="<?php echo base_url();?>librerias/js/masked.js"></script>        
+             
         <script src="<?php echo base_url();?>librerias/js/matrix.popover.js"></script>
         <script src="<?php echo base_url();?>librerias/js/jquery.uniform.js"></script>
         <script src="<?php echo base_url();?>librerias/js/select2.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.tables.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/matrix.form_common.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/wysihtml5-0.3.0.js"></script> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.peity.min.js"></script> 
         <script src="<?php echo base_url();?>librerias/js/bootstrap-wysihtml5.js"></script>
-        
+        <script src="<?php echo base_url();?>librerias/js/jquery.gritter.min.js"></script><!--Utilizo para alertas-->
+
+        <script type="text/javascript">
+            function loader(url){
+               $("#content").load(base_url+url);
+            }
+
+            function alerta(texto){    
+                var unique_id = $.gritter.add({
+                    // (string | mandatory) the heading of the notification
+                    title: 'Notification',
+                    // (string | mandatory) the text inside the notification
+                    text: texto,
+                    class_name: 'my-sticky-class'
+                });
+
+                setTimeout(function(){
+                    $.gritter.remove(unique_id, {
+                        fade: true,
+                        speed: 'slow'
+                    });
+                }, 3000)
+
+                return false;
+                   
+            }
+
+        </script>
+
+               
 
         <?php
             if(isset ($add_table) && $add_table=='si'){    

@@ -2,6 +2,7 @@
 	class login_model extends CI_Model{
 		function __construct(){
 			parent::__construct();
+			$this->load->database('default');  
 		}
 
 		function logueardocente($user,$clave){
@@ -13,7 +14,13 @@
 				 		INNER JOIN facultad as f ON f.fac_id=dep.fac_id 
 				 WHERE d.doc_usuario='$user' and d.doc_clave='$clave' ";
 			$query=$this->db->query($sql);  
-            return $query->result_array();    
+
+			if($query->num_rows() == 1)
+			{				
+            	return $query->result_array();   
+			}else{
+				return null;  
+			} 
 		}
 
 		function loguearalumno($user,$clave){
@@ -22,7 +29,15 @@
     							INNER JOIN facultad as f ON f.fac_id=e.fac_id
 				WHERE a.alu_usuario='$user' and a.alu_clave='$clave'";
 			$query=$this->db->query($sql);  
-            return $query->result_array();    
+			
+            if($query->num_rows() == 1)
+			{				
+            	return $query->result_array();   
+			}else{
+				return null; 
+			}  
 		}
+
+
 	}
 ?>

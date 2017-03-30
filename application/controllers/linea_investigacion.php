@@ -3,7 +3,8 @@
     class linea_investigacion extends CI_Controller
     {    
         function __construct(){
-            parent::__construct();      
+            parent::__construct();  
+            $this->load->database('default');    
             $this->load->model('eje_tematico_model');   
         }
 
@@ -51,6 +52,14 @@
 
             echo "<center> <span class='icon-warning-sign' aria-hidden='true'></span> <b> Tipo Proyecto Insertado Correctamente </b> </center>";
         }*/
+
+        public function Lineas_json(){    
+          $this->load->database('default');          
+          $this->load->model('linea_investigacion_model'); 
+          $eje=$_POST['valor'] ;          
+          $query = $this->linea_investigacion_model->Select_eje($eje)->result();
+          echo json_encode($query);    
+        }
     }
  ?>
 

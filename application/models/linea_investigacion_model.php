@@ -30,21 +30,14 @@
 			$query = $this->db->get('linea_investigacion');
 			return $query->result();
 		}
-/*
-		function InsertarLI($descrip,$eje){
-			//Obteniendo nuevo cod cliente
-			$this->db->select_max('linin_id');
-		    $result= $this->db->get('linea_investigacion')->result_array();
-		    $id_linin= $result[0]['linin_id']+1;
 
-			$data = array(
-               'linin_id' => $id_linin,
-               'linin_descripcion' => $descrip,
-               'linin_eje' => $eje
-            );
-			$this->db->insert('linea_investigacion', $data);
-			//printf($data) ;
-		}  */
+		function Select_eje($eje){
+        	$sql="SELECT *
+                FROM linea_investigacion INNER JOIN eje_tematico ON eje_tematico.eje_id = linea_investigacion.eje_id 
+                WHERE eje_tematico.eje_id=".$eje;
+            $query=$this->db->query($sql);
+            return $query;  
+        }
 	}
 ?>
 

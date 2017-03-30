@@ -9,9 +9,8 @@ class uifisi extends CI_Controller {
 	{	
 
 		$this->load->view('layout/header.php');
-		//$this->load->view('layout/css.php');
 		$this->load->view('layout/menu.php');
-		$this->load->view('UIfisi/index.php');
+		$this->load->view('layout/index.php',array('logo_fac' => $this->session->userdata('logo_facultad') ));
 		$this->load->view('layout/foother.php');
 	}
 }

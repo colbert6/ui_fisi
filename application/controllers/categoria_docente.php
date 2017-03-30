@@ -4,24 +4,16 @@
     {    
         function __construct(){
             parent::__construct();
+            $this->load->model('categoria_docente_model');
         }
 
-        public function index(){  
-            $this->load->database('default');
-            $this->load->model('categoria_docente_model');
-
-            $dato_foother= array ( 'add_table'=> 'si'); 
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php'); 
-            $this->load->view('categoria_docente/index.php');
-            $this->load->view('layout/foother.php',$dato_foother);             
+        public function index()
+        {              
+            $this->load->view('categoria_docente/index.php');          
         }  
 
-        public function cargar_datos(){ 
-            $this->load->database('default');
-            $this->load->model('categoria_docente_model');
-
+        public function cargar_datos()
+        { 
             $consulta=$this->categoria_docente_model->MostrarCategoriaDocente();
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
@@ -31,21 +23,28 @@
             echo json_encode($result);
         }
 
-        public function Nuevo(){
-            $this->load->database('default');
-            $this->load->model('categoria_docente_model');
-
-            $NuevaCategoriaDocente = $this->categoria_docente_model->Nuevo();
-            echo json_encode($NuevaCategoriaDocente);
-        }
-
-        public function Guardar(){
-            $this->load->database('default');
-            $this->load->model('categoria_docente_model');
-
-            $NuevaCategoriaDocente = $this->categoria_docente_model->Guardar($this->input->post("catdoc_id"),$this->input->post("catdoc_descripcion"));
-
-            echo "<center> <span class='icon-warning-sign' aria-hidden='true'></span> <b> Categoria Docente Insertado Correctamente </b> </center>";
+        function guardar()
+        {
+            $data = array(
+               'catdoc_descripcion' => $_POST["descripcion"]
+            );
+        
+            if($_POST["id"]==""){
+              $estado=$this->db->insert('categoria_docente', $data);
+                if($estado==1){
+                  echo 'I';
+                }else{
+                    echo '0';
+                }
+            }else{
+              $this->db->where('catdoc_id',$_POST["id"]);
+              $estado=$this->db->update('categoria_docente', $data);
+                if($estado==1){
+                    echo 'M';
+                }else{
+                    echo '0';
+                }
+            }
         }
     }
  ?>

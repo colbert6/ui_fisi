@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
                     if(padre==null && obj[i].menu_url==null){
 
-                        menu+="<li class='submenu active' >"+
+                        menu+="<li class='submenu' >"+
                                 "<a href='#' id='menu'>"+
                                 "   <i class='icon "+obj[i].menu_icono+"'></i><span> "+obj[i].menu_descripcion+"</span>"+
                                 "</a>"+
@@ -39,8 +39,8 @@ $( document ).ready(function() {
                         
                     }else if(padre!=null && obj[i].menu_url!=null){
                         menu+="<li>"+
-                                "<a href='<?= base_url(); ?>"+obj[i].menu_url+"'>"+
-                                "    <i class='icon icon-check-empty'></i><span> "+obj[i].menu_descripcion+"</span>"+ 
+                                "<a  url='"+obj[i].menu_url+"' >"+
+                                "    <i class='icon icon-check-empty' ></i><span> "+obj[i].menu_descripcion+"</span>"+ 
                                 "</li>";
 
                         if (cont<obj.length) {
@@ -60,6 +60,7 @@ $( document ).ready(function() {
             }
 
             $('.submenu > a').click(function(e) {
+
                 e.preventDefault();
                 var submenu = $(this).siblings('ul');
                 var li = $(this).parents('li');
@@ -73,7 +74,8 @@ $( document ).ready(function() {
                         submenu.fadeOut(250);
                     }
                     li.removeClass('open');
-                } else 
+                } 
+                else 
                 {
                     if(($(window).width() > 768) || ($(window).width() < 479)) {
                         submenus.slideUp();         
@@ -91,6 +93,7 @@ $( document ).ready(function() {
             
             $('#sidebar > a').click(function(e)
             {
+
                 e.preventDefault();
                 var sidebar = $('#sidebar');
                 if(sidebar.hasClass('open'))
@@ -102,6 +105,12 @@ $( document ).ready(function() {
                     sidebar.addClass('open');
                     ul.slideDown(250);
                 }
+            });
+
+            $('.submenu > ul > li > a').click(function(e)
+            {   
+                $("#content").load(base_url+$(this).attr('url'));
+
             });
                         
         });
@@ -115,7 +124,7 @@ $( document ).ready(function() {
 </script>
 
  <div id="sidebar"> 
-    <a href="#" class="visible-phone"><i class="icon icon-list"></i> OPCIONES hol</a>
+    <a href="#" class="visible-phone"><i class="icon icon-list"></i> OPCIONES </a>
         <ul id='lista_menu'>
         </ul>    
  </div>   
