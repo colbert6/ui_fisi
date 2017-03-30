@@ -5,16 +5,11 @@
         
         function __construct(){
             parent::__construct();    
-            $this->load->model('alumno_model'); 
-            $this->load->model('escuela_model'); 
-            $this->load->model('grado_academico_model');    
+            $this->load->model('alumno_model');   
         }
         
         public function index()
-        {               
-            $data= array ( 'escuela'=> $this->escuela_model->select()->result_array(),
-                           'grado_academico'=>$this->grado_academico_model->select()->result_array());
-                        
+        {              
             $this->load->view('alumno/index.php',$data);           
         }
        
@@ -30,5 +25,5 @@
             echo json_encode($result);
         }
     }
- ?>
+?>
 

@@ -1,7 +1,7 @@
 
     
     //var base_url definida en header
-    var table =$('#tabladocente').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -14,13 +14,7 @@
             { "data": "grac_descripcion"},
             { "data": "catdoc_descripcion"},
             { "data": "dep_descripcion"},  
-            { "data": "doc_correo"}, 
-            {
-                "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
+            { "data": "doc_correo"},            
             {
                 "className":      'detail-control',
                 "orderable":      false,

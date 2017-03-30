@@ -4,6 +4,7 @@
     {    
         function __construct(){
             parent::__construct();
+            $this->load->database('default');   
             $this->load->model('categoria_docente_model');
         }
 

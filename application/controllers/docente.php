@@ -2,28 +2,19 @@
  
     class docente extends CI_Controller
     {   
+        
         function __construct(){
-            parent::__construct();   
-            $this->load->model('docente_model');       
+            parent::__construct();    
+            $this->load->model('docente_model');     
         }
         
         public function index()
-        {   
-            $this->load->database('default');
-            $this->load->model('docente_model');
-
-            $dato_foother= array ( 'add_table'=> 'si');
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('docente/index.php');
-            $this->load->view('layout/foother.php',$dato_foother);            
+        {               
+            $this->load->view('docente/index.php');           
         }
-
-       public function cargar_datos($tabla='docente'){ 
-            $this->load->database('default');
-            $this->load->model('docente_model');
-
+       
+        public function cargar_datos($tabla='docente')
+        {   
             $consulta=$this->docente_model->mostrar_tabla($tabla);
             //echo "<pre>";            print_r($consulta);exit();
             $result= array("draw"=>1,
@@ -34,4 +25,4 @@
             echo json_encode($result);
         }
     }
- ?>
+?>

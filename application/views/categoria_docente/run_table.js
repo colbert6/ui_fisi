@@ -61,8 +61,6 @@
     } );
 
 
-
-
     $('#Guarda').on('click', function () { 
         $.ajax({
             data:  $("#form-CategoriaDocente").serialize(),

@@ -11,13 +11,6 @@
             $query=$this->db->query($sql);
             return $query;
         }
-
-		function Guardar($cod,$descrip){
-			$data = array(
-               'catdoc_id' => $cod,
-               'catdoc_descripcion' => $descrip
-            );
-			$this->db->insert('categoria_docente', $data);
-		} 
+		
 	}
 ?>

@@ -15,12 +15,6 @@
             { "data": "alu_correo" },
             { "data": "alu_movil" }, 
             {
-                "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
                 "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,

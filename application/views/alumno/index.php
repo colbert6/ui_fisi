@@ -34,7 +34,7 @@
                           <th>Escuela</th>
                           <th>Correo</th>
                           <th>Movil</th>
-                          <th colspan="2">Acciones</th>                          
+                          <th colspan="1">Acciones</th>                          
                         </tr>
                       </thead>
 
