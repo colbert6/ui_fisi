@@ -13,9 +13,9 @@
             $this->load->view('docente/index.php');           
         }
        
-        public function cargar_datos($tabla='docente')
+        public function cargar_datos()
         {   
-            $consulta=$this->docente_model->mostrar_tabla($tabla);
+            $consulta=$this->docente_model->mostrar_tabla();
             //echo "<pre>";            print_r($consulta);exit();
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),

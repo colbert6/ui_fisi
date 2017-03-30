@@ -1,7 +1,7 @@
 
     
     //var base_url definida en header
-    var table =$('#tablaescuela').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -10,17 +10,11 @@
         },
         "columns": [
             { "data": "esc_id"},
-            { "data": "esc_descripcion"}, 
             { "data": "fac_descripcion"},
+            { "data": "esc_descripcion"},             
             { "data": "esc_codigo_sira"},
             { "data": "esc_abreviatura"},  
-            { "data": "esc_logo"}, 
-            {
-                "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
+            
             {
                 "className":      'detail-control',
                 "orderable":      false,

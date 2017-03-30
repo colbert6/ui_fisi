@@ -28,11 +28,11 @@
                       <thead>
                         <tr>
                           <th>Id</th>
-                          <th>Codigo</th>
-                          <th>Nombre</th>                    
+                          <th>Nombre</th>
+                          <th>Grado</th>                    
+                          <th>Dedicación</th>
                           <th>Departamento</th>
                           <th>Correo</th>
-                          <th>Movil</th>
                           <th colspan="1">Acciones</th>                          
                         </tr>
                       </thead>
