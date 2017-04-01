@@ -5,14 +5,13 @@
   }
 
 ?>
-<!--link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" /-->
 <link rel="stylesheet" href="<?php echo base_url();?>application/views/proyecto/ext/proyecto.css" />
 
-<div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Proyecto</center></h1>
-    <input value="<?=$pro_id?>" id="pro_id" type="hidden" >
+    <h1><center>Formato del Proyecto</center></h1>
+    <input value="<?php echo $pro_id ?>" id="pro_id" type="hidden" >
   </div>
+
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
       <div class="row-fluid">
@@ -25,9 +24,10 @@
             if($cant_seccion>1){         //VALIDAR EL FORMATO DE PRESENTACION      ?>  
 
               <div class="widget-title" >
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs"> 
                   
                   <li class='active' ><a data-toggle='tab' href='#tab_car'>Caratula</a></li>;
+
                   <?php  // MOSTRAR LAS SECCIONES DISPONIBLES EN LA CABECERA        
                      for ($i=0; $i <$cant_seccion ; $i++) {                         
                         echo "<li><a data-toggle='tab' href='#tab".$i."'>Sección ".$seccion[$i]['seccion']."</a></li>";
@@ -38,7 +38,8 @@
               </div>
 
               <div class="widget-content tab-content fix_hgt" name="Cuerpo de Secciones">
-                <?php $this->load->view('proyecto/caratula.php'); ?>
+
+                <?php $this->load->view('proyecto/caratula.php'); ?> <!-- Cargar La caratula  -->
                 
                 <?php                
                    // MOSTRAR LAS SECCIONES DISPONIBLES EN EL CUERPO                        
@@ -55,11 +56,12 @@
 
             <?php } else { //ERROR AL CARGAR EL FORMATO DE PRESENTACION?> 
 
-                <div class="widget-title" >
+              <div class="widget-title" >
                   <span class="icon"> <i class="icon-align-justify"></i> </span>
                   <h5>ERROR EN EL FORMATO DE PRESENTACIÓN  </h5>               
-                </div>
-                <div class="widget-content tab-content">
+              </div>
+
+              <div class="widget-content tab-content">
                   <p>-Es posible, que no se ha creado un formato para este tipo de proyecto.<br>
                     -El Formato de Presentacion, presenta errores de distribucion.
                   </p>                 
@@ -69,8 +71,8 @@
                 </div>
               </div>                
                   
-          </div>    
-        </div>          
+        </div>    
+      </div>          
     </div>
     
     <div class="span9"> 80% Proyecto <!--Barra de Progreso-->
@@ -78,6 +80,7 @@
         <div style="width: 80%;" class="bar"></div>
       </div>                  
     </div>
+
     <div class="span2" style="padding-top: 10px; margin-left: 30px;">
       <button class="btn btn-success" id="subir_proyecto">Subir Proyecto</button>
     </div>
@@ -118,4 +121,4 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->    
 
-
+<script src="<?= base_url();?>application/views/proyecto/ext/elaborar.js" type="text/javascript"></script>

@@ -73,7 +73,7 @@ cod_usu=$('#cod_usu').val() ;
         var tr = $(this).closest('tr');
         var row = table.row( tr );
 
-        window.location=base_url+"proyecto/elaborar_proyecto/"+row.data().pro_id;
+        loader("proyecto/elaborar_proyecto/"+row.data().pro_id);
     } );
 
     $('#tab tbody').on('click', 'td.detail-control', function () { //Agregar los datos correspondientes al modal-delete

@@ -1,4 +1,10 @@
-  function listar_asesores(){
+ alert('asas');
+
+  buscar_datos_proyecto();
+  //buscar_asesor_proyecto();
+  //buscar_parte_proyecto();
+
+  /*function listar_asesores(){
     $.post(base_url+"docente/listar_docentes",function(datos){//Falta Enviar el parametro de que escuela es
         var obj = JSON.parse(datos);     
         var cont_modal=   
@@ -18,7 +24,7 @@
         $('#contenido_modal').html(cont_modal);
     });
   }
-
+  */
   function buscar_datos_proyecto(){
   var pro_id=$('#pro_id').val();  
     $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
@@ -31,11 +37,11 @@
           $('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
           $('#pro_fecha').html(obj["0"].fecha);
         }
-        }
+        
         
     });
   }
-
+/*
   function buscar_asesor_proyecto(){
   var pro_id=$('#pro_id').val();  
     $.post(base_url+"proyecto/buscar_asesor",{pro_id:pro_id},function(datos){
@@ -59,8 +65,9 @@
         }
     });    
   }
+*/
 
-  function agregar_tabla_criterios(nompar_id){
+ /* function agregar_tabla_criterios(nompar_id){
     var tabla_criterio=  
       "<div class='widget-title'> <span class='icon'> <i class='icon-th'></i> </span>"+
         "<h5>Instrumento Evaluación </h5>"+
@@ -104,10 +111,6 @@
     });
       
   }
-
-  buscar_datos_proyecto();
-  buscar_asesor_proyecto();
-  buscar_parte_proyecto();
 
 
   $('#editar_parte.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
@@ -185,3 +188,4 @@
 
   });
 
+*/

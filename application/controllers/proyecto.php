@@ -13,6 +13,8 @@
             $this->load->model('linea_investigacion_model');   
             $this->load->model('tipo_proyecto_model');
 
+            $this->load->model('semestre_academico_model');
+
         }
 
         public function proyectos()//Del Admin
@@ -37,12 +39,12 @@
 
         public function registrar_proyecto()
         {               
-            $data= array ( 'eje'=> $this->eje_tematico_model->select($this->session->userdata('fac_id'))->result_array(),
-                        'requisitos'=> $this->requisito_model->select_requisitos()->result_array(),
-                        'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
+            $data= array ( 
+                    'eje'=> $this->eje_tematico_model->select($this->session->userdata('fac_id'))->result_array(),
+                    'semestre'=> $this->semestre_academico_model->Select()->result_array(),
+                    'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
             //echo"<pre>";print_r($data);exit();
             //echo $this->session->userdata('alu_id');
-
             
             $this->load->view('proyecto/registrar_proyecto.php',$data);        
         }
@@ -91,6 +93,31 @@
             $this->load->view('proyecto/proyecto_word.php',$data);
             //sleep(10);
             // $this->load->view('proyecto/header_word.php',$data);
+        }
+
+        public function Guardar_proyecto()//Guardar Nombre_Proyecto/Parte
+        {   
+            
+            $data = array(
+               'alu_id' => $_POST["alumno"],
+               'linin_id' => $_POST["linea"],
+               'tipro_id' => $_POST["tipo_proyecto"],
+               'pro_fecha_registro' => date('Y-m-d'),
+               'estado' =>0,
+               'pro_nombre' => $_POST["nombre"],
+               'pro_codigo' => $_POST["codigo"],
+               'sem_id' => $_POST["semestre"]
+            );
+        
+            
+            $estado=$this->db->insert('proyecto', $data);
+                if($estado==1){
+                  echo 'I';
+                }else{
+                    echo '0';
+                }
+                
+            
         }
 
         public function guardar()//Guardar Nombre_Proyecto/Parte
@@ -219,12 +246,10 @@
 
         public function buscar_requisito_pro()//Requisito del proyecto
         {   
-            $pro= $this->input->post('pro_id');
-            $consulta=$this->requisito_model->select_req_pro($pro);
+            $tipo_proyecto=$_POST['tipo'];
+            $consulta=$this->requisito_model->select_requisitos($tipo_proyecto);
             echo json_encode( $consulta->result());
         }
-
-        
 
         public function buscar_evaluacion()//Criterio en general
         {   

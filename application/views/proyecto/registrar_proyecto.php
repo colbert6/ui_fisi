@@ -16,6 +16,8 @@
 </div>
 
 <div class="container-fluid" style="z-index: 1001;">
+<hr style="margin:0px">
+
     <div class="row-fluid">
 
       <div class="span12">
@@ -24,7 +26,7 @@
           <div class="widget-title" >
             <ul class="nav nav-tabs">
               <li class="active"><a data-toggle="tab" href="#tab1">Información</a></li>
-              <li><a data-toggle="tab" href="#tab2" id="ir_form">Requisitos</a></li>
+              <li><a data-toggle="tab" href="#tab2" id="tabRequisitos">Requisitos</a></li>
             </ul>
           </div>
 
@@ -44,7 +46,8 @@
                 <div class="control-group">
                   <label class="control-label">Eje Tematico :</label>
                   <div class="controls">
-                    <select id="controls" class="span7" onchange="Mostrar_Lineas(this);">
+                    <select id="eje" name="eje" class="span7" onchange="Mostrar_Lineas(this);">
+                         <option value="" > Seleccione ...</option>
                         <?php for($i=0;$i<count($eje);$i++){ //Aca va la lista de los modulos padres ?> 
                           <option value="<?php echo $eje[$i]['eje_id'];?>"><?php echo $eje[$i]['eje_descripcion']?></option>
                         <?php } ?>                     
@@ -55,7 +58,7 @@
                 <div class="control-group">
                   <label class="control-label">Linea de Investigacion :</label>
                   <div class="controls">
-                    <select class="span7" id='linea_investigacion' name="linea_investigacion">
+                    <select class="span7" id='linea_investigacion' name="linea">
                                          
                     </select>
                   </div>
@@ -64,7 +67,8 @@
                 <div class="control-group">
                   <label class="control-label">Tipo Proyecto :</label>
                   <div class="controls">
-                    <select  class="span7" name="linea_investigacion">
+                    <select  class="span5" name="tipo_proyecto" id="tipo_proyecto">
+                        <option value="" > Seleccione ...</option>
                         <?php for($i=0;$i<count($tipo_pro);$i++){ //Aca va la lista de los modulos padres ?> 
                           <option value="<?php echo $tipo_pro[$i]['tipro_id'];?>"><?php echo $tipo_pro[$i]['tipro_descripcion']?></option>
                         <?php } ?>                     
@@ -73,14 +77,37 @@
                 </div>
 
                 <div class="control-group">
-                  <label class="control-label">Ciclo Academico</label>
+                  <label class="control-label">Nombre o Descripción</label>
                   <div class="controls">
-                    <input type="text" id="reg_cic" class="span3 m-wrap">
+                    <input type="text" class="span7 m-wrap" name="nombre">
+                  </div>
+                </div>   
+
+                
+                <div class="control-group">
+                  <label class="control-label">Semestre Academico :</label>
+                  <div class="controls">
+                    <select  class="span4" name="semestre" id="semestre">
+                        <option value="" > Seleccione ...</option>
+                        <?php for($i=0;$i<count($semestre);$i++){ //Aca va la lista de los modulos padres ?> 
+                          <option value="<?php echo $semestre[$i]['sem_id'];?>"><?php echo $semestre[$i]['sem_descripcion']?></option>
+                        <?php } ?>                     
+                    </select>
                   </div>
                 </div>
+
+                <div class="control-group">
+                  <label class="control-label">Codigo</label>
+                  <div class="controls">
+                    <input type="text" readonly="" class="span4 m-wrap" id="codigo" name="codigo">
+                  </div>
+                </div> 
                 
                 <div class="form-actions">
-                  <input type="submit" value="Validate" class="btn btn-success">
+                    <button type="button" class="btn btn-success"  id="Guarda"><span class="icon-ok" aria-hidden="true"></span>Guardar</button>
+
+                    <button type="button"  class="btn btn-danger" onclick="loader('proyecto/mis_proyectos');"><span class="icon-refresh" aria-hidden="true"></span> Cancelar </button>
+
                 </div>
 
               </form>
@@ -92,7 +119,7 @@
               
               <div class="widget-box">
                 <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                  <h5>Requisitos para Proyecto de Tesis</h5>
+                  <h5 id="TipoRequisitos"></h5>
                 </div>
                 <div class="widget-content">
                   <table class="table table-bordered data-table" id="tab">
@@ -100,21 +127,13 @@
                       <tr>
                         <th>Item</th>
                         <th>Descripcion</th>
-                        <th>Estado</th>                    
-                        <th>Accion</th>                       
+                        <th>Estado</th>  
+                        <th>Subir</th>                         
                       </tr>
                     </thead>
 
-                    <tbody>
-                      <?php for($i=0;$i<count($requisitos);$i++){ //Aca va la lista de los modulos padres ?> 
-                            <option value="<?php// echo $escuela[$i]['esc_id'];?>"><?php //echo $escuela[$i]['esc_descripcion']?></option>
-                            <tr>
-                              <td><?php echo ($i+1); ?></td>
-                              <td><?php echo $requisitos[$i]['descripcion']; ?></td>
-                              <td class="falta-req"></td>
-                              <td class="subir-req"></td>
-                            </tr>
-                      <?php } ?>  
+                    <tbody id="MostrarRequisitos">
+                      
                     </tbody>
 
                   </table>
