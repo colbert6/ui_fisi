@@ -56,7 +56,6 @@
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
-
             
             $this->load->view('proyecto/formato.php',$data);           
         }
@@ -68,7 +67,6 @@
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
-
             
             $this->load->view('proyecto/formato.php',$data);          
         }
@@ -81,7 +79,6 @@
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
             //echo"<pre>";print_r($data);exit();
-
             
             $this->load->view('proyecto/formato.php',$data);          
         }
@@ -95,58 +92,45 @@
             // $this->load->view('proyecto/header_word.php',$data);
         }
 
-        public function Guardar_proyecto()//Guardar Nombre_Proyecto/Parte
+
+
+        public function Guardar_nombrePro()//Guardar Nombre_Proyecto/Parte
         {   
-            
-            $data = array(
-               'alu_id' => $_POST["alumno"],
-               'linin_id' => $_POST["linea"],
-               'tipro_id' => $_POST["tipo_proyecto"],
-               'pro_fecha_registro' => date('Y-m-d'),
-               'estado' =>0,
-               'pro_nombre' => $_POST["nombre"],
-               'pro_codigo' => $_POST["codigo"],
-               'sem_id' => $_POST["semestre"]
-            );
-        
-            
-            $estado=$this->db->insert('proyecto', $data);
-                if($estado==1){
-                  echo 'I';
-                }else{
-                    echo '0';
-                }
-                
-            
+            if($_POST['nompar']=='NombreProyecto'){//editar el nombre del proyecto
+                $data= array ( 'pro_id'=> $this->input->post('pro_id'),
+                                'pro_nombre'=> $this->input->post('nombrePro'));
+                $guardar=$this->proyecto_model->editar_nombre($data);  
+            }
+            echo $guardar;   
         }
 
-        public function guardar()//Guardar Nombre_Proyecto/Parte
+        public function Guardar_asesor()//Guardar Nombre_Proyecto/Parte
         {   
             if($_POST['id_campo']=='pro_nombre'){//editar el nombre del proyecto
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
                                 'pro_nombre'=> $this->input->post('valor'));
                 $guardar=$this->proyecto_model->editar_nombre($data);  
             }
-            if($_POST['id_campo']=='asesor'){//Registrar Asesor
-                $data= array ( 'pro_id'=> $this->input->post('pro_id'),
-                                'doc_id'=> $this->input->post('valor'));
-                $guardar=$this->proyecto_model->insertar_asesor($data);  
-            }
-            if($_POST['id_campo']!='asesor' and $_POST['id_campo']!='pro_nombre'){//Registrar Asesor
-                if($_POST['par_id']==0){
-                    $data= array ( 'pro_id'=> $this->input->post('pro_id'),
-                                    'nompar_id'=> $this->input->post('id_campo'),
-                                    'par_contenido'=> $this->input->post('valor'));
-                    $guardar=$this->proyecto_model->insertar_parte($data);
+            echo $guardar;   
+        }
 
-                }else if($_POST['par_id']!=0){
-                    $data= array ( 'pro_id'=> $this->input->post('pro_id'),
-                                    'par_id'=> $this->input->post('par_id'),
-                                    'par_contenido'=> $this->input->post('valor'));
-                    $guardar=$this->proyecto_model->editar_parte($data);
-                }
+        public function Guardar_parte()//Guardar Nombre_Proyecto/Parte
+        {               
+            
+            if($_POST['par_id']==0){
+                $data= array ( 'pro_id'=> $this->input->post('pro_id'),
+                               'nompar_id'=> $this->input->post('nompar_id'),
+                               'par_contenido'=> $this->input->post('RichTextEditor'));
+                $guardar=$this->proyecto_model->insertar_parte($data);
+
+            }else if($_POST['par_id']!=0){
+                $data= array ( 'pro_id'=> $this->input->post('pro_id'),
+                               'nompar_id'=> $this->input->post('nompar_id'),
+                               'par_contenido'=> $this->input->post('RichTextEditor'));
+                $guardar=$this->proyecto_model->editar_parte($data);
             }
-            echo json_encode($guardar);            
+        
+            echo $guardar;            
             
         }
 
@@ -211,7 +195,7 @@
             echo json_encode($result);
         }
 
-        //--BUSQUEDAS
+        //--BUSQUEDAS ---------------------------//
         public function buscar_proyecto()//Poyecto especifico
         {   
             $pro_id=$_POST['pro_id'];
@@ -231,7 +215,12 @@
         public function buscar_parte()//Poyecto especifico
         {   
             $pro_id=$_POST['pro_id'];
-            $consulta=$this->proyecto_model->select_parte($pro_id);
+            if($_POST['nompar_id'] == "" ){
+                $consulta=$this->proyecto_model->select_parte($pro_id);
+            }else{
+                $consulta=$this->proyecto_model->select_parte_id($pro_id,$_POST['nompar_id']);
+            }
+            
             //echo "<pre>";            print_r($consulta);exit();
             echo json_encode( $consulta->result());
         } 
