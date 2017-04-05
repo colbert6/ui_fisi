@@ -1,5 +1,6 @@
- 
-    var table =$('#tablaejetematico').DataTable( {
+    
+    //var base_url definida en header
+    var table =$('#tab').DataTable( {
         "processing": true,
         "ajax": {
             "url": base_url+"eje_tematico/cargar_datos/",
@@ -14,13 +15,8 @@
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
-            },
-            {
-                "className":      'detail-control',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
             }
+
         ],
         "bJQueryUI": true,
         "sPaginationType": "full_numbers",
@@ -64,31 +60,66 @@
         'iDisplayLength': 10,
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
     } );
-    
-function Nuevo(){
+
+function cargar_facultad(){    
+
     $.ajax({
-        url: base_url+'eje_tematico/Nuevo',
-        type:'POST',
-    }).done(function(){
-        $("#eje_descripcion").removeAttr("disabled");
-        $("#eje_facultad").removeAttr("disabled").focus();
+        url:   base_url+'eje_tematico/Facultad_json/',
+        type:  'POST',
+        success: function(data) {
 
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
-
-        $("#NuevoBTN").attr("disabled","disabled");           
+          var d = eval(data);
+          html="";
+          for (var i = 0; i < d.length; i++) {
+            html+="<option value='"+d[i]['fac_id']+"' >"+d[i]['fac_descripcion']+"</option>";
+          }
+          $("#facultad").empty().html(html);
+            
+        }
     });
 }
 
-function Cancelar(){
-    $("#eje_descripcion").val('');
-    $("#eje_facultad").val('');
 
-    $("#eje_descripcion").attr("disabled","disabled");
-    $("#eje_facultad").attr("disabled","disabled");
+    $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-EjeTematico").serialize(),
+            url:   base_url+'eje_tematico/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
+            }
+        });
 
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarB").attr("disabled","disabled");
+    } );
 
-    $("#NuevoBTN").removeAttr("disabled");
-}
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().eje_id);
+        $("#descripcion").val(row.data().eje_descripcion);
+        $("#facultad").val(row.data().fac_id);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion").val('');
+        cargar_facultad();
+    });
+
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
+    }

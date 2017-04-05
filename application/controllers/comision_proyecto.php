@@ -3,15 +3,13 @@
 class comision_proyecto extends CI_Controller
 {   
     function __construct(){
-        parent::__construct();   
+        parent::__construct();
+        $this->load->database('default');
+        $this->load->model('comision_proyecto_model'); 
+   
     }
         
     public function index(){  
-        $this->load->database('default');
-        $this->load->model('comision_proyecto_model'); 
-
-        $dato_foother= array ('add_table'=> 'si');
-
 
          $query1 = $this->db->query("select count(ce.doc_id) as total, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre
                                     from comision_evaluadora as ce 
@@ -45,11 +43,20 @@ class comision_proyecto extends CI_Controller
         $Docentes = $this->comision_proyecto_model->MostrarDocentes();
         $Cargos = $this->comision_proyecto_model->MostrarCargos();
             
-        $this->load->view('layout/header.php');
-        $this->load->view('layout/menu.php'); 
+
         $this->load->view('comision_proyecto/index.php',compact("Proyectos","DocentesChart","LinInvesChart","ProyectoTesis","Tesis","Docentes","ComisionProyecto","Cargos"));
-        $this->load->view('layout/foother.php',$dato_foother);           
     }
+
+     public function cargar_datos()
+        { 
+            $consulta=$this->comision_proyecto_model->MostrarProyectos();
+            $result= array("draw"=>1,
+                "recordsTotal"=>$consulta->num_rows(),
+                 "recordsFiltered"=>$consulta->num_rows(),
+                 "data"=>$consulta->result());
+            
+            echo json_encode($result);
+        }
 
     public function grabardetallecomision(){
         $this->load->database('default');

@@ -99,6 +99,10 @@ td.mostrar-proyecto {
     background: url("../img/icons/16/read.png") no-repeat center center;
     cursor: pointer;
 }
+td.jurado-verde {
+    background: url("../img/icons/32/client.png") no-repeat center center;
+    cursor: pointer;
+}
 td.editar-data {
     background: url("../img/icons/16/edit.png") no-repeat center center;
     cursor: pointer;

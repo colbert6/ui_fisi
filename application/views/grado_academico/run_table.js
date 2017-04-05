@@ -1,5 +1,5 @@
 
-var tablapro =$('#tablagradoacademico').DataTable( {
+var tablapro =$('#tab').DataTable( {
         
     "processing": true,
     "ajax": {
@@ -11,12 +11,6 @@ var tablapro =$('#tablagradoacademico').DataTable( {
             { "data": "grac_descripcion" },
             {
                 "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
-                "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -65,71 +59,49 @@ var tablapro =$('#tablagradoacademico').DataTable( {
     'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
 });
 
-function Actualizar(){
-    $('#Alerta').modal('hide');
-    setTimeout("", 200);
 
-}
-
-function Nuevo(){
-    $.ajax({
-        url: base_url+'grado_academico/Nuevo',
-        type:'POST',
-    }).done(function(resp){
-         var codigo = eval(resp);
-        if(codigo[0]['GRAC_ID'] == null){
-            if (codigo[0]['grac_id']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['grac_id']);
+    $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-GradoAcademico").serialize(),
+            url:   base_url+'grado_academico/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
             }
-        }else{
-            if (codigo[0]['GRAC_ID']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['GRAC_ID']);
-            }
-        }
-        $("#grac_id").val(codigo+1);
-        $("#grac_descripcion").removeAttr("disabled").focus();
+        });
 
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
+    } );
 
-        $("#NuevoBTN").attr("disabled","disabled");           
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().grac_id);
+        $("#descripcion").val(row.data().grac_descripcion);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion").val('');
     });
-}
 
-function Guardar(obj){
-    /*if(obj.tipro_descripcion.value==""){
-        $('#tipro_descripcion').focus();
-        $('#tipro_descripcion').popover('show'); return 0;
-    }*/
-    $("#grac_id").removeAttr("disabled");
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
+    }
 
-    $.ajax({
-        type:"POST",
-        data: $('#ForGradoAcademico').serialize(),
-        url: base_url +'grado_academico/Guardar',
-        success: function(data){
-            $("#Mensaje").html(data);
-            $('#Alerta').modal({
-                show:true,
-                backdrop:'static'
-            });
-        }
-    });
-}
 
-function Cancelar(){
-    $("#grac_id").val('');
-    $("#grac_descripcion").val('');
 
-    $("#grac_id").attr("disabled","disabled");
-    $("#grac_descripcion").attr("disabled","disabled");
-
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarBTN").attr("disabled","disabled");
-
-    $("#NuevoBTN").removeAttr("disabled");
-}
+     

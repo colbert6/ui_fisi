@@ -20,6 +20,8 @@
             </div>
 
             <div class="widget-content tab-content">
+
+
             <!--- TABLA -->
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
@@ -39,7 +41,32 @@
                               </tr>
                           </thead>
                           <tbody>
-                        
+                           <!-- <?php 
+                              //foreach ($Proyectos as $value): ?>
+                                <tr>
+                                  <td><center> <?php echo $value->pro_id; ?></center></td>
+                                  <td><center> <?php echo $value->alu_nombre." ".$value->alu_apellido_paterno." ".$value->alu_apellido_materno; ?></center></td>
+                                  <td><center> <?php echo $value->pro_nombre; ?></center></td>
+                                  <?php 
+                                    //if ($value->tipro_id == 1) { ?>
+                                        <td><center> <img src="<?php echo base_url();?>img/celeste.png"></center></td>
+                                      <?php } 
+                                      //else 
+                                      { ?>
+                                        <td><center> <img src="<?php echo base_url();?>img/azul.png"></center></td>
+                                      <?php }
+                                  ?> 
+                                  <td><center> <?php echo $value->pro_fecha_registro; ?></center>
+                                  <td> 
+                                      <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
+                                  </td>
+                                  <td>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                  </td>
+                              <?php //endforeach 
+                            ?> -->
                           </tbody >
                       </table>
                   </div>
@@ -275,8 +302,7 @@
 
 
   <script src="<?= base_url();?>application/views/comision_proyecto/run_table.js" type="text/javascript"></script>
-  <script src="<?= base_url();?>librerias/canvasjs.min.js" type="text/javascript"></script>
-  <script src="<?= base_url();?>librerias/Chart-2.3.0.min.js" type="text/javascript"></script>      
+  <script src="<?= base_url();?>librerias/canvasjs.min.js" type="text/javascript"></script>    
 
 
   <script type="text/javascript">

@@ -1,7 +1,7 @@
 
     
     //var base_url definida en header
-    var table =$('#tablalineainvestigacion').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -14,12 +14,6 @@
             { "data": "eje_descripcion" },
             {
                 "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
-                "className":      'eliminar-close',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -68,73 +62,68 @@
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
     } );
 
-function Nuevo(){
-    $.ajax({
-        url: base_url+'linea_investigacion/Nuevo',
-        type:'POST',
-    }).done(function(resp){
-         var codigo = eval(resp);
-        if(codigo[0]['LININ_ID'] == null){
-            if (codigo[0]['linin_id']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['linin_id']);
-            }
-        }else{
-            if (codigo[0]['LININ_ID']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['LININ_ID']);
-            }
-        }
-        $("#linin_id").val(codigo+1);
-        $("#linin_descripcion").removeAttr("disabled");
-        $("#linin_eje").removeAttr("disabled");
-
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
-
-        $("#NuevoBTN").attr("disabled","disabled");           
-    });
-}
-
-function Guardar(obj){
-    /*if(obj.linin_descripcion.value==""){
-        $('#linin_descripcion').focus();
-        $('#linin_descripcion').popover('show'); return 0;
-    }
-    if(obj.linin_eje.value==""){
-        $('#linin_eje').focus();
-        $('#linin_eje').popover('show'); return 0;
-    }
-*/  
-    $("#linin_id").removeAttr("disabled");
-    $.ajax({
-        type:"POST",
-        data: $('#ForLineaInvestigacion').serialize(),
-        url: base_url +'linea_investigacion/Guardar',
-        success: function(data){
-            $("#Mensaje").html(data);
-            $('#Alerta').modal({
-                show:true,
-                backdrop:'static'
-            });
-        }
-    });
-}
-
-function Cancelar(){
-    $("#linin_descripcion").val('');
-    $("#linin_eje").val('');
-
-    $("#linin_descripcion").attr("disabled","disabled");
-    $("#linin_eje").attr("disabled","disabled");
-
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarBTN").attr("disabled","disabled");
-
-    $("#NuevoBTN").removeAttr("disabled");
-}
-
+function cargar_eje(){    
     
+    $.ajax({
+        url:   base_url+'linea_investigacion/Eje_json/',
+        type:  'POST',
+        success: function(data) {
+
+          var d = eval(data);
+          html="";
+          for (var i = 0; i < d.length; i++) {
+            html+="<option value='"+d[i]['eje_id']+"' >"+d[i]['eje_descripcion']+"</option>";
+          }
+          $("#eje").empty().html(html);
+            
+        }
+    });
+}
+
+
+ $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-LineaInvestigacion").serialize(),
+            url:   base_url+'linea_investigacion/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
+            }
+        });
+
+    } );
+
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().linin_id);
+        $("#descripcion").val(row.data().linin_descripcion);
+        $("#eje").val(row.data().eje_id);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion").val('');
+        cargar_eje();
+    });
+
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
+    }
+
+/*
 

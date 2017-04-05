@@ -4,33 +4,18 @@
     {    
         function __construct(){
             parent::__construct();  
-            $this->load->database('default');    
-            $this->load->model('eje_tematico_model');   
+            $this->load->database('default');
+            $this->load->model('linea_investigacion_model');     
         }
 
         public function index()
         {   
-            $this->load->database('default');
-            $this->load->model('linea_investigacion_model');
-
-            $dato_foother= array ( 'add_table'=> 'si');
-            $data = array ( 'eje_tematico'=> $this->eje_tematico_model->select()->result_array());
-
-            //$Lineas = $this->linea_investigacion_model->MostrarLineas();
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('linea_investigacion/index.php',$data);
-            $this->load->view('layout/foother.php',$dato_foother);             
+            $this->load->view('linea_investigacion/index.php');            
         }
 
-        public function cargar_datos($tabla='linea_investigacion')
-        {   
-            $this->load->database('default');
-            $this->load->model('linea_investigacion_model');
-
-            $consulta=$this->linea_investigacion_model->mostrar_tabla($tabla);
-            //echo "<pre>";            print_r($consulta);exit();
+        public function cargar_datos()
+        { 
+            $consulta=$this->linea_investigacion_model->MostrarLineaInvestigacion();
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),
@@ -38,24 +23,8 @@
             
             echo json_encode($result);
         }
-
-        public function Nuevo(){
-            $this->load->database('default');
-            $this->load->model('linea_investigacion_model');
-
-            $NuevaLineaInvestigacion = $this->linea_investigacion_model->Nuevo();
-            echo json_encode($NuevaLineaInvestigacion);
-        }
-/*
-        public function Guardar(){
-            $NuevaLineaInvestigacion = $this->linea_investigacion_model->InsertarTP($this->input->post("linin_id"),$this->input->post("linin_eje"));
-
-            echo "<center> <span class='icon-warning-sign' aria-hidden='true'></span> <b> Tipo Proyecto Insertado Correctamente </b> </center>";
-        }*/
-
-        public function Lineas_json(){    
-          $this->load->database('default');          
-          $this->load->model('linea_investigacion_model'); 
+       
+        public function Eje_json(){            
           $eje=$_POST['valor'] ;          
           $query = $this->linea_investigacion_model->Select_eje($eje)->result();
           echo json_encode($query);    
