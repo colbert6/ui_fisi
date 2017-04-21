@@ -11,11 +11,11 @@ class login extends CI_Controller {
    	}
 
 	public function index()
-	{		
+	{	
 		/*$data['error'] = $this->session->flashdata('error'); 	
 		$this->load->view('login/index.php',$data);	*/	
 		if($this->session->userdata('logueado')){
-			redirect(base_url().'uifisi');
+			redirect('uifisi');
 		}else{
 			$data['token'] = $this->token();
 			$this->load->view('login/index.php',$data);
@@ -53,13 +53,13 @@ class login extends CI_Controller {
 					$this->index();			
 				}else{
 					$this->session->set_flashdata('usuario_incorrecto','Los datos introducidos son incorrectos');
-					redirect(base_url().'login','refresh');
+					redirect('login','refresh');
 				}
 				
 				
 			}
 		}else{
-			redirect(base_url().'login');
+			redirect('login');
 		}
 	}
 
@@ -158,7 +158,7 @@ class login extends CI_Controller {
 	
 	public function cerrarsession(){
 		$this->session->sess_destroy();
-		redirect(base_url().'login','refresh');
+		redirect('login','refresh');
 	}
 
 }

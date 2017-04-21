@@ -29,9 +29,9 @@
                 <div class="span4"></div>
                 <div class="span5">
                     <div class="widget-box">
-                        <?=form_open(base_url().'login/new_user')?>
+                        <?=form_open('login/new_user')?>
 
-                        <form method="POST" class="form-vertical" action="<?php echo base_url();?>login/ingresar"      id="loginadmin">
+                        <form method="POST" class="form-vertical" action="#" id="loginadmin">
                             <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>librerias/img/logo/ui_unsm.png" alt="Logo" /></h3></div>
 
                             <div style="width: 100%;height: 1px; background-color: #D8D8D8;"></div>

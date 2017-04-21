@@ -10,7 +10,6 @@
 
         public function index()
         {   
-            $this->load->database('default');
             $this->load->model('linea_investigacion_model');
 
             $dato_foother= array ( 'add_table'=> 'si');
@@ -26,7 +25,6 @@
 
         public function cargar_datos($tabla='linea_investigacion')
         {   
-            $this->load->database('default');
             $this->load->model('linea_investigacion_model');
 
             $consulta=$this->linea_investigacion_model->mostrar_tabla($tabla);
@@ -40,7 +38,6 @@
         }
 
         public function Nuevo(){
-            $this->load->database('default');
             $this->load->model('linea_investigacion_model');
 
             $NuevaLineaInvestigacion = $this->linea_investigacion_model->Nuevo();
@@ -53,8 +50,7 @@
             echo "<center> <span class='icon-warning-sign' aria-hidden='true'></span> <b> Tipo Proyecto Insertado Correctamente </b> </center>";
         }*/
 
-        public function Lineas_json(){    
-          $this->load->database('default');          
+        public function Lineas_json(){            
           $this->load->model('linea_investigacion_model'); 
           $eje=$_POST['valor'] ;          
           $query = $this->linea_investigacion_model->Select_eje($eje)->result();

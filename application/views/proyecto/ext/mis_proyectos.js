@@ -72,8 +72,17 @@ cod_usu=$('#cod_usu').val() ;
     $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
         var tr = $(this).closest('tr');
         var row = table.row( tr );
-
+        
         loader("proyecto/elaborar_proyecto/"+row.data().pro_id);
+    } );
+
+    $('#tab tbody').on('click', 'td.bajar-doc', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        //alert("ola");
+        url = "finta/elaborar_word/"+row.data().pro_id;
+          window.open(url, '_blank');
+          return false;
     } );
 
     $('#tab tbody').on('click', 'td.detail-control', function () { //Agregar los datos correspondientes al modal-delete

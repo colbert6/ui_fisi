@@ -1,6 +1,14 @@
-RewriteEngine on 
-RewriteCond $1 !^(index.php|css|js|images|robots.txt) 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /ui_fisi/index.php/$1 [L]
-ErrorDocument 404 /ui_fisi/index.php
+#Customises Error Messages
+ErrorDocument 404 /index.php
+
+#Set the default handler
+DirectoryIndex index.php
+
+#varios rewrite rules
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$l [L,QSA]
+</IfModule>

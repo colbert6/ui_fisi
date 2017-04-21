@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <td class='caratula seccion'><span>PROYECTO DE TESIS</span>
-              <button class='btn btn-success btn-mini' data-original-title='Edit Task' id='editar_parte' 
+              <button class='btn btn-success btn-mini' data-original-title='Edit Task' 
                 info_parte='Ingrese el Nombre del Proyecto' id_parte='pro_nombre' onclick="EditarNombre();" ><i class='icon-pencil' ></i></button>
             </td>                    
           </tr>
@@ -35,10 +35,17 @@
           </tr>
           <tr>
             <td class='caratula seccion'><span>Asesor:</span> 
+              <button class='btn btn-success btn-mini' data-original-title='Edit Task' 
+                info_parte='Ingrese el Asesor para el Proyecto' id_parte='pro_asesor' onclick="EditarAsesor();" ><i class='icon-pencil' ></i>
+              </button>
             </td>                    
           </tr>
           <tr>
-            <td class='caratula'><h5><div class='parte_text ' id='asesor_proyecto' ></div></h5>
+            <td class='caratula'>
+              <h5>
+                <input type="hidden" id="id_asesor_proyecto" value="0">
+                <div class='parte_text' id='asesor_proyecto' ></div>
+              </h5>
             </td>                    
           </tr>
           <tr>

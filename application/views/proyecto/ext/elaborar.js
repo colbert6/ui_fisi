@@ -27,13 +27,13 @@ var pro_id=$('#pro_id').val();
         var obj = JSON.parse(datos);
         if(obj.length){
           html="";
-          for (var i = 0; i < obj.length; i++) {
-            html+="<p>"+obj[i].nombre;
 
-            if(obj[i].ase_confirmado==null){ html+=" - (Sin Confirmar)" }
-
+            html+="<p>"+obj[0].nombre;
+            if(obj[0].ase_confirmado==null){ html+=" - (Sin Confirmar)" }
             html+= " </p> "  
-          }
+
+          $('#id_asesor_proyecto').val(obj[0].doc_id);
+          
           $('#asesor_proyecto').html(html);
         }
     });    
@@ -63,6 +63,31 @@ var pro_id=$('#pro_id').val();
      $("#nombrePro").text(nombre);
 
   }
+
+  function EditarAsesor(){//enviar la facultad
+    var modal =$('#Modal-EditAsesor'); 
+     modal.modal('show');
+     modal.find('.modal-title').text('Asesor del Proyecto');
+     nombre=$("#nombre_proyecto").text();
+
+     $.ajax({
+        url:   base_url+'docente/Asesor_json/',
+        type:  'POST',
+        success: function(data) {
+
+          var d = eval(data);
+          html="";
+          for (var i = 0; i < d.length; i++) {
+            html+="<option value='"+d[i]['doc_id']+"' >"+d[i]['nombre']+"</option>";
+          }
+          $("#sel_asesor").empty().html(html);
+            
+        }
+    });
+
+  }
+
+
   
   $('a.edit-parte').on('click', function () { //Agregar los datos correspondientes al modal-delete
 
