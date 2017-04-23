@@ -122,7 +122,7 @@
     </div>
 </script>
 
-<!-- MODAL  -->
+<!-- MODAL PARA EL NOMBRE DEL PROYECTO -->
 <div class="modal fade" id="Modal-EditNombre"  tabindex="-1" role="dialog">
   
     <div class="modal-dialog" role="document">
@@ -173,7 +173,64 @@
 </div><!-- /.modal -->    
 
 
-<!-- MODAL  -->
+<!-- MODAL PARA EL ASESOR -->
+<div class="modal fade" id="Modal-EditAsesor"  tabindex="-1" role="dialog">
+  
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"></h4>
+          </div>
+
+          <div class="modal-body">
+            <form  id="form-EditAsesor" action="#" class="j-forms" novalidate>
+                <input type="hidden" value="<?php echo $pro_id ?>" name="pro_id">
+                <input type="hidden" id="nompar" name="nompar" value="NombreProyecto">
+                <div class="row-fluid">
+                  
+                    <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
+                      <h5>Editar Asesor del Proyecto</h5>
+                    </div>
+
+                      
+                    <div class="controls-row">
+                      <br>
+                       <div class="span11">
+                       
+                            <div class="control-group">
+                                <label class="control-label">Seleccione Docente  :</label>
+                                <div class="controls">
+                                  <select id="sel_asesor" name="sel_asesor" class="span7">
+                                       <option value="" > Seleccione ...</option>           
+                                  </select>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+
+                </div> 
+            </form>      
+
+          </div>
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="guardar_nombre">Guardar Cambios</button>
+          </div>
+
+        </div><!-- /.modal-content -->
+
+    </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->    
+
+
+
+<!-- MODAL PARA EL NOMBRE DEL PROYECTO -->
 <div class="modal fade" id="Modal-Parte" tabindex="-1" role="dialog">
   
     <div class="modal-dialog" role="document">

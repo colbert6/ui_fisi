@@ -68,6 +68,11 @@
     left: 40%;
   }
 
+  #Modal-EditAsesor {
+    width: 860px;
+    left: 40%;
+  }
+
   #Modal-Parte > div > div > .modal-body {
     height: 435px;
     max-height: 600px;

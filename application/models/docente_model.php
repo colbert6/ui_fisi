@@ -24,5 +24,11 @@
             return $query;
         }
 
+        function listar_asesores(){
+            $sql="SELECT  d.doc_id,coalesce(d.doc_nombre||' '||d.doc_apellido_paterno||' '||d.doc_apellido_materno) as nombre FROM docente AS d";
+            $query=$this->db->query($sql);
+            return $query;
+        }
+
 	}
 ?>

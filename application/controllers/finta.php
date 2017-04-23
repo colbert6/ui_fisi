@@ -10,31 +10,8 @@
             $this->load->model('finta_model');
         }
 
-        public function index()
-        {
-            /*echo "<pre>";
-            print_r($this->getData());exit;*/
-            $dato_foother= array ( 'add_table'=> 'si');
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('finta/index.php');
-            $this->load->view('layout/foother.php',$dato_foother);
-        }
-
-        public function registrar_finta()
-        {
-            $dato_foother= array ( 'add_table'=> 'no');
-            //$data= array ( 'finta'=> $this->finta_model->select()->result_array());
-            //echo"<pre>";print_r($data);exit();
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('finta/registrar.php');
-            $this->load->view('layout/foother.php',$dato_foother);
-        }
-
-        public function elaborar_word($pro_id=1)
+ 
+        public function elaborar_word($pro_id =5)
         {
             $this->load->library('PHPWord');
 
@@ -208,7 +185,7 @@
 
         }
 
-     /*   public function download_word($proyecto) {
+         /*   public function download_word($proyecto) {
 
             $proyecto = str_replace("%20", "", $proyecto);
             $file = $proyecto.'.docx';

@@ -24,5 +24,11 @@
             
             echo json_encode($result);
         }
+
+        public function Asesor_json(){    
+          //$eje=$_POST['valor'] ;          
+          $query = $this->docente_model->listar_asesores()->result();
+          echo json_encode($query);    
+        }
     }
 ?>

@@ -23,12 +23,6 @@ alu_id=$('#cod_usu').val() ;
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
-            },
-            {
-                "className":      'word',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
             }
         ],
         "bJQueryUI": true,
@@ -112,14 +106,15 @@ alu_id=$('#cod_usu').val() ;
         $("#ubigeo").html(row.data().ubigeo);// arreglar
         $("#est_civil").html(row.data().alu_estado_civil);
 
+
     });
 
 
     $('#tab tbody').on('click', 'td.word', function () {
         var tr = $(this).closest('tr');
         var row = table.row( tr );
-
-            window.location=base_url+"finta/elaborar_word/"+row.data().pro_id;
+        //alert("jhoan");
+        window.location=base_url+"finta/elaborar_word/"+row.data().pro_id;
         /*$.post(base_url+"finta/elaborar_word/"+row.data().pro_id, {}, function(data, textStatus, xhr) {
 
         });*/

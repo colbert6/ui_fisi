@@ -47,7 +47,7 @@
         }
 
         function select_asesor($pro_id){
-            $sql="SELECT coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre , ase.ase_confirmado, ase.ase_designado
+            $sql="SELECT doc.doc_id, coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre , ase.ase_confirmado, ase.ase_designado
                     FROM  asesor as ase INNER JOIN docente as doc
                         ON ase.doc_id=doc.doc_id 
                     WHERE ase.pro_id=$pro_id";
