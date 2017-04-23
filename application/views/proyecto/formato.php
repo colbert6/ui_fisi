@@ -10,6 +10,7 @@
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Formato del Proyecto</center></h1>
     <input value="<?php echo $pro_id ?>" id="pro_id" type="hidden" >
+    <input value="<?php echo count($parte) ?>" id="cantidad_partes" type="hidden" >
   </div>
 
   <div class="container-fluid" style="z-index: 1001;">
@@ -75,9 +76,9 @@
       </div>          
     </div>
     
-    <div class="span9"> 80% Proyecto <!--Barra de Progreso-->
+    <div class="span9"> <p id="progreso_proyecto">80% Proyecto</p> <!--Barra de Progreso-->
       <div class="progress progress-danger progress-striped " >
-        <div style="width: 80%;" class="bar"></div>
+        <div style="width: 80%;" class="bar" id="barra_proyecto"></div>
       </div>                  
     </div>
 

@@ -15,8 +15,9 @@
             return $query;         
         }
 
-        function select_proyecto_alumno($id){
-            $this->db->where("alu_id",$id);  
+        function select_proyecto_responsable($responsable,$tipo_responsable){
+            $this->db->where("responsable_id",$responsable);  
+            $this->db->where("tipo_responsable",$tipo_responsable);  
             $query=$this->db->get("proyecto");      
             return $query;            
         }
@@ -91,6 +92,34 @@
             return $query;            
         }
         
+        function insertar_proyecto($data){
+            $datos=array('alu_id'=> $data['alu_id'] ,
+                           'linin_id'=>$data['linin_id'] ,
+                           'tipro_id'=> $data['tipro_id'] ,
+                           'pro_nombre'=> $data['pro_nombre'] ,
+                           'pro_codigo'=> $data['pro_codigo'] ,
+                           'sem_id'=> $data['sem_id'] ,
+                           'pro_fecha_registro'=>date("d-m-Y"),
+                           'estado'=> 0);
+            if($this->db->insert('proyecto',$datos)){
+                 $query='I';
+            }else{
+                 $query=$this->db->_error_message();
+            }
+            return $query;
+        }
+
+        function editar_proyecto($data){
+            $datos=array('pro_nombre' => $data['pro_nombre'] );
+            $this->db->where("pro_id",$data['pro_id']);
+            if($this->db->update('proyecto',$datos)){
+                 $query='M';
+            }else{
+                 $query='Error';
+            }
+            return $query;
+        }
+
         function editar_nombre($data){
             $datos=array('pro_nombre' => $data['pro_nombre'] );
             $this->db->where("pro_id",$data['pro_id']);
@@ -108,7 +137,7 @@
                          "tipase_id" =>1,
                          "ase_fecha_designacion" =>date("d-m-Y"));
             if($this->db->insert('asesor',$datos)){
-                 $query=0;
+                 $query="I";
             }else{
                  $query=$this->db->_error_message();
             }

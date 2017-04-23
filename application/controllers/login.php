@@ -8,6 +8,7 @@ class login extends CI_Controller {
 	  $this->load->model('menu_model');
 	  $this->load->library(array('form_validation'));
 	  $this->load->helper(array('form'));
+	  //id_tipo  = ( 1. Admin ) ( 2. Director UI ) ( 3. Docente ) ( 4. Docente ) 
    	}
 
 	public function index()
@@ -92,7 +93,7 @@ class login extends CI_Controller {
 		if(count($usuario) == 1){
 			if($usuario[0]['com_funcion']=='Encargado'){
 				$tipo="Director UI";
-				$id_tipo="2";
+				$id_tipo="3";
 			}else {
 				$tipo="Docente";
 				$id_tipo="3";

@@ -6,7 +6,7 @@
 		}
 
 		function MostrarTipoProyecto(){
-            $sql="SELECT * FROM tipo_proyecto";
+            $sql="SELECT * FROM tipo_proyecto WHERE parent_tipro_id=0";
             $query=$this->db->query($sql);
             return $query;
         }

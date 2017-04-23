@@ -1,6 +1,7 @@
 <?php
     
     $tipo_usu = $this->session->userdata('tipo');
+    $id_tipo = $this->session->userdata('id_tipo');
     $correo_usu= $this->session->userdata('correo');  
     $cod_usu =$this->session->userdata('id');
     $nombre_usu =$this->session->userdata('nombre');
@@ -13,7 +14,7 @@
 
 <!DOCTYPE html>
     <head>
-        <title>Unidad de Investigacion</title>
+        <title>PEMOPI</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/bootstrap.min.css" />
@@ -30,7 +31,13 @@
             <div id="header">
               <h2>PEMOPI <b> UNSM</b></h2>
             </div>
-            <script>   var base_url="<?= base_url(); ?>";  </script>
+            <script>   
+                    var base_url="<?= base_url(); ?>";
+                    var cod_usu="<?php echo $cod_usu; ?>";
+                    var tipo_usu="<?php echo $id_tipo; ?>";
+
+            </script> <!-- Declaración de Base a Java-->
+
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="#"><b><?php echo "Bienvenido, ". $tipo_usu;?>: </b></a> &nbsp;  &nbsp;
@@ -50,7 +57,7 @@
 
 
             </div>
-            <input value="<?=$cod_usu?>" id="cod_usu" type="hidden" >
+            
 
 
         
