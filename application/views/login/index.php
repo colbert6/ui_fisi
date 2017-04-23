@@ -63,8 +63,6 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-                    
-
                         </div>
                     </div>
                 </div>
@@ -93,9 +91,6 @@
                                                 {
                                                     echo '<p>'.$this->session->flashdata('usuario_incorrecto') . '</p>';
                                                 }
-                                                
-                                            ?>
-                                            
                                             ?><br>
         
                                             <div class="control-group">
