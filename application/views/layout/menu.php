@@ -113,10 +113,10 @@ $( document ).ready(function() {
 
             });
                     
-            /* function loader(url)
+            function loader(url)
             {   
                 $("#content").load(base_url+url);
-            }*/
+            }
         });
     }
    crear_menu();

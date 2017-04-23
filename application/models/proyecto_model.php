@@ -38,7 +38,7 @@
         }
 
         function select_id($pro_id){
-            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
+            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno||' '||a.alu_apellido_materno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
            FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.alu_id=a.alu_id 
            INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id INNER JOIN facultad as f ON f.fac_id=e.fac_id 
            WHERE p.pro_id=$pro_id";
@@ -47,8 +47,8 @@
         }
 
         function select_asesor($pro_id){
-            $sql="SELECT coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre
-                    FROM    asesor as ase INNER JOIN docente as doc
+            $sql="SELECT coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre , ase.ase_confirmado, ase.ase_designado
+                    FROM  asesor as ase INNER JOIN docente as doc
                         ON ase.doc_id=doc.doc_id 
                     WHERE ase.pro_id=$pro_id";
             $query=$this->db->query($sql);  
@@ -59,6 +59,14 @@
             $sql="SELECT par_id,nompar_id,par_contenido 
                     FROM parte 
                     WHERE pro_id=$pro_id";
+            $query=$this->db->query($sql);  
+            return $query;            
+        }
+
+        function select_parte_id($pro_id,$nompar_id){
+            $sql="SELECT par_id,nompar_id,par_contenido 
+                    FROM parte 
+                    WHERE pro_id=$pro_id and nompar_id=$nompar_id";
             $query=$this->db->query($sql);  
             return $query;            
         }
@@ -87,9 +95,9 @@
             $datos=array('pro_nombre' => $data['pro_nombre'] );
             $this->db->where("pro_id",$data['pro_id']);
             if($this->db->update('proyecto',$datos)){
-                 $query=0;
+                 $query='M';
             }else{
-                 $query=$this->db->_error_message();
+                 $query='Error';
             }
             return $query;
         }
@@ -112,9 +120,9 @@
                          "nompar_id" =>$data['nompar_id'],
                          "par_contenido" =>$data['par_contenido']);
             if($this->db->insert('parte',$datos)){
-                 $query=0;
+                 $query="I";
             }else{
-                 $query=$this->db->_error_message();
+                 $query="Error";
             }
             return $query;
         }
@@ -122,11 +130,11 @@
         function editar_parte($data){
             $datos=array('par_contenido' => $data['par_contenido'] );
             $this->db->where("pro_id",$data['pro_id']);
-            $this->db->where("par_id",$data['par_id']);
+            $this->db->where("nompar_id",$data['nompar_id']);
             if($this->db->update('parte',$datos)){
-                 $query=0;
+                 $query="M";
             }else{
-                 $query=$this->db->_error_message();
+                 $query="Error";
             }
             return $query;
         }

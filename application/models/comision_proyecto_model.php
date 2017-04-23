@@ -2,10 +2,9 @@
 	class comision_proyecto_model extends CI_Model{
 		function __construct(){
 			parent::__construct(); 
-			$this->load->database('default');
 		}
 
-		/*function MostrarProyectos(){
+		function MostrarProyectos(){
 			$this->db->select('proyecto.pro_id,alumno.alu_nombre,alumno.alu_apellido_paterno,alumno.alu_apellido_materno,proyecto.pro_nombre,tipo_proyecto.tipro_id,tipo_proyecto.tipro_descripcion,proyecto.pro_fecha_registro');
 			$this->db->from('proyecto');
 			$this->db->join('alumno', 'alumno.alu_id = proyecto.alu_id');
@@ -14,17 +13,7 @@
 
 			$query = $this->db->get();
 			return $query->result();
-		}*/
-
-		function MostrarProyectos(){
-			$sql="SELECT proyecto.pro_id,(alumno.alu_nombre,alumno.alu_apellido_paterno,alumno.alu_apellido_materno) as alumno,proyecto.pro_nombre,tipo_proyecto.tipro_id,tipo_proyecto.tipro_descripcion,proyecto.pro_fecha_registro 
-				FROM proyecto
-				INNER JOIN alumno on alumno.alu_id = proyecto.alu_id
-				INNER JOIN linea_investigacion on linea_investigacion.linin_id = proyecto.linin_id
-				INNER JOIN tipo_proyecto on tipo_proyecto.tipro_id = proyecto.tipro_id";
-            $query=$this->db->query($sql);
-            return $query;
-        }
+		}
 		
 		function MostrarComisionProyectos(){
 			$this->db->select('*');

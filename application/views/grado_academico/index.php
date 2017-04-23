@@ -1,6 +1,6 @@
 
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Grado Academico</center></h1>
+    <h1><center>Grado Academico</center></h1> <!-- Titulo General-->
   </div>
 
   <div class="container-fluid" style="z-index: 1001;">
@@ -26,7 +26,7 @@
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-                    <h5>Lista de Grados Academicos Registrados</h5>
+                    <h5>Lista de Grados Academicos Registrados</h5> <!-- Titulo de la lista-->
                   </div>
                   <div class="widget-content nopadding">
                     <table class="table table-bordered data-table" id="tab">
@@ -50,10 +50,11 @@
 
               <div id="tab2" class="tab-pane"> 
                 <div class="span12" align="center">
-                  <div class="widget-box">
+
+                  <div class="widget-box"> <!-- Nombre del formulario-->
                     <form class="form-horizontal" id="form-GradoAcademico" action="#" class="j-forms" novalidate>
                       <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
-                        <h5>Grado Academico</h5>
+                        <h5>Grado Academicos</h5><!-- titulo del formulario-->
                       </div>
 
                       
@@ -99,7 +100,7 @@
 
 <script src="<?= base_url();?>application/views/grado_academico/run_table.js" type="text/javascript"></script>  
 
-
+<!-- Lugar del script -->
 
 <style type="text/css">
   .modal {

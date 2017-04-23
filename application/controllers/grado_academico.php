@@ -9,13 +9,13 @@
         }
 
         public function index()
-        {                
-            $this->load->view('grado_academico/index.php');           
-        }
+        {              
+            $this->load->view('grado_academico/index.php');          
+        }  
 
-         public function cargar_datos()
+        public function cargar_datos()
         { 
-            $consulta=$this->grado_academico_model->MostrarGradoAcademico();
+            $consulta=$this->grado_academico_model->mostrar_tabla();
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),
@@ -29,7 +29,7 @@
             $data = array(
                'grac_descripcion' => $_POST["descripcion"]
             );
-        
+             
             if($_POST["id"]==""){
               $estado=$this->db->insert('grado_academico', $data);
                 if($estado==1){

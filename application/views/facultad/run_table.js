@@ -1,7 +1,7 @@
 
     
     //var base_url definida en header
-    var table =$('#tablafacultad').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -13,13 +13,6 @@
             { "data": "fac_descripcion"}, 
             { "data": "fac_codigo_sira" },
             { "data": "fac_abreviatura"},
-            { "data": "fac_logo"},
-            {
-                "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
             {
                 "className":      'detail-control',
                 "orderable":      false,
@@ -70,6 +63,9 @@
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
     } );
 
+<<<<<<< HEAD
 
 
     
+=======
+>>>>>>> 56f5d1cd79ab5bf48e91d537ffe9b4724133e307

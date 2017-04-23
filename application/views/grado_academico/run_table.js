@@ -1,6 +1,7 @@
 
-var tablapro =$('#tab').DataTable( {
-        
+
+var table =$('#tab').DataTable( 
+{   
     "processing": true,
     "ajax": {
             "url": base_url+"grado_academico/cargar_datos/",
@@ -59,7 +60,6 @@ var tablapro =$('#tab').DataTable( {
     'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
 });
 
-
     $('#Guarda').on('click', function () { 
         $.ajax({
             data:  $("#form-GradoAcademico").serialize(),
@@ -96,12 +96,10 @@ var tablapro =$('#tab').DataTable( {
         $("#id,#descripcion").val('');
     });
 
+
     function OpenTab(tab){
         $('li.active ,div.active').removeClass('active');
         $('a[href="#'+tab+'"]').parent().addClass('active');
         $('#'+tab).addClass('active');
     }
 
-
-
-     

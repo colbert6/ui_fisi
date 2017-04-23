@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>librerias/css/jquery.gritter.css" /> <!--Utilizo para alertas-->
         <script src="<?php echo base_url();?>librerias/js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/datatables/jquery.dataTables.js"></script>
+              
     </head>
 
     <body>

@@ -12,8 +12,9 @@
             return $query;
         }
 
-        function select_requisitos(){
-        	$query = $this->db->get("requisitos");
+        function select_requisitos($tipo_proyecto){ //En base al tipo de Proyecto
+        	$this->db->where("tipro_id",$tipo_proyecto);  
+            $query = $this->db->get("requisitos");
         	return $query; 
         }
 
