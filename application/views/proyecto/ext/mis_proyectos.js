@@ -1,11 +1,11 @@
 
-cod_usu=$('#cod_usu').val() ;
+
     //var base_url definida en header
     var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
-            "url": base_url+"proyecto/cargar_mis_proyectos/"+cod_usu,
+            "url": base_url+"proyecto/cargar_mis_proyectos/"+cod_usu+"/"+tipo_usu,
             "type": "POST"
         },
         "columns": [

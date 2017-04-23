@@ -1,5 +1,7 @@
 //--------------BUSQUEDA DE DATOS ---------------------//
 var pro_id=$('#pro_id').val(); 
+var cantidad_partes=$("#cantidad_partes").val();
+var partes_listas=0;
 
   buscar_datos_proyecto();
   buscar_asesor_proyecto();
@@ -48,8 +50,10 @@ var pro_id=$('#pro_id').val();
           for (var i = 0; i < obj.length; i++) {
             $('#parte_'+obj[i].nompar_id+'_text').html(obj[i].par_contenido);
             $('#parte_'+obj[i].nompar_id+'_text').attr("par_id",'1');
+            partes_listas++;
           }
         }
+        Progreso_Proyecto();
     });    
   }
 
@@ -163,7 +167,11 @@ var pro_id=$('#pro_id').val();
           type:  'POST',
           success: function(data) {
               data=data.trim();
-              $('#Modal-Parte').modal('hide');              
+              $('#Modal-Parte').modal('hide');  
+              if(data=='I'){
+                partes_listas++;
+                Progreso_Proyecto();
+              }            
               if (data=='I' || data=='M') {
                   $('#parte_'+nompar_id+'_text').html(parte_text);
                   $('#parte_'+nompar_id+'_text').attr("par_id",'2');
@@ -176,5 +184,10 @@ var pro_id=$('#pro_id').val();
       });
   });
 
-  
+  function Progreso_Proyecto(){
+    var porc=((partes_listas/cantidad_partes)*100).toFixed(2);    
 
+    $("#progreso_proyecto").text(porc+"% Progreso del Proyecto");
+    $("#barra_proyecto").css("width",porc+"%");    
+         
+  }

@@ -17,26 +17,17 @@
 
         }
 
-        public function proyectos()//Del Admin
+        public function proyectos()//Del Director de UI
         {
            $this->load->view('proyecto/proyectos.php');         
         }
 
-        public function mis_proyectos()//Del Alumno
+        public function mis_proyectos()//Del Alumno o Docente
         {    
             $this->load->view('proyecto/mis_proyectos.php');         
         }
 
-        public function proyecto_asesor()//Del docente
-        {    
-            $this->load->view('proyecto/proyecto_asesor.php');         
-        }
-
-        public function proyecto_evaluador()//Del docente
-        {               
-            $this->load->view('proyecto/proyecto_evaluador.php');       
-        }
-
+       
         public function registrar_proyecto()
         {               
             $data= array ( 
@@ -92,6 +83,27 @@
             // $this->load->view('proyecto/header_word.php',$data);
         }
 
+        //--------CARGAR ---------------------//
+
+        public function Guardar_Proyecto()//Guardar Nombre_Proyecto/Parte
+        {   
+            if($_POST['proyecto_id']==0){
+                $data= array ( 'alu_id'=> $this->input->post('alumno'),
+                               'linin_id'=> $this->input->post('linea'),
+                               'tipro_id'=> $this->input->post('tipo_proyecto'),
+                               'pro_nombre'=> $this->input->post('nombre'),
+                               'pro_codigo'=> $this->input->post('codigo'),
+                               'sem_id'=> $this->input->post('semestre'));
+                $guardar=$this->proyecto_model->insertar_proyecto($data);
+
+            }else if($_POST['proyecto_id']!=0){
+                $data= array ( 'pro_id'=> $this->input->post('pro_id'),
+                               'nompar_id'=> $this->input->post('nompar_id'),
+                               'par_contenido'=> $this->input->post('RichTextEditor'));
+                $guardar=$this->proyecto_model->editar_proyecto($data);
+            }
+            echo $guardar;   
+        }
 
 
         public function Guardar_nombrePro()//Guardar Nombre_Proyecto/Parte
@@ -165,9 +177,9 @@
             echo json_encode($result);
         }
 
-        public function cargar_mis_proyectos($id)//Poyectos del alumno
+        public function cargar_mis_proyectos($usuario,$tipo_usuario)//Poyectos del alumno o Docente
         {   
-            $consulta=$this->proyecto_model->select_proyecto_alumno($id);        
+            $consulta=$this->proyecto_model->select_proyecto_responsable($usuario,$tipo_usuario);        
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),

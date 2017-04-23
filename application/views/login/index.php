@@ -79,7 +79,7 @@
                             <div class="row-fliud"><br>
                                 <div class="span5">
                                     
-                                        <?=form_open(base_url().'login/new_user')?>
+                                        <?=form_open('login/new_user')?>    
 
                                         <form method="POST" class="form-vertical" id="loginadmin">
                                             <div class="control-group normal_text"> <h3><img src="<?php echo base_url();?>librerias/img/logo/ui_unsm.png" alt="Logo" /></h3></div>
