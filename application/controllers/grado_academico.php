@@ -4,8 +4,8 @@
     {    
         function __construct(){
             parent::__construct();
-            $this->load->database('default');  
-            $this->load->model('grado_academico_model');
+            $this->load->database('default');
+            $this->load->model('grado_academico_model'); 
         }
 
         public function index()
@@ -29,8 +29,7 @@
             $data = array(
                'grac_descripcion' => $_POST["descripcion"]
             );
-            
-            $this->load->database('default');   
+             
             if($_POST["id"]==""){
               $estado=$this->db->insert('grado_academico', $data);
                 if($estado==1){

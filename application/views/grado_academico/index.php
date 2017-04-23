@@ -50,6 +50,7 @@
 
               <div id="tab2" class="tab-pane"> 
                 <div class="span12" align="center">
+
                   <div class="widget-box"> <!-- Nombre del formulario-->
                     <form class="form-horizontal" id="form-GradoAcademico" action="#" class="j-forms" novalidate>
                       <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
@@ -98,9 +99,8 @@
   </div>
 
 <script src="<?= base_url();?>application/views/grado_academico/run_table.js" type="text/javascript"></script>  
+
 <!-- Lugar del script -->
-
-
 
 <style type="text/css">
   .modal {

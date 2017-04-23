@@ -1,6 +1,6 @@
 
     //var base_url definida en header
-    var table =$('#tablafasecomision').DataTable( {
+    var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
@@ -13,12 +13,6 @@
             { "data": "fascom_plazo" },
             {
                 "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
-                "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -68,88 +62,45 @@
     } );
 
 
-$(function(){   
-    $('[data-toggle="popover"]').popover();
-
-    $('#fascom_id').on('click',function(){
-        $('#fascom_id').popover('hide');
-    });
-    $('#fascom_descripcion').on('click',function(){
-        $('#fascom_descripcion').popover('hide');
-    }); 
-    $('#fascom_plazo').on('click',function(){
-        $('#fascom_plazo').popover('hide');
-    }); 
-});
-
-
-function Nuevo(){
-    $.ajax({
-        url: base_url+'fase_comision/Nuevo',
-        type:'POST',
-    }).done(function(resp){
-         var codigo = eval(resp);
-        if(codigo[0]['FASCOM_ID'] == null){
-            if (codigo[0]['fascom_id']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['fascom_id']);
+    $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-FaseComision").serialize(),
+            url:   base_url+'fase_comision/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
             }
-        }else{
-            if (codigo[0]['FASCOM_ID']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['FASCOM_ID']);
-            }
-        }
-        $("#fascom_id").val(codigo+1);
-        $("#fascom_descripcion").removeAttr("disabled").focus();
-        $("#fascom_plazo").removeAttr("disabled").focus();
+        });
 
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
+    } );
 
-        $("#NuevoBTN").attr("disabled","disabled");           
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().fascom_id);
+        $("#descripcion").val(row.data().fascom_descripcion);
+        $("#plazo").val(row.data().fascom_plazo);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion,plazo").val('');
     });
-}
 
-function Guardar(obj){
-   /*if(obj.fascom_descripcion.value==""){
-        $('#fascom_descripcion').focus();
-        $('#fascom_descripcion').popover('show'); return 0;
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
     }
-    if(obj.fascom_plazo.value==""){
-        $('#fascom_plazo').focus();
-        $('#fascom_plazo').popover('show'); return 0;
-    }*/
-
-    $("#fascom_id").removeAttr("disabled");
-
-    $.ajax({
-        type:"POST",
-        data: $('#ForFaseComision').serialize(),
-        url: base_url +'fase_comision/Guardar',
-        success: function(data){
-            $("#Mensaje").html(data);
-            $('#Alerta').modal({
-                show:true,
-                backdrop:'static'
-            });
-        }
-    });
-}
-
-function Cancelar(){
-    $("#fascom_id").val('');
-    $("#fascom_descripcion").val('');
-    $("#fascom_plazo").val('');
-
-    $("#fascom_id").attr("disabled","disabled");
-    $("#fascom_descripcion").attr("disabled","disabled");
-    $("#fascom_plazo").attr("disabled","disabled");
-
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarBTN").attr("disabled","disabled");
-
-    $("#NuevoBTN").removeAttr("disabled");
-}

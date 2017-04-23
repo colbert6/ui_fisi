@@ -1,6 +1,6 @@
 
     //var base_url definida en header
-    var table =$('#tablatipoproyecto').DataTable( {
+    var table =$('#tab').DataTable( {
         
         "processing": true,
         "ajax": {
@@ -12,12 +12,6 @@
             { "data": "tipro_descripcion" },
             {
                 "className":      'editar-data',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
-            },
-            {
-                "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -66,74 +60,48 @@
         'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
     } );
 
-function Actualizar(){
-    $('#Alerta').modal('hide');
-    setTimeout("", 200);
 
-}
-
-function Nuevo(){
-    $.ajax({
-        url: base_url+'tipo_proyecto/Nuevo',
-        type:'POST',
-    }).done(function(resp){
-         var codigo = eval(resp);
-        if(codigo[0]['TIPRO_ID'] == null){
-            if (codigo[0]['tipro_id']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['tipro_id']);
+    $('#Guarda').on('click', function () { 
+        $.ajax({
+            data:  $("#form-TipoProyecto").serialize(),
+            url:   base_url+'tipo_proyecto/guardar',
+            type:  'POST',
+            success: function(data) {
+                if (data=='I') {
+                    alerta("REGISTRADO CORRECTAMENTE");
+                    OpenTab('tab1');
+                    table.ajax.reload( null, false);
+                }else if (data=='M'){
+                    alerta("MODIFICADO CORRECTAMENTE");
+                    table.ajax.reload( null, false);
+                    OpenTab('tab1');
+                } else {
+                    alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+                }
             }
-        }else{
-            if (codigo[0]['TIPRO_ID']==null) {
-                codigo=0;
-            }else{
-                codigo=parseInt(codigo[0]['TIPRO_ID']);
-            }
-        }
-        $("#tipro_id").val(codigo+1);
-        $("#tipro_descripcion").removeAttr("disabled").focus();
+        });
 
-        $("#GuardarBTN").removeAttr("disabled");
-        $("#CancelarBTN").removeAttr("disabled");
+    } );
 
-        $("#NuevoBTN").attr("disabled","disabled");           
+
+    $('#tab tbody').on('click', 'td.editar-data', function () { //Agregar los datos correspondientes al modal-form
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        $("#id").val(row.data().tipro_id);
+        $("#descripcion").val(row.data().tipro_descripcion);
+        OpenTab('tab2');
+        
+    } );
+
+
+    $('#tabRegistrar').on('click', function () { 
+        $("#id,#descripcion").val('');
     });
-}
 
-function Guardar(obj){
-    /*if(obj.tipro_descripcion.value==""){
-        $('#tipro_descripcion').focus();
-        $('#tipro_descripcion').popover('show'); return 0;
-    }*/
-    $("#tipro_id").removeAttr("disabled");
+    function OpenTab(tab){
+        $('li.active ,div.active').removeClass('active');
+        $('a[href="#'+tab+'"]').parent().addClass('active');
+        $('#'+tab).addClass('active');
+    }
 
-    $.ajax({
-        type:"POST",
-        data: $('#ForTipoProyecto').serialize(),
-        url: base_url +'tipo_proyecto/Guardar',
-        success: function(data){
-            $("#Mensaje").html(data);
-            $('#Alerta').modal({
-                show:true,
-                backdrop:'static'
-            });
-        }
-    });
-}
-
-function Cancelar(){
-    $("#tipro_id").val('');
-    $("#tipro_descripcion").val('');
-
-    $("#tipro_id").attr("disabled","disabled");
-    $("#tipro_descripcion").attr("disabled","disabled");
-
-    $("#GuardarBTN").attr("disabled","disabled");
-    $("#CancelarBTN").attr("disabled","disabled");
-
-    $("#NuevoBTN").removeAttr("disabled");
-}
-
-    
 

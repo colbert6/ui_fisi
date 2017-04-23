@@ -16,7 +16,7 @@
         <!--script src="<?php echo base_url();?>librerias/js/select2.min.js"></script-->
         <!--script src="<?php echo base_url();?>librerias/js/matrix.js"></script-->
         <!--script src="<?php echo base_url();?>librerias/js/matrix.tables.js"></script--> 
-        <script src="<?php echo base_url();?>librerias/js/jquery.gritter.min.js"></script><!--Utilizo para alertas-->
+        <script src="<?php echo base_url();?>librerias/js/jquery.gritter.min.js"></script><!--Utilizo para alertas-->  
 
         <script type="text/javascript">
             function loader(url){

@@ -2,6 +2,7 @@
 	class eje_tematico_model extends CI_Model{
 		function __construct(){
 			parent::__construct();
+            $this->load->database('default');   
 		}
 
 		function MostrarEjeTematico(){

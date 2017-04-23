@@ -4,40 +4,58 @@
     {   
         function __construct(){
             parent::__construct();
-                    
+            $this->load->database('default');
+            $this->load->model('eje_tematico_model');   
+                 
         } 
         
-        public function index(){  
-            $this->load->database('default');
-            $this->load->model('eje_tematico_model'); 
-            $this->load->model('facultad_model'); 
-
-            $dato_foother= array ( 'add_table'=> 'si');
-            $data= array ( 'facultad'=> $this->facultad_model->select()->result_array());
-
-            $this->load->view('layout/header.php');
-            $this->load->view('layout/menu.php');
-            $this->load->view('eje_tematico/index.php', $data);
-            $this->load->view('layout/foother.php',$dato_foother);             
+        public function index()
+        {  
+            $this->load->view('eje_tematico/index.php');
         }
 
-        public function cargar_datos($tabla='eje_tematico'){ 
-            $this->load->database('default');
-            $this->load->model('eje_tematico_model');
-
-            $consulta=$this->eje_tematico_model->MostrarEjeTematico($tabla);
-            //echo "<pre>";            print_r($consulta);exit();
+        public function cargar_datos()
+        {     
+            $consulta=$this->eje_tematico_model->MostrarEjeTematico();
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
-                 "recordsFiltered"=>$consulta->num_rows(),
-                 "data"=>$consulta->result());
+                "recordsFiltered"=>$consulta->num_rows(),
+                "data"=>$consulta->result());
             
             echo json_encode($result);
         }
 
-        public function Nuevo(){
-            $NuevoEjeTematico = $this->eje_tematico_model->Nuevo();
-            echo json_encode($NuevoEjeTematico);
+         public function Facultad_json()
+        {              
+           $sql="SELECT * FROM facultad";
+           $query=$this->db->query($sql)->result();  
+            echo json_encode($query);    
+        }
+
+        function guardar()
+        {
+            $data = array(
+               'eje_descripcion' => $_POST["descripcion"],
+               'fac_id' => $_POST["facultad"]
+
+            );
+        
+            if($_POST["id"]==""){
+              $estado=$this->db->insert('eje_tematico', $data);
+                if($estado==1){
+                  echo 'I';
+                }else{
+                    echo '0';
+                }
+            }else{
+              $this->db->where('eje_id',$_POST["id"]);
+              $estado=$this->db->update('eje_tematico', $data);
+                if($estado==1){
+                    echo 'M';
+                }else{
+                    echo '0';
+                }
+            }
         }
 
     }

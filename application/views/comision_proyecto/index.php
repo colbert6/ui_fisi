@@ -1,30 +1,34 @@
-<div id="content" style="padding: 0px 13px;">
+  <script type="text/javascript" src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>application/views/comision_proyecto/run_table.js"></script>
+  <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
+  <script src="<?php echo base_url();?>librerias/exporting.js"></script>
+
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Seguimiento de los Proyectos Registrados</center></h1>
   </div>
+
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:0px">
-      <div class="row-fluid">
 
+      <div class="row-fluid">
         <div class="span12">
           <div class="widget-box">
-
-            <div class="widget-title" >
+            <div class="widget-title" id="tabs" >
               <ul class="nav nav-tabs">
                 <li  class="active"><a data-toggle="tab" href="#tab1">Lista de Proyectos</a></li>
-               <!-- <li><a data-toggle="tab" href="#tab2">Proyectos Asignados</a></li>  -->
-                <li><a data-toggle="tab" href="#tab3">Estadísticas</a></li>
+                <li><a data-toggle="tab" href="#tab3" id="tabRegistrar">Estadísticas</a></li>
               </ul>
             </div>
 
             <div class="widget-content tab-content">
+              <!--- TABLA -->
               <div id="tab1" class="tab-pane active">
                 <div class="widget-box">
                   <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
                     <h5>Lista de Proyectos Registrados</h5>
                   </div>
                   <div class="widget-content nopadding">
-                      <table class="table table-bordered data-table" id="tablaproyecto">
+                      <table class="table table-bordered data-table" id="#">
                           <thead>
                               <tr>
                                 <th>Nro</th>
@@ -32,7 +36,7 @@
                                 <th>Nombre de Proyecto</th>
                                 <th>Tipo</th>
                                 <th>Fecha Registro</th>
-                                <th colspan="2">Jurado</th>                         
+                                <th colspan="4">Jurado</th>                         
                               </tr>
                           </thead>
                           <tbody>
@@ -55,22 +59,13 @@
                                       <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#AsignarComision" data-toggle="modal" id="AgregarComision" onclick="CargarProyecto(<?php echo $value->pro_id; ?>)"><span class="icon-plus-sign"></span></button>
                                   </td>
                                   <td>
-                                    <?php 
-                                      $FechaActual = date("d-m-Y H:i:s");
-                                      if ($FechaActual < $value->pro_fecha_notificacion) { ?>
-                                          <button class="btn btn-success btn-xs" data-toggle="modal"></button>
-                                    <?php    
-                                      } elseif ($FechaActual == $value->pro_fecha_notificacion) { ?>
-                                          <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    <!--?php 
-                                      } else ($FechaActual > $value->pro_fecha_notificacion) { ?>
-                                          <button class="btn btn-danger btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                    <?php
-                                      }
-                                    ?> -->
-                                      
-                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
-                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#" data-toggle="modal"></button>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#">P</button>
+                                  </td>
+                                  <td>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#">S</button>
+                                  </td>
+                                  <td>
+                                      <button class="btn btn-success btn-xs" style="margin-bottom:1px;" href="#">M</button>
                                   </td>
                               <?php endforeach 
                             ?>
@@ -87,10 +82,9 @@
                     </div>
                 </div>
               </div>
-              <!--
-              <div id="tab2" class="tab-pane"> 
-              </div>
-              -->
+              <!--- FIN DE TABLA -->  
+
+              <!--- FORMULARIO -->
               <div id="tab3" class="tab-pane">
                 <div class="span12"> 
                   <div class="row-fluid">
@@ -118,9 +112,6 @@
                               </div>
                           </div>
                       </div>   
-                  </div>
-
-                   <div class="row-fluid">
                       <div class="span6">
                           <div class="widget-box">
                               <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
@@ -134,14 +125,16 @@
                       </div>   
                   </div>
                 </div>
-              </div> <!-- FIN de Fomulario de Informacion --> 
-              
+              </div> 
+
+            <!---FIN DE FORMULARIO -->
             </div>
 
           </div>           
         </div>        
       </div>
   </div>
+
 
 <!-- MODAL COMISION PROYECTO -->
   <div class="modal fade" id="AsignarComision" tabindex="-1" role="dialog" aria-hidden="true" >
@@ -231,7 +224,7 @@
                                 </tr>
                               </thead>
 
-                              <tbody>
+                              <tbody id="lista">
                               </tbody>
                             </table>
                           </form>
@@ -239,7 +232,7 @@
                       </div>
                     </div> 
 
-                    <div class="span10" id="tabladetalle2">
+                    <div class="span11" id="tabladetalle2">
                       <div class="widget-box">
                         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
                           <h5>Lista de Comisión</h5>
@@ -255,6 +248,7 @@
                                   <th>Cargo</th>
                                   <th>Fecha Asignación</th>
                                   <th>Fecha Notificación</th>
+                                  <th>Acción</th>
                                 </tr>
                               </thead>
 
@@ -265,20 +259,12 @@
                         </div>
                       </div>
                     </div> 
-
-                    <div class="span1" id="Boton">
-                      <div>
-                          <br><br><br><br><br>
-                          <button class="btn btn-warning btn-xs" style="margin-bottom:1px;"><span class="icon-plus-sign"></span> Enviar Email</button>
-                      </div>
-                  </div>
               </div>
 
               <div class="modal-footer clearfix">
                   <button type="button" onclick="Cancelar()" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
                   <button type="button" onclick="enviar_detalle_comision()" class="btn btn-primary pull-left" id="BTNGuardar"><i class="fa fa-check"></i> Guardar</button>
               </div>
-
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->   
@@ -293,187 +279,32 @@
     </div>
     <div class="modal-body">
       <div class="widget-content">
-          <!--canvas id="GraficoReporte" width="600" height="150"></canvas -->
-          <div id="ChartBarra" style="height: 370px; width: 100%; "></div>
+          <div id="container" style="min-width: 1100px; height: 300px; margin: 0 auto"></div>
       </div>
     </div>
     <div class="modal-footer clearfix">
-        <a data-dismiss="modal" class="btn btn-primary" onclick="Actualizar();">Aceptar</a>
+        <a class="btn btn-primary" id="btnAceptar">Aceptar</a>
     </div>
   </div>
-
-  <script type="text/javascript">
-     window.onload = function () {
-      //GRAFICO PROYECTO DOCENTES
-      var proyectobarra = new CanvasJS.Chart("Barra",
-      {
-        title:{
-          text: "Top Proyectos de Tesis",
-          fontSize: 16    
-        },
-        animationEnabled: true,
-        axisY: {
-          title: "N° Proyectos de Tesis"
-        },
-        legend: {
-          verticalAlign: "bottom",
-          horizontalAlign: "center"
-        },
-        width: 1000,
-        theme: "theme2",
-        data: [
-          {        
-            type: "column",  
-            //showInLegend: true, 
-            //legendMarkerColor: "grey",
-            //legendText: "MMbbl = one million barrels",
-            dataPoints: [   
-              <?php foreach ($DocenteProyectos as $key => $value) {
-                echo '{y: '.(int)$value["total"].', label: "'.$value["nombre"].'"},';
-              } ?>   
-            ]
-          }   
-        ]
-      });
-      proyectobarra.render();
-    }
-  </script>
 </div> 
 
 <script type="text/javascript">
-  function enviar_detalle_comision(){
-    $.post(base_url+"comision_proyecto/grabardetallecomision",$("#form_detalle_comisiones").serialize(),function(data){
-        if(data.msg == "ok"){
-          $("#AsignarComision").modal("hide");
-        }else{
-          alert("no se pudo grabar");
-        }
-    },'json');
-  }
+    $('#btnAceptar').click(function(){
+        $('#Grafico').modal('toggle');
+    });
 
-  //PARA VALIDAR Y OCULTAR CAMPOS
-  function ValidarPro(codigo){
-      $("#proyecto_id_detalle").val(codigo);
-      $.ajax({
-          url: base_url+'comision_proyecto/ExisteProyecto',
-          type:"POST",
-          data:'codproyecto='+codigo,
-          success: function(data){
-              var datos = eval(data);
-              
-          }
+    $(function(){
+      grafiquito();
+    });
 
-      });
-  }
-
-  //PARA ENVIAR DATOS DEL PROYECTO AL MODAL
-  function CargarProyecto(codigo){
-      $("#proyecto_id_detalle").val(codigo);
-      $.get("comision_proyecto/ProyectoAsignado",{'codproyecto':codigo},
-      function(data){
-        //alert(data);
-          if (data == "1"){
-              $.ajax({
-                  url: base_url+'comision_proyecto/CargandoProyectosAsignados',
-                  type:"POST",
-                  data:'cargar='+codigo,
-                  success: function(respuesta){
-                      var datos = eval(respuesta);
-                      $("#FomularioProyecto").hide();
-                      $("#tabladetalle1").hide();
-                      $("#BTNGuardar").hide();
-                      html="";
-                      for (var i = 0; i < datos.length; i++){
-                          html += "<tr>";
-                          html += "<td>"+datos[i]['pro_nombre'] +"</td>";
-                          html += "<td>"+datos[i]['doc_nombre'] +" "+datos[i]['doc_apellido_paterno'] +" "+datos[i]['doc_apellido_materno'] +"</td>";
-                          html += "<td>"+datos[i]['carg_descripcion'] +"</td>";
-                          html += "<td>"+datos[i]['comeva_fecha_designacion'] +"</td>";
-                          html += "<td>"+datos[i]['comeva_fecha_notificacion'] +"</td>";
-                          html += "</tr>";
-                      }
-                      $("#TablaDetalleComisionAsignada tbody").append(html); 
-                  }
-              });
-          }else{
-              $.ajax({
-                  url: base_url+'comision_proyecto/CargandoProyectos',
-                  type:"POST",
-                  data:'cargar='+codigo,
-                  success: function(respuesta){
-                      var datos = eval(respuesta);
-                      $("#tabladetalle2").hide();
-                      $("#Boton").hide();
-                      $("#codproyecto").val(datos[0]['pro_id']);
-                      $("#nombre").val(datos[0]['pro_nombre']);
-                  }
-              });
-          }
-      },'json');
-  }
-
-  //PARA ENVIAR DATOS DEL DOCENTE DEL PROYECTO AL MODAL
-  function CargarDocente(codigo){
-      $("#proyecto_id_detalle").val(codigo);
-      $.ajax({
-          url: base_url+'comision_proyecto/CargarPresidente',
-          type:"POST",
-          data:'cargar='+codigo,
-          success: function(data){
-              var datos = eval(data);
-              
-              $("#codproyecto").val(datos[0]['pro_id']);
-              $("#nombre").val(datos[0]['pro_nombre']);
-          }
-
-      });
-  }
-
-  function Asignar(obj){
-      if(obj.docente.value==""){
-          $('#docente').focus();
-          $('#docente').popover('show'); return 0;
-      }
-      if(obj.cargo.value==""){
-          $('#cargo').focus();
-          $('#cargo').popover('show'); return 0;
-      }
-
-      var existedodecente = false;
-      $('input[name^="id_docente"]').each(function() {
-          if($('#docente').val() == $(this).val()){
-            existedodecente = true;
-          }
-      });
-
-      var existecargo = false;
-      $('input[name^="id_cargo"]').each(function() {
-          if($('#cargo').val() == $(this).val()){
-            existecargo = true;
-          }
-      });
-
-      if((existecargo == true) || (existedodecente == true) ){
-        alert("el cargo o docente ya estan asignados");
-        return 0;
-      }
-          html ="<tr id='Proyecto_"+$("#pro_id").val()+"'>"+
-          "<td> "+$("#nombre").val()+"</td>"+
-          "<td><input type='hidden' name='id_docente[]' value='"+$("#docente").val()+"'' > "+$("#docente option:selected").text()+"</td>"+
-          "<td><input type='hidden' name='id_cargo[]' value='"+$("#cargo").val()+"'' > "+$("#cargo option:selected").text()+"</td>"+
-          "<td><button class='btn btn-primary btn-xs' style='margin-bottom:1px;' onclick=$(this).closest('tr').remove();><span class='icon-remove' style='color:#D01111'></span> </button></td></tr>";
-
-          $("#TablaDetalleComision tbody").append(html);
-  }
-
-  window.onload = function () {
+  function grafiquito(){
     var chart = new CanvasJS.Chart("chartContainer",
     {
         theme: "theme3",
         animationEnabled: true,
         title:{
           text: "Proyectos y Tesis, 2016",
-          fontSize: 16
+          fontSize: 14
         },
         toolTip: {
           shared: true
@@ -507,7 +338,7 @@
               } ?>
           ]
         }
-        
+      
         ],
             legend:{
               cursor:"pointer",
@@ -518,7 +349,6 @@
                 else {
                   e.dataSeries.visible = true;
                 }
-               // chart.render();
               }
             },
           });
@@ -560,89 +390,105 @@
     //GRAFICO LINEAS D INVESTIGACION
     var circulo = new CanvasJS.Chart("chartCirculo",
     {
-      title:{
-        text: "Top Lineas de Investigacion, 2016",
-        fontSize: 16
-      },
-      exportFileName: "Pie Chart",
-      exportEnabled: true,
-      animationEnabled: true,
-      legend:{
+      //title:{
+      //  text: "How my time is spent in a week?",
+      //  fontFamily: "arial black"
+      //}, 
+                  animationEnabled: true,
+      legend: {
         verticalAlign: "bottom",
         horizontalAlign: "center"
       },
+      theme: "theme1",
       data: [
-        {       
-            type: "pie",
-            //showInLegend: true,
-            //toolTipContent: "{linin_descripcion}: <strong>{y}%</strong>",
-            //indexLabel: "{linin_descripcion} {y}%",
-            dataPoints: [
-              <?php foreach ($LinInvesChart as $key => $value) {
-                echo '{y: '.(int)$value["total"].', label: "'.$value["linin_descripcion"].'"},';
-              } ?>
-            ]
-        }
+      {        
+        type: "pie",
+        indexLabelFontFamily: "Garamond",       
+        indexLabelFontSize: 20,
+        indexLabelFontWeight: "bold",
+        startAngle:0,
+        indexLabelFontColor: "MistyRose",       
+        indexLabelLineColor: "darkgrey", 
+        indexLabelPlacement: "inside", 
+        toolTipContent: "{name}: <strong>{y} Proyectos</strong>",
+        showInLegend: true,
+        //indexLabel: "#percent%", 
+        dataPoints: [
+          <?php foreach ($LinInvesChart as $key => $value) {
+              echo '{y: '.(int)$value["total"].', name: "'.$value["linin_descripcion"]. '", indexLabel: "'.$value["total"].' Proy."},';
+          } ?>
+        ]
+      }
       ]
     });
     circulo.render();
   }
 
-  var tablapro = $('#tablaproyecto').DataTable( {
-      "processing": true,
-      "bJQueryUI": true,
-      "sPaginationType": "full_numbers",
-      "sDom": '<""l>t<"F"fp>',
-      "bPaginate": true,
-      "bLengthChange": true,
-      "bFilter": true,
-      "bSort": true,
-      "bInfo": true,
-      "bAutoWidth": false,
-      "oLanguage" :{
-          'sProcessing':     'Cargando...',
-          'sLengthMenu':     'Mostrar _MENU_ registros',
-          'sZeroRecords':    'No se encontraron resultados',
-          'sEmptyTable':     'Ningún dato disponible en esta tabla',
-          'sInfo':           'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
-          'sInfoEmpty':      'Mostrando registros del 0 al 0 de un total de 0 registros',
-          'sInfoFiltered':   '(filtrado de un total de _MAX_ registros)',
-          'sInfoPostFix':    '',
-          'sSearch':         'Buscar : ',
-          'sUrl':            '',
-          'sInfoThousands':  '',
-          'sLoadingRecords': 'Cargando...',
-          'oPaginate': {
-              'sFirst':    'Primero',
-              'sLast':     'Último',
-              'sNext':     'Siguiente',
-              'sPrevious': 'Anterior'
-          },
-          'oAria': {
-              'sSortAscending':  ': Activar para ordenar la columna de manera ascendente',
-              'sSortDescending': ': Activar para ordenar la columna de manera descendente'
-          }
-      },
-      "columnDefs": [
-                  {
-                      "targets": [ 2 ],
-                      "visible": true
-                  }],
-      'aaSorting': [[ 0, 'asc' ]],//ordenar
-      'iDisplayLength': 5,
-      'aLengthMenu': [[5, 10, 20], [5, 10, 20]]
+  //GRAFICO MODAL 2 - DOCENTES
+  Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Numero de Proyectos por Docente'
+    },
+    subtitle: {
+        text: 'Oficina: <a href="#">Unidad de Investigacion</a>'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Numero de Proyectos'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: 'Proyectos: <b>{point.y:.1f} proyectos</b>'
+    },
+    series: [{
+        name: 'Population',
+        data: [
+            <?php foreach ($Grafico as $key => $value) {
+              echo '['.'"'.$value["nombre"].'"'.','.(int)$value["total"].'],';
+            } ?> 
+        ],
+        /*
+        
+        */
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
   });
+
 </script>
 
 <style type="text/css">
     .modal {
         width: 1140px;
         left: 28%;
-    }/*
-    .modal {
-        width: 900px;
-        left: 38%;
-    }*/
+    }
     .text_detail {
         padding: 0px 10px;
     } 
@@ -663,21 +509,21 @@
         padding: 8px 0;
     }
 
-         .caja{
-            margin: auto;
-            max-width: 250px;
-            padding: 20px;
-            border: 1px solid #BDBDBD;
-        }
-        .caja select{
-            width: 100%;
-            font-size: 16px;
-            padding: 5px;
-        }
-        .resultados{
-            margin: auto;
-            margin-top: 40px;
-            width: 1000px;
-        }
+    .caja{
+        margin: auto;
+        max-width: 250px;
+        padding: 20px;
+        border: 1px solid #BDBDBD;
+    }
+    .caja select{
+        width: 100%;
+        font-size: 16px;
+        padding: 5px;
+    }
+    .resultados{
+        margin: auto;
+        margin-top: 40px;
+        width: 1000px;
+    }
 }
 </style>

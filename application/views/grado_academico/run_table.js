@@ -1,6 +1,7 @@
 
-var table =$('#tab').DataTable( {
-        
+
+var table =$('#tab').DataTable( 
+{   
     "processing": true,
     "ajax": {
             "url": base_url+"grado_academico/cargar_datos/",
@@ -95,8 +96,10 @@ var table =$('#tab').DataTable( {
         $("#id,#descripcion").val('');
     });
 
+
     function OpenTab(tab){
         $('li.active ,div.active').removeClass('active');
         $('a[href="#'+tab+'"]').parent().addClass('active');
         $('#'+tab).addClass('active');
     }
+
