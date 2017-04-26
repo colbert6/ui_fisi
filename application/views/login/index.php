@@ -91,12 +91,11 @@
                                             <?php 
                                                 if($this->session->flashdata('usuario_incorrecto'))
                                                 {
-                                                    echo '<p>'.$this->session->flashdata('usuario_incorrecto') . '</p>';
+                                                    echo '<p>'.$this->session->flashdata('usuario_incorrecto') .'</p>';
                                                 }
                                                 
                                             ?>
-                                            
-                                            ?><br>
+                                            <br>
         
                                             <div class="control-group">
                                                 <div class="controls">

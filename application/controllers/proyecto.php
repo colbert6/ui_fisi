@@ -10,9 +10,7 @@
             $this->load->model('proyecto_model'); 
             $this->load->model('requisito_model');
             $this->load->model('eje_tematico_model');  
-            $this->load->model('linea_investigacion_model');   
             $this->load->model('tipo_proyecto_model');
-
             $this->load->model('semestre_academico_model');
 
         }
@@ -88,13 +86,17 @@
         public function Guardar_Proyecto()//Guardar Nombre_Proyecto/Parte
         {   
             if($_POST['proyecto_id']==0){
-                $data= array ( 'alu_id'=> $this->input->post('alumno'),
+                $data= array ( 'responsable_id'=> $this->input->post('responsable'),
+                               'tipo_responsable'=> $this->input->post('tipo_responsable'),
                                'linin_id'=> $this->input->post('linea'),
                                'tipro_id'=> $this->input->post('tipo_proyecto'),
                                'pro_nombre'=> $this->input->post('nombre'),
                                'pro_codigo'=> $this->input->post('codigo'),
-                               'sem_id'=> $this->input->post('semestre'));
+                               'sem_id'=> $this->input->post('semestre'),
+                               'colaborador'=> $this->input->post('colaborador')
+                               );
                 $guardar=$this->proyecto_model->insertar_proyecto($data);
+
 
             }else if($_POST['proyecto_id']!=0){
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
@@ -215,6 +217,14 @@
             //echo "<pre>";            print_r($consulta);exit();
             echo json_encode( $consulta->result());
         }        
+
+        public function buscar_colaborador()//Poyecto especifico
+        {   
+            $dni=$_POST['dni'];
+            $consulta=$this->proyecto_model->select_colaborador($dni);
+            //echo "<pre>";            print_r($consulta);exit();
+            echo json_encode( $consulta->result());
+        }  
 
         public function buscar_asesor()//Poyecto especifico
         {   

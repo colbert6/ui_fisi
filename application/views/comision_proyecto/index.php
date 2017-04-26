@@ -32,7 +32,7 @@
                           <thead>
                               <tr>
                                 <th>Nro</th>
-                                <th>Alumno</th>
+                                <th>Responsable</th>
                                 <th>Nombre de Proyecto</th>
                                 <th>Tipo</th>
                                 <th>Fecha Registro</th>
@@ -44,7 +44,7 @@
                               foreach ($Proyectos as $value): ?>
                                 <tr>
                                   <td><center> <?php echo $value->pro_id; ?></center></td>
-                                  <td><center> <?php echo $value->alu_nombre." ".$value->alu_apellido_paterno." ".$value->alu_apellido_materno; ?></center></td>
+                                  <td><center> <?php echo "nombre" ?></center></td>
                                   <td><center> <?php echo $value->pro_nombre; ?></center></td>
                                   <?php 
                                     if ($value->tipro_id == 1) { ?>
@@ -124,6 +124,7 @@
                           </div>
                       </div>   
                   </div>
+
                 </div>
               </div> 
 
@@ -323,7 +324,7 @@
           showInLegend: true, 
           dataPoints:[
               <?php foreach ($ProyectoTesis as $key => $value) {
-                echo '{label: "'.$value["pro_semestre"].'"'.', y: '.(int)$value["total"].'},';
+                echo '{label: "'.$value["sem_id"].'"'.', y: '.(int)$value["total"].'},';
               } ?>
           ]
         },

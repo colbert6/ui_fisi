@@ -4,6 +4,35 @@ function GenerarCodigo (){
   $("#codigo").val(new Date().getTime());
 }
 
+$(document).on("click","a.remove",function(e) {
+  e.preventDefault();
+  $(this).parent("div").parent("li").parent("ul").remove();
+})
+
+function buscar_colaborador(){
+  var dni= $("#dni_colaborador").val();
+  if(dni.length<8){
+    return false;
+  }
+    $.post(base_url+"proyecto/buscar_colaborador",{dni:dni},function(datos){
+        var obj = JSON.parse(datos);
+        if(obj.length){
+          $("#result_colaborador").val(obj["0"].tipo_id+'-'+obj["0"].col_id+'-'+obj["0"].tipo+'-'+obj["0"].facultad+'-'+obj["0"].nombre);
+          $("#result_colaborador_nombre").val(obj["0"].nombre);
+        }
+    });    
+}
+
+function Agregar_Colaborador(){
+  var new_colaborador=($("#result_colaborador").val()).split("-");
+  
+  if(!($("#colaborador[value='"+new_colaborador[0]+"-"+new_colaborador[1]+"']").length>0  ) ){
+    t = _.template($("#Lista-Colaboradorjs").html());
+    $("#Lista-Colaboradores").append(t({data:new_colaborador}));   
+  }      
+  
+}
+
 function Mostrar_Lineas(element){    
 
     $.ajax({
@@ -22,7 +51,6 @@ function Mostrar_Lineas(element){
         }
     });
 }
-
 
 function Buscar_Requisitos(){    
     $.ajax({
