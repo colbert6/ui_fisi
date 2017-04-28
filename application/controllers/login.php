@@ -23,6 +23,38 @@ class login extends CI_Controller {
 		}		
 	}
 
+	public function facultades(){
+		$this->load->view('login/facultades/index.php');
+	}
+
+	public function indi_investigacion(){
+		$this->load->view('login/indi_investigacion.php');
+	}
+
+	public function indi_cuantitativos(){
+		$this->load->view('login/indi_cuantitativos.php');
+	}
+
+	public function fisi(){
+		$this->load->view('login/facultades/fisi/index.php');
+	}
+		public function episi(){
+			$this->load->view('login/facultades/fisi/episi.php');
+		}
+
+	public function ciencias_economicas(){
+		$this->load->view('login/facultades/ciencias_economicas/index.php');
+	}
+		public function economia(){
+			$this->load->view('login/facultades/ciencias_economicas/economia.php');
+		}
+		public function contabilidad(){
+			$this->load->view('login/facultades/ciencias_economicas/contabilidad.php');
+		}
+		public function administracion(){
+			$this->load->view('login/facultades/ciencias_economicas/administracion.php');
+		}
+
 	public function new_user()
 	{
 		if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token'))

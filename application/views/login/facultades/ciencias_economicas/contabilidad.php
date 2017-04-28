@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div id="contenido">
+        <div class="content">
             <div id="header">
               <h2>PEMOPI <b> UNSM</b></h2>
             </div>
@@ -31,6 +31,7 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login/facultades"><b> Volver </b></a> &nbsp;  &nbsp;
                 <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 
@@ -49,34 +50,67 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Bienvenido</h1></center> 
+                    <h1><center>Escuela Academica Profesional de Contabilidad</center></h1>
                 </div>
-                <div class="container-fluid">
-                    <div class="row-fluid">
-                        <div class="span3">
-                        </div>
-                        
-                        <div class="span6">
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h5>Indicadores Generales</h5>
-                                </div>
-                                <div class="row-fluid">
-                                    <div id="Indicadores" onclick="location.href='<?php echo base_url();?>login/facultades'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>
-                            </div>
 
-                            <div class="row-fluid">
-                                <div class="widget-content">
-                                    <ul class="quick-actions">
-                                        <li class="bg_lb"> <a href="<?php echo base_url();?>login/indi_investigacion"> <i class="icon-bar-chart"></i> Indicadores de Investigacion </a> </li>
-                                        <li class="bg_lg"> <a href="<?php echo base_url();?>login/indi_cuantitativos"> <i class="icon-bar-chart"></i> Indicadores Cuantitativos </a> </li>
+                <div class="container-fluid" style="z-index: 1001;">
+                    <hr style="margin:0px">
+                    <div class="row-fluid">
+
+                        <div class="span12">
+                            <div class="widget-box">
+
+                                <div class="widget-title" >
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#tab2" id="tabIndicadores">Indicadores</a></li>              
                                     </ul>
-                                    <div class="clearfix"></div>
                                 </div>
-                            </div>
-                        </div>
+
+                                <div class="widget-content tab-content">
+                                    <div id="tab2" class="tab-pane active">
+                                        <div class="span12 pop">
+                                            <div class="widget-box">
+                                                <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                  <h5>Participación de los Docente</h5>
+                                                </div>
+                                                <div class="widget-content">
+                                                  <div id="CanvasDocente" style="height: 350px; width: 100%; "></div>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>  
+
+                                        <div class="row-fluid">
+                                            <div class="span6 pop">
+                                                <div class="widget-box">
+                                                    <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                        <h5>Tipos de Proyectos por Semestre</h5>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div id="CanvasTiposProyecto" style="height: 370px; width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+
+                                            <div class="span6 pop">
+                                                <div class="widget-box">
+                                                    <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                        <h5>Reportes por Linea de Investigacion</h5>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div id="CanvasLineasInvestigacion" style="height: 370px; width: 100%;"></div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>           
+                        </div>        
                     </div>
-                </div> 
+                </div>
+            </div>   
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -126,6 +160,7 @@
                                                     </center>
                                                 </div>
                                             <?=form_close()?>
+                                        
                                     </div>
 
                                     <div id="AlertaLogin" class="modal hide">
@@ -147,16 +182,16 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <div id="footer" class="span12">Rumbo a la Excelencia &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+                <div id="footer" class="span12"> Contabilidad &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
                 </div>
             </div>
         </div>
         
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
-        <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
-        <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/inicio.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
+          <script src="<?= base_url();?>application/views/login/facultades/ciencias_economicas/contabilidad.js" type="text/javascript"></script>
+        
     
         <style type="text/css">
             #main-header {
@@ -170,7 +205,10 @@
             .widget-box {
                 background: none repeat scroll 0 0 #ffffff;
             }
-
+            .container-fluid {
+                padding-right: 20px; 
+                padding-left: 0px;
+            }
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
             }

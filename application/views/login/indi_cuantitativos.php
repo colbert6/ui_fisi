@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div id="contenido">
+        <div class="id">
             <div id="header">
               <h2>PEMOPI <b> UNSM</b></h2>
             </div>
@@ -31,7 +31,7 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
+                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> Ingresar </a> &nbsp;  &nbsp;
             </div>
 
             <!--sidebar-menu-->
@@ -49,32 +49,13 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Bienvenido</h1></center> 
+                    <center><h1>Indicadores Cuantitativos</h1></center> 
                 </div>
                 <div class="container-fluid">
                     <div class="row-fluid">
-                        <div class="span3">
-                        </div>
                         
-                        <div class="span6">
-                            <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h5>Indicadores Generales</h5>
-                                </div>
-                                <div class="row-fluid">
-                                    <div id="Indicadores" onclick="location.href='<?php echo base_url();?>login/facultades'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>
-                            </div>
 
-                            <div class="row-fluid">
-                                <div class="widget-content">
-                                    <ul class="quick-actions">
-                                        <li class="bg_lb"> <a href="<?php echo base_url();?>login/indi_investigacion"> <i class="icon-bar-chart"></i> Indicadores de Investigacion </a> </li>
-                                        <li class="bg_lg"> <a href="<?php echo base_url();?>login/indi_cuantitativos"> <i class="icon-bar-chart"></i> Indicadores Cuantitativos </a> </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div> 
                 <!--Para Logearse-->
@@ -173,6 +154,9 @@
 
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
+            }
+            #content {
+                height: 516px;
             }
         </style>
         
