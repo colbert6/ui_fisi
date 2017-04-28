@@ -24,7 +24,7 @@ class login extends CI_Controller {
 	}
 
 	public function facultades(){
-		$this->load->view('login/grafico_facultades.php');
+		$this->load->view('login/facultades/index.php');
 	}
 
 	public function indi_investigacion(){
@@ -35,11 +35,24 @@ class login extends CI_Controller {
 		$this->load->view('login/indi_cuantitativos.php');
 	}
 
-	public function episi(){
-		$this->load->view('login/escuelas/episi.php');
+	public function fisi(){
+		$this->load->view('login/facultades/fisi/index.php');
 	}
-		public function episi_index(){
-			$this->load->view('login/escuelas/episi/index.php');
+		public function episi(){
+			$this->load->view('login/facultades/fisi/episi.php');
+		}
+
+	public function ciencias_economicas(){
+		$this->load->view('login/facultades/ciencias_economicas/index.php');
+	}
+		public function economia(){
+			$this->load->view('login/facultades/ciencias_economicas/economia.php');
+		}
+		public function contabilidad(){
+			$this->load->view('login/facultades/ciencias_economicas/contabilidad.php');
+		}
+		public function administracion(){
+			$this->load->view('login/facultades/ciencias_economicas/administracion.php');
 		}
 
 	public function new_user()
@@ -112,7 +125,7 @@ class login extends CI_Controller {
 		if(count($usuario) == 1){
 			if($usuario[0]['com_funcion']=='Encargado'){
 				$tipo="Director UI";
-				$id_tipo="3";
+				$id_tipo="2";
 			}else {
 				$tipo="Docente";
 				$id_tipo="3";

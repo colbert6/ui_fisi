@@ -112,11 +112,7 @@ $( document ).ready(function() {
                 $("#content").load(base_url+$(this).attr('url'));
 
             });
-                    
-            function loader(url)
-            {   
-                $("#content").load(base_url+url);
-            }
+                  
         });
     }
    crear_menu();

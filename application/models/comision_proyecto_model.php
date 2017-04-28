@@ -5,14 +5,13 @@
 		}
 
 		function MostrarProyectos(){
-			$this->db->select('proyecto.pro_id,alumno.alu_nombre,alumno.alu_apellido_paterno,alumno.alu_apellido_materno,proyecto.pro_nombre,tipo_proyecto.tipro_id,tipo_proyecto.tipro_descripcion,proyecto.pro_fecha_registro');
+			$this->db->select('proyecto.pro_id,proyecto.pro_nombre,tipo_proyecto.tipro_id,tipo_proyecto.tipro_descripcion,proyecto.pro_fecha_registro');
 			$this->db->from('proyecto');
-			$this->db->join('alumno', 'alumno.alu_id = proyecto.alu_id');
 			$this->db->join('linea_investigacion', 'linea_investigacion.linin_id = proyecto.linin_id');
 			$this->db->join('tipo_proyecto', 'tipo_proyecto.tipro_id = proyecto.tipro_id');
 
 			$query = $this->db->get();
-			return $query->result();
+			return $query;
 		}
 		
 		function MostrarComisionProyectos(){

@@ -49,34 +49,67 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Indicadores a Nivel de Facultades</h1></center> 
+                    <h1><center>Escuela Academica Profesional de Economia</center></h1>
                 </div>
-                <div class="container-fluid">
+
+                <div class="container-fluid" style="z-index: 1001;">
+                    <hr style="margin:0px">
                     <div class="row-fluid">
-                        <div class="span3">
-                        </div>
-                        <div class="span6">
+
+                        <div class="span12">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h6>
+
+                                <div class="widget-title" >
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#tab2" id="tabIndicadores">Indicadores</a></li>              
+                                    </ul>
                                 </div>
-                                <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="EPISI" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+
+                                <div class="widget-content tab-content">
+                                    <div id="tab2" class="tab-pane active">
+                                        <div class="span12 pop">
+                                            <div class="widget-box">
+                                                <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                  <h5>Participación de los Docente</h5>
+                                                </div>
+                                                <div class="widget-content">
+                                                  <div id="CanvasDocente" style="height: 350px; width: 100%; "></div>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>  
+
+                                        <div class="row-fluid">
+                                            <div class="span6 pop">
+                                                <div class="widget-box">
+                                                    <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                        <h5>Tipos de Proyectos por Semestre</h5>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div id="CanvasTiposProyecto" style="height: 370px; width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+
+                                            <div class="span6 pop">
+                                                <div class="widget-box">
+                                                    <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
+                                                        <h5>Reportes por Linea de Investigacion</h5>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div id="CanvasLineasInvestigacion" style="height: 370px; width: 100%;"></div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </div>  
                                     </div>
-                                    <div class="span4">
-                                        <br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/episi_index"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                        <ul class="quick-actions">
-                                            <li class="bg_lb"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i>Atras</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
+                                </div>
+                            </div>           
+                        </div>        
                     </div>
-                </div>  
+                </div>
+            </div>   
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -147,13 +180,17 @@
                     </div>
                 </div>
             </div>
+            <div class="row-fluid">
+                <div id="footer" class="span12"> Economia &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+                </div>
+            </div>
         </div>
         
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
-        <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
-        <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/escuelas/episi.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
+        <script src="<?= base_url();?>application/views/login/facultades/ciencias_economicas/economia.js" type="text/javascript"></script>
+        
     
         <style type="text/css">
             #main-header {
@@ -161,13 +198,19 @@
                 position: fixed;
             }
             body {
-                background: #ffffff;
+                background: #eee;
                 height: 500px;
             }
             .widget-box {
                 background: none repeat scroll 0 0 #ffffff;
             }
-
+            .container-fluid {
+                padding-right: 20px; 
+                padding-left: 0px;
+            }
+            .container-fluid .row-fluid:first-child {
+                margin-top: 0px; 
+            }
         </style>
         
     </body>

@@ -58,32 +58,16 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingenieria de Sistemas e Informatica</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FISI" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/episi"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FISI" onclick="location.href='<?php echo base_url();?>login/fisi'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingeniería Agroindustrial</h6>
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias Económicas</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FIAI" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FCE" onclick="location.href='<?php echo base_url();?>login/ciencias_economicas'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -92,15 +76,7 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingeniería Civil y Arquitectura</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FICA" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FICA" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -111,15 +87,7 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias de la Salud</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FSC" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FSC" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -128,15 +96,7 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ecología</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FECOL" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FECOL" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -145,15 +105,7 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Derecho y Ciencias Políticas</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FDCP" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FDCP" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -164,32 +116,16 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Medicina Humana</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FMH" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FMH" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias Económicas</h6>
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingeniería Agroindustrial</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FCE" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FIAI" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -198,15 +134,7 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Educación y Humanidades</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FEH" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FEH" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
@@ -220,20 +148,12 @@
                                 <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias Agrarias</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="FCA" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                    </div>
-                                    <div class="span4">
-                                        <br><br>
-                                        <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
-                                        </ul>
-                                    </div>
+                                    <div id="FCA" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                 </div>    
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -304,13 +224,17 @@
                     </div>
                 </div>
             </div>
+            <div class="row-fluid">
+                <div id="footer" class="span12">Rumbo a la Excelencia &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+                </div>
+            </div>
         </div>
         
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/facultades.js"></script>
+        <script src="<?php echo base_url();?>application/views/login/facultades/facultades.js"></script>
     
         <style type="text/css">
             #main-header {
@@ -318,11 +242,14 @@
                 position: fixed;
             }
             body {
-                background: #ffffff;
+                background: #eee;
                 height: 500px;
             }
             .widget-box {
                 background: none repeat scroll 0 0 #ffffff;
+            }
+            .container-fluid .row-fluid:first-child {
+                margin-top: 0px; 
             }
 
         </style>

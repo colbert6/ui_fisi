@@ -1,3 +1,10 @@
+<?php
+    
+    $id_tipo = $this->session->userdata('id_tipo');   
+    $cod_usu =$this->session->userdata('id');
+    $nombre_usu =$this->session->userdata('nombre');    
+    
+?>
 
 <style type="text/css">
   .label-a{
@@ -45,9 +52,10 @@
                 <div class="control-group">
                   <label class="control-label">Responsable</label>
                   <div class="controls">
-                    <input type="hidden" name="responsable" value="<?php echo $this->session->userdata('id'); ?>">
-                    <input type="hidden" name="tipo_responsable" value="<?php echo $this->session->userdata('id_tipo'); ?>">
-                    <input type="text" readonly="" class="span7 m-wrap" value="<?php echo $this->session->userdata('nombre');  ?>">
+                    <input type="hidden" name="responsable" value="<?php echo $cod_usu ?>">
+                    <input type="hidden" name="tipo_responsable" 
+                          value="<?php if($id_tipo==2){echo "2"; } else {echo $id_tipo; } ?>">
+                    <input type="text" readonly="" class="span7 m-wrap" value="<?php echo $nombre_usu;  ?>">
                   </div>
                 </div>                
 
@@ -94,18 +102,18 @@
                   
                   <div class="controls">
                     <div>
-                      <input type="text" class="span3 m-wrap"  placeholder="Ingrese DNI">
-                      <input type="text" readonly="" class="span7 m-wrap" placeholder="Nombre">
-                      <button class="btn btn-primary ">Agregar</button>
+                      <input type="text" id="dni_colaborador" class="span3 m-wrap" maxlength="8" placeholder="Ingrese DNI" onkeyup="buscar_colaborador();">
+                      <input type="hidden" id="result_colaborador">
+                      <input type="text" readonly="" class="span7 m-wrap" placeholder="Nombre" id="result_colaborador_nombre">
+                      <button class="btn btn-primary" url="" type="button" onclick="Agregar_Colaborador();">Agregar</button>
                     </div>
 
                   </div>
                   <div class="controls" >
-                    <div class="todo span6" id="Lista Colaboradores"></div>
+                    <div class="todo span6" id="Lista-Colaboradores"></div>
                   </div>
 
                 </div>
-
                 
                 
                 <div class="control-group">
@@ -175,21 +183,21 @@
 </div>
 
 
-<script type="text/template" id="Criterios-Partejs">
+<script type="text/template" id="Lista-Colaboradorjs">
   
     <ul>
       <li class="clearfix">
 
-        <input type="hidden" name="colaborador">
+        <input type="hidden" name="colaborador[]" id="colaborador" value="<%=data[0]%>-<%=data[1]%>">
 
         <div class="txt"> 
-            Luanch This theme on Themeforest 
-            <span class="by label">Nirav</span> 
-            <span class="date badge badge-important">Today</span> 
+            <%= data[4] %> 
+            <span class="by label"><%= data[2] %> </span> 
+            <span class="date badge badge-important"><%= data[3] %></span> 
         </div>
 
-        <div class="pull-right">
-            <a class="tip" href="#" data-original-title="Delete"><i class="icon-remove"></i></a> 
+        <div class="pull-right"> 
+            <a class="tip remove" href="#" data-original-title="Delete" onclick="remove_colaborador(this)"><i class="icon-remove"></i></a> 
         </div>
         
       </li>
@@ -198,3 +206,4 @@
 </script>
 
 <script src="<?= base_url();?>application/views/proyecto/ext/registrar_proyecto.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>librerias/js/underscore-min.js"></script>

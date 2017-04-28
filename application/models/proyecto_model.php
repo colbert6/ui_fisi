@@ -22,6 +22,34 @@
             return $query;            
         }
 
+        function select_colaborador($dni){
+
+            $sql_alu="SELECT 'alumno' as tipo, 
+                      a.alu_id as col_id,
+                      '4' as tipo_id,
+                      coalesce(a.alu_nombre||' '||a.alu_apellido_paterno||' '||a.alu_apellido_materno)as nombre,
+                      f.fac_abreviatura as facultad
+                  FROM alumno as a INNER JOIN escuela as e  ON e.esc_id=a.esc_id 
+                  INNER JOIN facultad as f ON f.fac_id=e.fac_id
+                   WHERE alu_dni='$dni'" ;
+
+            $sql_doc="SELECT 'docente' as tipo, 
+                      d.doc_id as col_id,
+                      '3' as tipo_id,
+                      coalesce(d.doc_nombre||' '||d.doc_apellido_paterno||' '||d.doc_apellido_materno) as nombre,
+                      f.fac_abreviatura as facultad
+                  FROM docente as d INNER JOIN departamento as dep ON d.dep_id=dep.dep_id 
+                  INNER JOIN facultad as f ON f.fac_id=dep.fac_id
+                   WHERE doc_dni='$dni'";     
+            $query=$this->db->query($sql_alu);
+
+            if (count($query->result_array())<=0 ) {
+              $query=$this->db->query($sql_doc);     
+            }
+
+            return $query;            
+        }
+
         function select_proyecto_asesor($id){
             $sql="SELECT p.*
                   FROM proyecto p, asesor a
@@ -93,7 +121,8 @@
         }
         
         function insertar_proyecto($data){
-            $datos=array('alu_id'=> $data['alu_id'] ,
+            $datos=array('responsable_id'=> $data['responsable_id'] ,
+                         'tipo_responsable'=> $data['tipo_responsable'] ,
                            'linin_id'=>$data['linin_id'] ,
                            'tipro_id'=> $data['tipro_id'] ,
                            'pro_nombre'=> $data['pro_nombre'] ,
@@ -101,7 +130,20 @@
                            'sem_id'=> $data['sem_id'] ,
                            'pro_fecha_registro'=>date("d-m-Y"),
                            'estado'=> 0);
-            if($this->db->insert('proyecto',$datos)){
+            if($this->db->insert('proyecto',$datos)){ 
+                $pro_id= $this->db->insert_id();
+                  for ($i=0; $i < count($data['colaborador']); $i++) {
+
+                    $colaborador=explode('-',$data['colaborador'][$i]);
+
+                    $colaboradores=array('pro_id'=> $pro_id ,
+                                    'tipo_colaborador'=> $colaborador[0] ,
+                                    'col_id'=>$colaborador[1]
+                                  );
+                    $this->db->insert('colaboradores',$colaboradores) ;
+                    
+                  }                   
+               
                  $query='I';
             }else{
                  $query=$this->db->_error_message();

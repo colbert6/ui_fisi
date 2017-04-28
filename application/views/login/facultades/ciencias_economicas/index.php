@@ -49,11 +49,39 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h1></center> 
+                    <center><h1>Indicadores a Nivel de Escuela</h1></center> 
                 </div>
-                <div class="container-fluid"><hr>
-
-                </div>   
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <div class="widget-box">
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Economia</h6>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="EAPE" onclick="location.href='<?php echo base_url();?>login/economia'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="widget-box">
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Contabilidad</h6>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="EAPC" onclick="location.href='<?php echo base_url();?>login/contabilidad'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="span4">
+                            <div class="widget-box">
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Administracion</h6>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="EAPA" onclick="location.href='<?php echo base_url();?>login/administracion'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>  
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -128,10 +156,9 @@
         
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
-        <script src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/escuelas/episi.js"></script>
+        <script src="<?php echo base_url();?>application/views/login/facultades/ciencias_economicas/index.js"></script>
     
         <style type="text/css">
             #main-header {
@@ -139,13 +166,18 @@
                 position: fixed;
             }
             body {
-                background: #ffffff;
+                background: #eee;
                 height: 500px;
             }
             .widget-box {
                 background: none repeat scroll 0 0 #ffffff;
             }
-
+            .container-fluid .row-fluid:first-child {
+                margin-top: 0px; 
+            }
+            .container-fluid .row-fluid:first-child {
+                margin-top: 0px; 
+            }
         </style>
         
     </body>

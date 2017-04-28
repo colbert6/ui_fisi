@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div class="id">
+        <div class="content">
             <div id="header">
               <h2>PEMOPI <b> UNSM</b></h2>
             </div>
@@ -49,34 +49,23 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Bienvenido</h1></center> 
+                    <center><h1>Indicadores a Nivel de Facultad</h1></center> 
                 </div>
                 <div class="container-fluid">
                     <div class="row-fluid">
                         <div class="span3">
                         </div>
-                        
                         <div class="span6">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h5>Indicadores Generales</h5>
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div id="Indicadores" onclick="location.href='<?php echo base_url();?>login/facultades'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>
-                            </div>
-
-                            <div class="row-fluid">
-                                <div class="widget-content">
-                                    <ul class="quick-actions">
-                                        <li class="bg_lb"> <a href="<?php echo base_url();?>login/indi_investigacion"> <i class="icon-bar-chart"></i> Indicadores de Investigacion </a> </li>
-                                        <li class="bg_lg"> <a href="<?php echo base_url();?>login/indi_cuantitativos"> <i class="icon-bar-chart"></i> Indicadores Cuantitativos </a> </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
+                                    <div id="EPISI" onclick="location.href='<?php echo base_url();?>login/episi'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+                                </div>    
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>  
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -126,6 +115,7 @@
                                                     </center>
                                                 </div>
                                             <?=form_close()?>
+                                        
                                     </div>
 
                                     <div id="AlertaLogin" class="modal hide">
@@ -147,7 +137,7 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <div id="footer" class="span12">Rumbo a la Excelencia &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+                <div id="footer" class="span12">FISI - Facultad Lider &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
                 </div>
             </div>
         </div>
@@ -156,7 +146,7 @@
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/inicio.js"></script>
+        <script src="<?php echo base_url();?>application/views/login/facultades/index.js"></script>
     
         <style type="text/css">
             #main-header {
@@ -170,11 +160,9 @@
             .widget-box {
                 background: none repeat scroll 0 0 #ffffff;
             }
-
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
             }
-
         </style>
         
     </body>
