@@ -74,7 +74,7 @@
                       </div>
 
                       <div class="controls-row">
-                          <div class="span 5">
+                          <div class="span5">
                             <label class="control-label">Eje Tematico :</label>
                             <div class="controls">
                               <select class="span6" id='eje' name="eje">

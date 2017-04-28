@@ -10,7 +10,12 @@ class comision_proyecto extends CI_Controller
 
     public function index()
     {
-        $this->load->view('comision_proyecto/index.php');         
+        $Proyectos = $this->comision_proyecto_model->MostrarProyectos();
+        $ComisionProyecto = $this->comision_proyecto_model->MostrarComisionProyectos();
+        $Docentes = $this->comision_proyecto_model->MostrarDocentes();
+        $Cargos = $this->comision_proyecto_model->MostrarCargos();
+
+        $this->load->view('comision_proyecto/index.php',compact("Proyectos","Docentes","ComisionProyecto","Cargos"));         
     }
 
 
@@ -24,9 +29,10 @@ class comision_proyecto extends CI_Controller
         echo json_encode($result);
     }
     /*----------------*/    
-    public function index2(){  
+    public function index22(){  
         
-
+$this->load->database('default');
+        $this->load->model('comision_proyecto_model'); 
          $query1 = $this->db->query("select count(ce.doc_id) as total, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre
                                     from comision_evaluadora as ce 
                                     inner join docente as d on d.doc_id = ce.doc_id 

@@ -1,5 +1,5 @@
   <script type="text/javascript" src="<?php echo base_url();?>librerias/canvasjs.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url();?>application/views/comision_proyecto/run_table.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>application/views/comision_proyecto/run_table_copia.js"></script>
 
   <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
   <script src="<?php echo base_url();?>librerias/exporting.js"></script>

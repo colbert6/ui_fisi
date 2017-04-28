@@ -66,9 +66,11 @@
             return $query;            
         }
 
-        function select_id($pro_id){
-            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno||' '||a.alu_apellido_materno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
-           FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+        function select_id($pro_id,$resp,$tipo_resp){
+
+          //hacer consulta dependiendo del tipo
+           $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno||' '||a.alu_apellido_materno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
+           FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
            INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id INNER JOIN facultad as f ON f.fac_id=e.fac_id 
            WHERE p.pro_id=$pro_id";
             $query=$this->db->query($sql);  

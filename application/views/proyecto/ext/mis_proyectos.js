@@ -73,7 +73,7 @@
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         
-        loader("proyecto/elaborar_proyecto/"+row.data().pro_id);
+       loader("proyecto/elaborar_proyecto/"+row.data().pro_id+"/"+row.data().responsable_id+"/"+row.data().tipo_responsable);
     } );
 
     $('#tab tbody').on('click', 'td.bajar-doc', function () { //Agregar los datos correspondientes al modal-form

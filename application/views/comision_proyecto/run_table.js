@@ -24,31 +24,29 @@ var table =$('#tab').DataTable( {
           }
                 
         },
-        { "data": "pro_fecha_registro" },
         {
-            "className":      'detail-control',
-            "orderable":      false,
-            "data":           null,
-            "defaultContent": ''
-        }, 
-        {
-            "className":      'mostrar-proyecto',
-            "orderable":      false,
-            "data":           null,
-            "defaultContent": ''
-        },
-        {
-            "className":      'bajar-doc',
-            "orderable":      false,
-            "data":           null,
-            "defaultContent": ''
-        },
-        {
-            "className":      'bajar-doc',
-            "orderable":      false,
-            "data":           null,
-            "defaultContent": ''
+                "className":      'editar-data',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+        
+        { "render":  function(data,type,row,meta) {
+            var btn ='<a  class="btn btn-success btn-mini">P</a>';                            
+            return btn;               
+            }
+        }    ,
+        { "render":  function(data,type,row,meta) {
+            var btn ='<a  class="btn btn-success btn-mini">S</a>';                            
+            return btn;               
+            }
+        }    ,
+        { "render":  function(data,type,row,meta) {
+            var btn ='<a  class="btn btn-success btn-mini">M</a>';                            
+            return btn;               
+            },
         }
+
     ],
     "bJQueryUI": true,
     "sPaginationType": "full_numbers",
@@ -89,7 +87,6 @@ var table =$('#tab').DataTable( {
 }  
 
 );
-//ReporteDocente();
 
 $('#tabIndicadores').on('click', function (e) { 
     e.preventDefault();
@@ -98,6 +95,23 @@ $('#tabIndicadores').on('click', function (e) {
     CanvasTiposProyecto();
     CanvasLineasInvestigacion();
 });
+
+$('#tab tbody').on('click', 'td.editar-data', function () {
+    
+    var tr = $(this).closest('tr');
+    var row = table.row( tr );
+     var modal ;
+    if(row.data().tipro_id==1){
+       modal =$('#AsignarComision'); 
+    }else {
+       modal =$('#ModalJurado'); 
+    }
+    modal.modal('show');
+
+    $("#ACnombrePro").val(row.data().pro_nombre);
+
+ });
+
 
 function CanvasDocente(){
 //alert($("#chartContainer").width());
@@ -297,3 +311,27 @@ function CanvasLineasInvestigacion(){
     });
     chart.render();
 }
+
+function Asignar(obj){
+    if(obj.docente.value==""){
+        $('#docente').focus();
+        $('#docente').popover('show'); return 0;
+    }
+    if(obj.cargo.value==""){
+        $('#cargo').focus();
+        $('#cargo').popover('show'); return 0;
+    }
+
+    html ="<tr id='Proyecto_"+$("#pro_id").val()+"'>"+
+    "<td> JURADO</td>"+
+    "<td><input type='hidden' name='id_docente[]' value='"+$("#docente").val()+"'' > "+$("#docente option:selected").text()+"</td>"+
+    "<td><input type='hidden' name='id_cargo[]' value='"+$("#cargo").val()+"'' > "+$("#cargo option:selected").text()+"</td>"+
+    "<td><button class='btn btn-primary btn-xs' style='margin-bottom:1px;' onclick=$(this).closest('tr').remove();><span class='icon-remove' style='color:whhite'></span> </button></td></tr>";
+
+    $("#TablaDetalleComision tbody").append(html);
+  }
+
+
+  
+
+

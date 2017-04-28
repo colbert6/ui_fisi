@@ -1,5 +1,8 @@
 //--------------BUSQUEDA DE DATOS ---------------------//
 var pro_id=$('#pro_id').val(); 
+var resp=$('#resp').val(); 
+var tipo_resp=$('#tipo_resp').val(); 
+
 var cantidad_partes=$("#cantidad_partes").val();
 var partes_listas=0;
 
@@ -10,7 +13,7 @@ var partes_listas=0;
   
   function buscar_datos_proyecto(){
    
-    $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
+    $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id,resp:resp,tipo_resp:tipo_resp},function(datos){//Buscar datos del proyecto
         var obj = JSON.parse(datos);
         if(obj.length){
           $('#nombre_proyecto').html(obj["0"].pro_nombre);          

@@ -38,12 +38,14 @@
             $this->load->view('proyecto/registrar_proyecto.php',$data);        
         }
         
-        public function elaborar_proyecto($pro_id)
+        public function elaborar_proyecto($pro_id,$resp,$tip_resp)
         {   
             //Validar que el proyecto sea del usuario            
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
-                          'pro_id'=>$pro_id );
+                          'pro_id'=>$pro_id,
+                          'resp' => $resp,
+                          'tipo_resp' =>$tip_resp);
             //echo"<pre>";print_r($data);exit();
             
             $this->load->view('proyecto/formato.php',$data);           
@@ -213,7 +215,9 @@
         public function buscar_proyecto()//Poyecto especifico
         {   
             $pro_id=$_POST['pro_id'];
-            $consulta=$this->proyecto_model->select_id($pro_id);
+            $resp=$_POST['resp'];
+            $tipo_resp=$_POST['tipo_resp'];
+            $consulta=$this->proyecto_model->select_id($pro_id,$resp,$tipo_resp);
             //echo "<pre>";            print_r($consulta);exit();
             echo json_encode( $consulta->result());
         }        
