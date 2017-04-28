@@ -31,7 +31,8 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> Ingresar </a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login/facultades"><b> Volver </b></a> &nbsp;  &nbsp;
+                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 
             <!--sidebar-menu-->
@@ -49,7 +50,7 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Indicadores a Nivel de Facultad</h1></center> 
+                    <center><h1>Indicadores a Nivel de Escuela</h1></center> 
                 </div>
                 <div class="container-fluid">
                     <div class="row-fluid">
@@ -57,11 +58,11 @@
                         </div>
                         <div class="span6">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h6>
+                                <div class="widget-title"><h5>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="EPISI" onclick="location.href='<?php echo base_url();?>login/episi'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,7 +147,7 @@
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/facultades/index.js"></script>
+        <script src="<?php echo base_url();?>application/views/login/facultades/fisi/index.js"></script>
     
         <style type="text/css">
             #main-header {
@@ -162,6 +163,9 @@
             }
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
+            }
+            #content {
+                height: 516px;
             }
         </style>
         

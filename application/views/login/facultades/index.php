@@ -30,8 +30,9 @@
 
             <div id="search">
                 <div style="height: 6px;"></div>
-                <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> Ingresar </a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login"><b> Inicio </b></a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login"><b> Volver </b></a> &nbsp;  &nbsp;
+                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 
             <!--sidebar-menu-->
@@ -55,87 +56,88 @@
                     <div class="row-fluid">
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingenieria de Sistemas e Informatica</h6>
+                                <div class="widget-title"><h5>Facultad de Ingenieria de Sistemas e Informatica</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FISI" onclick="location.href='<?php echo base_url();?>login/fisi'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias Económicas</h6>
+                                <div class="widget-title"><h5>Facultad de Ciencias Económicas</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FCE" onclick="location.href='<?php echo base_url();?>login/ciencias_economicas'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingeniería Civil y Arquitectura</h6>
+                                <div class="widget-title"><h5>Facultad de Ingeniería Civil y Arquitectura</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FICA" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row-fluid">
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias de la Salud</h6>
+                                <div class="widget-title"><h5>Facultad de Ciencias de la Salud</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FSC" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ecología</h6>
+                                <div class="widget-title"><h5>Facultad de Ecología</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FECOL" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Derecho y Ciencias Políticas</h6>
+                                <div class="widget-title"><h5>Facultad de Derecho y Ciencias Políticas</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FDCP" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Medicina Humana</h6>
+                                <div class="widget-title"><h5>Facultad de Medicina Humana</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FMH" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ingeniería Agroindustrial</h6>
+                                <div class="widget-title"><h5>Facultad de Ingeniería Agroindustrial</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FIAI" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Educación y Humanidades</h6>
+                                <div class="widget-title"><h5>Facultad de Educación y Humanidades</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FEH" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,11 +147,11 @@
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Facultad de Ciencias Agrarias</h6>
+                                <div class="widget-title"><h5>Facultad de Ciencias Agrarias</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="FCA" onclick="location.href='#'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>

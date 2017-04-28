@@ -31,7 +31,8 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> Ingresar </a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login"><b> Volver </b></a> &nbsp;  &nbsp;
+                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 
             <!--sidebar-menu-->
@@ -49,35 +50,35 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Indicadores a Nivel de Escuela</h1></center> 
+                    <center><h1>Indicadores a Nivel de Escuelas</h1></center> 
                 </div>
                 <div class="container-fluid">
                     <div class="row-fluid">
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Economia</h6>
+                                <div class="widget-title"><h5>Escuela Academica Profesional de Economia</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="EAPE" onclick="location.href='<?php echo base_url();?>login/economia'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Contabilidad</h6>
+                                <div class="widget-title"><h5>Escuela Academica Profesional de Contabilidad</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="EAPC" onclick="location.href='<?php echo base_url();?>login/contabilidad'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="span4">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Administracion</h6>
+                                <div class="widget-title"><h5>Escuela Academica Profesional de Administracion</h5>
                                 </div>
                                 <div class="row-fluid">
                                     <div id="EAPA" onclick="location.href='<?php echo base_url();?>login/administracion'" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,6 +153,10 @@
                     </div>
                 </div>
             </div>
+            <div class="row-fluid">
+                <div id="footer" class="span12">Ciencias Economicas &copy; UNSM-T &nbsp; &nbsp; &nbsp;<b>Unidad de Investigacion</b> 
+                </div>
+            </div>
         </div>
         
         <script src="<?php echo base_url();?>librerias/js/bootstrap.min.js"></script>
@@ -177,6 +182,9 @@
             }
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
+            }
+            #content {
+                height: 516px;
             }
         </style>
         

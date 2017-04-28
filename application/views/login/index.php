@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div class="id">
+        <div id="contenido">
             <div id="header">
               <h2>PEMOPI <b> UNSM</b></h2>
             </div>
@@ -31,7 +31,7 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> Ingresar </a> &nbsp;  &nbsp;
+                <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 
             <!--sidebar-menu-->
@@ -174,7 +174,6 @@
             .container-fluid .row-fluid:first-child {
                 margin-top: 0px; 
             }
-
         </style>
         
     </body>
