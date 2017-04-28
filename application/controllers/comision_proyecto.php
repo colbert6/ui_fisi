@@ -21,15 +21,15 @@ class comision_proyecto extends CI_Controller
                         group by p.linin_id , li.linin_descripcion 
                         order by p.linin_id");
 
-         $query3 = $this->db->query("select count(tipro_id) as total, pro_semestre
+         $query3 = $this->db->query("select count(tipro_id) as total, sem_id
                                     from proyecto
                                     where tipro_id=1
-                                    group by pro_semestre order by pro_semestre");
+                                    group by sem_id order by sem_id");
 
-         $query4 = $this->db->query("select count(tipro_id) as total, pro_semestre as semestre
+         $query4 = $this->db->query("select count(tipro_id) as total, sem_id as semestre
                                     from proyecto
                                     where tipro_id=3
-                                    group by pro_semestre order by pro_semestre");
+                                    group by sem_id order by sem_id");
 
         $DocentesChart = $query1->result_array();
         $LinInvesChart = $query2->result_array(); 

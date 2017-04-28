@@ -23,6 +23,25 @@ class login extends CI_Controller {
 		}		
 	}
 
+	public function facultades(){
+		$this->load->view('login/grafico_facultades.php');
+	}
+
+	public function indi_investigacion(){
+		$this->load->view('login/indi_investigacion.php');
+	}
+
+	public function indi_cuantitativos(){
+		$this->load->view('login/indi_cuantitativos.php');
+	}
+
+	public function episi(){
+		$this->load->view('login/escuelas/episi.php');
+	}
+		public function episi_index(){
+			$this->load->view('login/escuelas/episi/index.php');
+		}
+
 	public function new_user()
 	{
 		if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token'))

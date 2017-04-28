@@ -49,42 +49,34 @@
             </div>
             <div id="content" style="padding: 0px 13px;">
                 <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Bienvenido</h1></center> 
+                    <center><h1>Indicadores a Nivel de Facultades</h1></center> 
                 </div>
                 <div class="container-fluid">
                     <div class="row-fluid">
                         <div class="span3">
                         </div>
-                        
                         <div class="span6">
                             <div class="widget-box">
-                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h5>Indicadores Generales</h5>
+                                <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span><h6>Escuela Academica Profesional de Ingenieria de Sistemas e Informatica</h6>
                                 </div>
                                 <div class="row-fluid">
-                                    <div class="span9">
-                                        <div id="Indicadores" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
+                                    <div class="span8">
+                                        <div id="EPISI" style="min-width: 310px; max-width: 200px; height: 300px; margin: 0 auto"></div>
                                     </div>
-                                    <div class="span2">
-                                        <br><br>
+                                    <div class="span4">
+                                        <br>
                                         <ul class="quick-actions">
-                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i> Ver </a> </li>
+                                            <li class="bg_ly"> <a href="<?php echo base_url();?>login/episi_index"> <i class="icon-bar-chart"></i> Ver </a> </li>
+                                        </ul>
+                                        <ul class="quick-actions">
+                                            <li class="bg_lb"> <a href="<?php echo base_url();?>login/facultades"> <i class="icon-bar-chart"></i>Atras</a> </li>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row-fluid">
-                                <div class="widget-content">
-                                    <ul class="quick-actions">
-                                        <li class="bg_lb"> <a href="<?php echo base_url();?>login/indi_investigacion"> <i class="icon-bar-chart"></i> Indicadores de Investigacion </a> </li>
-                                        <li class="bg_lg"> <a href="<?php echo base_url();?>login/indi_cuantitativos"> <i class="icon-bar-chart"></i> Indicadores Cuantitativos </a> </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
+                                </div>    
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>  
                 <!--Para Logearse-->
                 <div class="modal fade" id="Login" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm">
@@ -161,7 +153,7 @@
         <script src="<?php echo base_url();?>librerias/js/matrix.login.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts.js"></script>
         <script src="<?php echo base_url();?>librerias/highcharts-more.js"></script>
-        <script src="<?php echo base_url();?>application/views/login/inicio.js"></script>
+        <script src="<?php echo base_url();?>application/views/login/escuelas/episi.js"></script>
     
         <style type="text/css">
             #main-header {
