@@ -4,11 +4,28 @@ class comision_proyecto extends CI_Controller
 {   
     function __construct(){
         parent::__construct(); 
-    }
-        
-    public function index(){  
         $this->load->database('default');
         $this->load->model('comision_proyecto_model'); 
+    }
+
+    public function index()
+    {
+        $this->load->view('comision_proyecto/index.php');         
+    }
+
+
+    public function cargar_proyectos()//Poyectos en general
+    {   
+        $consulta=$this->comision_proyecto_model->MostrarProyectos();        
+        $result= array("draw"=>1,
+            "recordsTotal"=>$consulta->num_rows(),
+             "recordsFiltered"=>$consulta->num_rows(),
+             "data"=>$consulta->result());            
+        echo json_encode($result);
+    }
+    /*----------------*/    
+    public function index2(){  
+        
 
          $query1 = $this->db->query("select count(ce.doc_id) as total, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre
                                     from comision_evaluadora as ce 
@@ -42,7 +59,7 @@ class comision_proyecto extends CI_Controller
         $Docentes = $this->comision_proyecto_model->MostrarDocentes();
         $Cargos = $this->comision_proyecto_model->MostrarCargos();
         
-        $this->load->view('comision_proyecto/index.php',compact("Proyectos","DocentesChart","LinInvesChart","ProyectoTesis","Tesis","Grafico","Docentes","ComisionProyecto","Cargos"));
+        $this->load->view('comision_proyecto/index-copia.php',compact("Proyectos","DocentesChart","LinInvesChart","ProyectoTesis","Tesis","Grafico","Docentes","ComisionProyecto","Cargos"));
     }
 
     public function grabardetallecomision(){
@@ -64,6 +81,8 @@ class comision_proyecto extends CI_Controller
             echo json_decode("0");
         }    
     }
+
+
 
     public function CargandoProyectosAsignados(){
         $this->load->database('default');

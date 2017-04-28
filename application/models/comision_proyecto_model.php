@@ -11,7 +11,7 @@
 			$this->db->join('tipo_proyecto', 'tipo_proyecto.tipro_id = proyecto.tipro_id');
 
 			$query = $this->db->get();
-			return $query->result();
+			return $query;
 		}
 		
 		function MostrarComisionProyectos(){
