@@ -33,7 +33,7 @@
                             <th>Responsable</th>
                             <th>Nombre de Proyecto</th>
                             <th>Tipo</th>
-                            <th>Fecha Registro</th>
+                            <th>Acción</th>
                             <th colspan="4" style="width: 85px">Jurado</th>                          
                           </tr>
                         </thead>
@@ -217,10 +217,10 @@
                             </div>
                             
                             <div class="control-group">
-                              <!--div class="controls span2">
+                              <div class="controls span2">
                                   &nbsp;
                                   <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" data-toggle="modal" data-target="#Grafico"><span class="icon-plus-sign"></span> Ver </button>
-                              </div-->
+                              </div>
                               &nbsp;
                               <label class="control-label">Funcion :&nbsp;</label>
                               <div>

@@ -7,7 +7,7 @@ var table =$('#tab').DataTable( {
     },
     "columns": [
         { "data": "pro_id" },
-        { "data": null },
+        { "defaultContent": 'Responsable' },
         { "data": "pro_nombre" },
         { "data": "tipro_id",
           "className": "dt-center",
