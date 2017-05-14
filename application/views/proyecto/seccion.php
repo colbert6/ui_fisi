@@ -32,7 +32,7 @@
                 $info=$parte[$j]['nompar_informacion'];
                 $id=$parte[$j]['nompar_id'];
                 echo "<a class='btn btn-success btn-mini edit-parte' data-original-title='Edit Task' ".
-                "info_parte='".$info."'  id_parte='".$id."'  ><i class='icon-pencil'></i></a>";
+                "info_parte='".$info."'  id_parte='".$id."'  ><i class='icon-pencil iconos'></i></a>";
               //------------------
                 echo "</td>";
                 echo "</tr>";

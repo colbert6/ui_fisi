@@ -4,15 +4,15 @@
       return count($niveles); // (si orden=1.1.1 => return 3 ) (si orden=1.1 => return 2 )
   }
 
+
+
 ?>
-<link rel="stylesheet" href="<?php echo base_url();?>application/views/proyecto/ext/proyectoss.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/proyecto/ext/formato.css" />
 
   <div id="content-header" style="margin-top: -20px;">
     <h1><center>Formato del Proyecto</center></h1>
 
     <input value="<?php echo $pro_id ?>" id="pro_id" type="hidden" >
-    <input value="<?php echo $resp ?>" id="resp" type="hidden" >
-    <input value="<?php echo $tipo_resp ?>" id="tipo_resp" type="hidden" >
     <input value="<?php echo count($parte) ?>" id="cantidad_partes" type="hidden" >
 
   </div>
@@ -80,15 +80,25 @@
       </div>          
     </div>
     
-    <div class="span9"> <p id="progreso_proyecto">80% Proyecto</p> <!--Barra de Progreso-->
-      <div class="progress progress-danger progress-striped " >
-        <div style="width: 80%;" class="bar" id="barra_proyecto"></div>
-      </div>                  
-    </div>
+    <?php if($tipo=='elaborar') {  ?> 
+    
+        <div class="span9"> <p id="progreso_proyecto">80% Proyecto</p> <!--Barra de Progreso-->
+          <div class="progress progress-danger progress-striped " >
+            <div style="width: 80%;" class="bar" id="barra_proyecto"></div>
+          </div>                  
+        </div>
 
-    <div class="span2" style="padding-top: 10px; margin-left: 30px;" id="prueba">
-      <button class="btn btn-success" id="subir_proyecto">Subir Proyecto</button>
-    </div>
+        <div class="span2" style="padding-top: 10px; margin-left: 30px;" id="prueba">
+          <button class="btn btn-success" id="subir_proyecto">Subir Proyecto</button>
+        </div>
+
+    <?php } else if($tipo=='evaluar') {  ?>
+
+        <div class="span2" style="padding-top: 10px; margin-left: 30px;" id="prueba">
+          <button class="btn btn-success" id="revision_proyecto">Revisión Completa</button>
+        </div>
+
+    <?php }  ?>
 
    
 
@@ -105,6 +115,10 @@
               <tr>
                 <th>Indicadores</th>
                 <th>Escalera<br>(min - max)</th>
+
+                <% if(casilla_evaluacion){ %>
+                  <th style="width:29%">Calificación</th>
+                <% } %>
               </tr>
             </thead>
 
@@ -112,12 +126,18 @@
                 <% _.each(data, function(f,h){  %>
 
                   <tr class=''>
+
                     <td>
                     <a title='Criterio <%= f.crit_id%>' id='example4' data-content='<%= f.crit_descripcion %>'
                       data-placement='left' data-toggle='popover' class='btn btn-success'  
                       data-original-title='<%= f.crit_id %>'>Criterio <%= f.crit_id%> </a>                         
                     </td>
-                    <td><%= f.cri_rango_min %> - <%= f.cri_rango_max %></td>              
+                    <td><%= f.cri_rango_min %> - <%= f.cri_rango_max %></td>   
+                    
+                    <% if(casilla_evaluacion){ %>
+                      <td ><input type="text" name="nota" style="width:80%"></td>
+                    <% } %>   
+
                   </tr>
 
                 <% }) %>               
@@ -126,6 +146,8 @@
         </table>
     </div>
 </script>
+
+
 
 <!-- MODAL PARA EL NOMBRE DEL PROYECTO -->
 <div class="modal fade" id="Modal-EditNombre"  tabindex="-1" role="dialog">
@@ -286,7 +308,9 @@
 </div><!-- /.modal -->    
 
 
-<script src="<?= base_url();?>application/views/proyecto/ext/elaborar.js" type="text/javascript"></script>
+<script src="<?= base_url();?>application/views/proyecto/ext/<?= $tipo; ?>.js" type="text/javascript"></script>
+
+
 <script src="<?php echo base_url();?>librerias/js/underscore-min.js"></script>
 <script src="<?php echo base_url();?>librerias/js/matrix.popover.js"></script>
 

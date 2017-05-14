@@ -9,18 +9,67 @@
 
         function select_proyectos(){
              $sql="SELECT P.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion
-       FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.alu_id=a.alu_id 
-       INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id ";
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+                INNER JOIN escuela as e ON e.esc_id=a.esc_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id ";
             $query=$this->db->query($sql);  
             return $query;         
         }
 
+        //Seleccionar Poroyectos del usuario logueado
         function select_proyecto_responsable($responsable,$tipo_responsable){
-            $this->db->where("responsable_id",$responsable);  
-            $this->db->where("tipo_responsable",$tipo_responsable);  
-            $query=$this->db->get("proyecto");      
+            $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , e.esc_descripcion as escuela
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
+                INNER JOIN escuela as e ON a.esc_id=e.esc_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+
+                WHERE p.responsable_id='$responsable' and p.tipo_responsable=$tipo_responsable";
+            $query=$this->db->query($sql);  
+            return $query;               
+        }
+
+        //Seleccionar Poroyectos de la facultad del usuario logueado
+        function select_proyectos_facultad($fac_id){
+            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+                INNER JOIN escuela as e ON e.esc_id=a.esc_id  
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+
+                WHERE e.fac_id= $fac_id";
+            $query=$this->db->query($sql);  
+            return $query;         
+        }
+
+        //Seleccionar Poroyectos que tienen como asesor al usuario logueado
+        function select_proyecto_asesor($asesor){
+            $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN asesor as ase ON ase.pro_id=p.pro_id 
+                INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+
+                WHERE ase.pro_id=p.pro_id and ase.doc_id=$asesor";
+            $query=$this->db->query($sql);  
+            return $query;            
+        }        
+
+        function select_proyecto_evaluador($id){
+            $sql="SELECT p.*
+                  FROM proyecto p, comision_evaluadora ce
+                  WHERE ce.pro_id=p.pro_id and ce.doc_id=$id";
+            $query=$this->db->query($sql);  
             return $query;            
         }
+
 
         function select_colaborador($dni){
 
@@ -50,21 +99,6 @@
             return $query;            
         }
 
-        function select_proyecto_asesor($id){
-            $sql="SELECT p.*
-                  FROM proyecto p, asesor a
-                  WHERE a.pro_id=p.pro_id and a.doc_id=$id";
-            $query=$this->db->query($sql);  
-            return $query;            
-        }
-
-        function select_proyecto_evaluador($id){
-            $sql="SELECT p.*
-                  FROM proyecto p, comision_evaluadora ce
-                  WHERE ce.pro_id=p.pro_id and ce.doc_id=$id";
-            $query=$this->db->query($sql);  
-            return $query;            
-        }
 
         function select_id($pro_id,$resp,$tipo_resp){
 
@@ -130,21 +164,22 @@
                            'pro_nombre'=> $data['pro_nombre'] ,
                            'pro_codigo'=> $data['pro_codigo'] ,
                            'sem_id'=> $data['sem_id'] ,
-                           'pro_fecha_registro'=>date("d-m-Y"),
+                           'pro_fecha_registro'=>date("Y-m-d H:i:s"),
                            'estado'=> 0);
             if($this->db->insert('proyecto',$datos)){ 
-                $pro_id= $this->db->insert_id();
-                  for ($i=0; $i < count($data['colaborador']); $i++) {
+                  if(!empty($data['colaborador'])){
+                    $pro_id=  $this->db->insert_id('proyecto_pro_id_seq');
+                      for ($i=0; $i < count($data['colaborador']); $i++) {
 
-                    $colaborador=explode('-',$data['colaborador'][$i]);
-
-                    $colaboradores=array('pro_id'=> $pro_id ,
-                                    'tipo_colaborador'=> $colaborador[0] ,
-                                    'col_id'=>$colaborador[1]
-                                  );
-                    $this->db->insert('colaboradores',$colaboradores) ;
-                    
-                  }                   
+                        $colaborador=explode('-',$data['colaborador'][$i]);
+                        $colaboradores=array('pro_id'=> $pro_id ,
+                                        'tipo_colaborador'=> $colaborador[0] ,
+                                        'col_id'=>$colaborador[1]
+                                      );
+                        $this->db->insert('colaboradores',$colaboradores) ;
+                        
+                      }
+                  }                    
                
                  $query='I';
             }else{

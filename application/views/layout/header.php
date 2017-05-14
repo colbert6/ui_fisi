@@ -34,9 +34,6 @@
             </div>
             <script>   
                     var base_url="<?= base_url(); ?>";
-                    var cod_usu="<?php echo $cod_usu; ?>";
-                    var tipo_usu="<?php echo $id_tipo; ?>";
-
             </script> <!-- Declaración de Base a Java-->
 
             <div id="search">

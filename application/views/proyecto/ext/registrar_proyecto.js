@@ -1,7 +1,7 @@
-GenerarCodigo ();
 
-function GenerarCodigo (){
-  $("#codigo").val(new Date().getTime());
+
+function GenerarCodigo(){
+  $("#codigo").val(new Date().getTime());  
 }
 
 $(document).on("click","a.remove",function(e) {
@@ -87,17 +87,16 @@ $('#Guarda').on('click', function () {
         url:   base_url+'proyecto/Guardar_proyecto',
         type:  'POST',
         success: function(data) {
+            data=data.trim();
             if (data=='I') {
-                alerta("REGISTRADO CORRECTAMENTE");
-                OpenTab('tab1');
-                table.ajax.reload( null, false);
+                alerta("REGISTRADO CORRECTAMENTE");  
+                loader('proyecto/mis_proyectos');
             }else if (data=='M'){
                 alerta("MODIFICADO CORRECTAMENTE");
-                table.ajax.reload( null, false);
-                OpenTab('tab1');
             } else {
                 alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
             }
+            
         }
     });
 

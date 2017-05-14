@@ -41,13 +41,17 @@
             <div id="tab1" class="tab-pane active">
 
               <form class="form-horizontal" method="post" action="#" id="form-RegProyecto" novalidate="novalidate">
-                
+               
+
                 <div class="control-group">
-                  <label class="control-label">Id del Proyecto</label>
+                  <label class="control-label">Codigo</label>
                   <div class="controls">
-                    <input type="text" readonly="" name="proyecto_id" class="span7 m-wrap" value="0">
+                    <input type="hidden" readonly="" name="proyecto_id" class="span7 m-wrap" value="0">
+                    <input type="text" readonly="" class="span4 m-wrap" id="codigo" name="codigo">
+                    <button class="btn btn-primary" url="" type="button" onclick="GenerarCodigo();">Generar</button>
                   </div>
                 </div> 
+
 
                 <div class="control-group">
                   <label class="control-label">Responsable</label>
@@ -91,9 +95,9 @@
                 </div>
 
                 <div class="control-group">
-                  <label class="control-label">Nombre o Descripción</label>
+                  <label class="control-label">Nombre del Proyecto</label>
                   <div class="controls">
-                    <input type="text" class="span7 m-wrap" name="nombre">
+                    <textarea type="text" class="span8 m-wrap" name="nombre"></textarea>
                   </div>
                 </div>   
 
@@ -107,8 +111,8 @@
                       <input type="text" readonly="" class="span7 m-wrap" placeholder="Nombre" id="result_colaborador_nombre">
                       <button class="btn btn-primary" url="" type="button" onclick="Agregar_Colaborador();">Agregar</button>
                     </div>
-
                   </div>
+
                   <div class="controls" >
                     <div class="todo span6" id="Lista-Colaboradores"></div>
                   </div>
@@ -121,19 +125,14 @@
                   <div class="controls">
                     <select  class="span4" name="semestre" id="semestre">
                         <option value="" > Seleccione ...</option>
-                        <?php for($i=0;$i<count($semestre);$i++){ //Aca va la lista de los modulos padres ?> 
+
+                        <?php  $max_sem=count($semestre);
+                          for ($i=$max_sem-2;$i<$max_sem;$i++){ //Aca va la lista de los modulos padres ?> 
                           <option value="<?php echo $semestre[$i]['sem_id'];?>"><?php echo $semestre[$i]['sem_descripcion']?></option>
                         <?php } ?>                     
                     </select>
                   </div>
-                </div>
-
-                <div class="control-group">
-                  <label class="control-label">Codigo</label>
-                  <div class="controls">
-                    <input type="text" readonly="" class="span4 m-wrap" id="codigo" name="codigo">
-                  </div>
-                </div> 
+                </div>                
                 
                 <div class="form-actions">
                     <button type="button" class="btn btn-success"  id="Guarda"><span class="icon-ok" aria-hidden="true"></span>Guardar</button>

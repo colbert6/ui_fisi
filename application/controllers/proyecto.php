@@ -2,6 +2,10 @@
  
     class proyecto extends CI_Controller
     {   
+
+        private $fac_id;
+        private $usuario;
+        private $tipo_usu;
         
         function __construct(){
             parent::__construct();    
@@ -13,9 +17,13 @@
             $this->load->model('tipo_proyecto_model');
             $this->load->model('semestre_academico_model');
 
+            $this->fac_id=$this->session->userdata('fac_id');
+            $this->usuario=$this->session->userdata('id');
+            $this->tipo_usu=$this->session->userdata('id_tipo');
+
         }
 
-        public function proyectos()//Del Director de UI
+        public function proyectos()//Del Docente como asesor o evaluador
         {
            $this->load->view('proyecto/proyectos.php');         
         }
@@ -25,27 +33,28 @@
             $this->load->view('proyecto/mis_proyectos.php');         
         }
 
+        public function proyectos_facultad()
+        {
+            //Hcer cambio de comicion proyecto aqui 
+        }
        
         public function registrar_proyecto()
         {               
             $data= array ( 
-                    'eje'=> $this->eje_tematico_model->select($this->session->userdata('fac_id'))->result_array(),
+                    'eje'=> $this->eje_tematico_model->select($this->fac_id)->result_array(),
                     'semestre'=> $this->semestre_academico_model->Select()->result_array(),
                     'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
-            //echo"<pre>";print_r($data);exit();
-            //echo $this->session->userdata('alu_id');
             
             $this->load->view('proyecto/registrar_proyecto.php',$data);        
         }
         
-        public function elaborar_proyecto($pro_id,$resp,$tip_resp)
+        public function elaborar_proyecto($pro_id)
         {   
             //Validar que el proyecto sea del usuario            
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id,
-                          'resp' => $resp,
-                          'tipo_resp' =>$tip_resp);
+                          'tipo' => 'elaborar');
             //echo"<pre>";print_r($data);exit();
             
             $this->load->view('proyecto/formato.php',$data);           
@@ -56,16 +65,16 @@
             //Validar que el proyecto sea del usuario         
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
-                          'pro_id'=>$pro_id );
+                          'pro_id'=>$pro_id ,
+                          'tipo' => 'evaluar');
             //echo"<pre>";print_r($data);exit();
             
             $this->load->view('proyecto/formato.php',$data);          
         }
 
-        public function mostrar_proyecto()
+        public function mostrar_proyecto($pro_id)
         {   
-            //Validar que el proyecto sea del usuario   
-            $pro_id= $this->input->post('pro_id');      
+                 
             $data= array ('seccion'=> $this->nombre_parte_model->select_seccion()->result_array(),
                           'parte'=> $this->nombre_parte_model->select_parte()->result_array(),
                           'pro_id'=>$pro_id );
@@ -171,9 +180,10 @@
 
         //--------CARGAR ---------------------//
 
-        public function cargar_proyectos()//Poyectos en general
+        public function cargar_proyectos_facultad()//Poyectos en general de esa 
         {   
-            $consulta=$this->proyecto_model->select_proyectos();        
+           
+            $consulta=$this->proyecto_model->select_proyectos_facultad($this->fac_id);        
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),
@@ -181,9 +191,10 @@
             echo json_encode($result);
         }
 
-        public function cargar_mis_proyectos($usuario,$tipo_usuario)//Poyectos del alumno o Docente
+        public function cargar_mis_proyectos()//Poyectos del alumno o Docente
         {   
-            $consulta=$this->proyecto_model->select_proyecto_responsable($usuario,$tipo_usuario);        
+            
+            $consulta=$this->proyecto_model->select_proyecto_responsable($this->usuario,$this->tipo_usu);        
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),
@@ -191,9 +202,16 @@
             echo json_encode($result);
         }
 
-        public function cargar_proyecto_asesor($id)//Poyectos del docente en que este asesorando
-        {   
-            $consulta=$this->proyecto_model->select_proyecto_asesor($id);        
+        public function cargar_proyecto_moderador($modo)//Poyectos del docente en que este asesorando
+        {               
+            if($modo=='asesor'){
+                $consulta=$this->proyecto_model->select_proyecto_asesor($this->usuario);
+            }else if($modo=='evaluador'){
+                $consulta=$this->proyecto_model->select_proyecto_evaluador($this->usuario);
+            }else{
+                $consulta= array();
+            }                    
+            
             $result= array("draw"=>1,
                 "recordsTotal"=>$consulta->num_rows(),
                  "recordsFiltered"=>$consulta->num_rows(),
@@ -201,26 +219,17 @@
             echo json_encode($result);
         }
 
-        public function cargar_proyecto_evaluador($id)//Poyectos del docente en que este asesorando
-        {   
-            $consulta=$this->proyecto_model->select_proyecto_evaluador($id);        
-            $result= array("draw"=>1,
-                "recordsTotal"=>$consulta->num_rows(),
-                 "recordsFiltered"=>$consulta->num_rows(),
-                 "data"=>$consulta->result());            
-            echo json_encode($result);
-        }
 
         //--BUSQUEDAS ---------------------------//
         public function buscar_proyecto()//Poyecto especifico
         {   
             $pro_id=$_POST['pro_id'];
-            $resp=$_POST['resp'];
-            $tipo_resp=$_POST['tipo_resp'];
-            $consulta=$this->proyecto_model->select_id($pro_id,$resp,$tipo_resp);
+            $consulta=$this->proyecto_model->select_id($pro_id,$this->usuario,$this->tipo_usu);
             //echo "<pre>";            print_r($consulta);exit();
             echo json_encode( $consulta->result());
-        }        
+        } 
+
+              
 
         public function buscar_colaborador()//Poyecto especifico
         {   

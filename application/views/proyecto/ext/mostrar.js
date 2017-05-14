@@ -1,3 +1,10 @@
+//Buscar los datos relacionados con el proyecto
+  buscar_datos_proyecto();
+  buscar_asesor_proyecto();
+  buscar_parte_proyecto();
+  cambiar_iconos();
+
+
   function buscar_datos_proyecto(){
   var pro_id=$('#pro_id').val();  
     $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
@@ -140,15 +147,6 @@
     });  
     
   }
-
-
-
-//Buscar los datos relacionados con el proyecto
-  buscar_datos_proyecto();
-  buscar_asesor_proyecto();
-  buscar_parte_proyecto();
-  cambiar_iconos();
-
 
   $('#editar_parte.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
 

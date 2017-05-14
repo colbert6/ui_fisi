@@ -1,12 +1,15 @@
-<div id="content" style="padding: 0px 13px;">
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Proyectos de la FISI</center></h1>
+    <h1><center>Proyectos como Asesor </center></h1>
   </div>
+
   <div class="container-fluid" style="z-index: 1001;">
       <hr style="margin:5px">
       <div class="row-fluid">
 
-        <div class="span12">     
+        <div class="span12">    
+
+        <button onclick="loader('proyecto/registrar_proyecto');" url="" type="button" class="btn btn-primary"> 
+        Proyectos como Jurado</button> 
 
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
@@ -17,12 +20,11 @@
               <table class="table table-bordered data-table" id="tab">
                 <thead>
                   <tr>
-                    <th>Cod</th>
-                    <th>Escuela</th>
-                    <th>Alumno</th>
-                    <th>Titulo</th>                    
-                    <th>Fecha</th>
+                    <th>Item</th>
                     <th>Tipo</th>
+                    <th>Titulo</th>                    
+                    <th>Linea</th>
+                    <th>Autor</th>
                     <th colspan="3">Acciones</th>                          
                   </tr>
                 </thead>
@@ -36,6 +38,10 @@
 
       </div>
     </div>
+  </div>
+
+
+<script src="<?= base_url();?>application/views/proyecto/ext/proyectos.js" type="text/javascript"></script>  
 
 <!-- MODAL  -->
 <style type="text/css">

@@ -15,7 +15,7 @@
         function Select($facultad){
         	$sql="SELECT *
                 FROM eje_tematico INNER JOIN facultad ON facultad.fac_id = eje_tematico.fac_id 
-                WHERE facultad.fac_id=".$facultad;
+                WHERE facultad.fac_id='".$facultad."'";
             $query=$this->db->query($sql);
             return $query;  
         }

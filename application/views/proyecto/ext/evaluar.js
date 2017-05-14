@@ -1,48 +1,67 @@
+//Buscar los datos relacionados con el proyecto
+var pro_id=$('#pro_id').val(); 
+
+var cantidad_partes=$("#cantidad_partes").val();
+var partes_listas=0;
+
+  buscar_datos_proyecto();
+  buscar_asesor_proyecto();
+  buscar_parte_proyecto('');
+  cambiar_iconos();
+
+
   function buscar_datos_proyecto(){
-  var pro_id=$('#pro_id').val();  
+   
     $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
         var obj = JSON.parse(datos);
         if(obj.length){
-          $('#parte_pro_nombre_text').html(obj["0"].pro_nombre);s          
+          $('#nombre_proyecto').html(obj["0"].pro_nombre);          
           $('#pro_fac').html(obj["0"].fac_descripcion.toUpperCase());
           $('#pro_esc').html(obj["0"].esc_descripcion.toUpperCase());
           $('#pro_alu').html(obj["0"].alu_nombres.toUpperCase());
           $('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
           $('#pro_fecha').html(obj["0"].fecha);
-        }
-        }
+        }       
         
     });
   }
 
   function buscar_asesor_proyecto(){
-  $('#editar_parte[id_parte=asesor]').hide();
-  var pro_id=$('#pro_id').val();  
     $.post(base_url+"proyecto/buscar_asesor",{pro_id:pro_id},function(datos){
         var obj = JSON.parse(datos);
         if(obj.length){
-          $('#parte_asesor_text').html(obj["0"].nombre);
+          html="";
+
+            html+="<p>"+obj[0].nombre;
+            if(obj[0].ase_confirmado==null){ html+=" - (Sin Confirmar)" }
+            html+= " </p> "  
+
+          $('#id_asesor_proyecto').val(obj[0].doc_id);
           
+          $('#asesor_proyecto').html(html);
         }
     });    
   }
 
-  function buscar_parte_proyecto(){
-    var pro_id=$('#pro_id').val();  
-    $.post(base_url+"proyecto/buscar_parte",{pro_id:pro_id},function(datos){
+  function buscar_parte_proyecto(nompar_id){
+
+    $.post(base_url+"proyecto/buscar_parte",{pro_id:pro_id,nompar_id:nompar_id},function(datos){
         var obj = JSON.parse(datos);
         if(obj.length){
           for (var i = 0; i < obj.length; i++) {
             $('#parte_'+obj[i].nompar_id+'_text').html(obj[i].par_contenido);
-            $('#parte_'+obj[i].nompar_id+'_text').attr("par_id",obj[i].par_id);
+            $('#parte_'+obj[i].nompar_id+'_text').attr("par_id",'1');
+            partes_listas++;
           }
         }
     });    
   }
 
   function cambiar_iconos(){
-    $('#editar_parte i').attr("class","icon-check");    
+    $('.iconos').attr("class","icon-check iconos");    
   }
+
+
 
 
   function LimpiarNotas(){
@@ -74,7 +93,7 @@
   }
 
 
-   function agregar_tabla_criterios(nompar,part,pro,doc){
+   function agregar_tabla_criterios2(nompar,part,pro,doc){
 
     var tabla_criterio=  
       "<div class='widget-title'> <span class='icon'> <i class='icon-th'></i> </span>"+
@@ -149,7 +168,7 @@
         }
 
         
-        
+       
 
         
     });  
@@ -157,44 +176,56 @@
   }
 
 
+  function agregar_tabla_criterios(nompar_id){
+  
+    $.post(base_url+"proyecto/buscar_nombre_parte_criterio",{nompar_id:nompar_id},function(data){     
+      t = _.template($("#Criterios-Partejs").html());
 
-//Buscar los datos relacionados con el proyecto
-  buscar_datos_proyecto();
-  buscar_asesor_proyecto();
-  buscar_parte_proyecto();
-  cambiar_iconos();
+      var data = JSON.parse(data);
+      $("#Criterios-Parte").html(t({data:data,casilla_evaluacion :true}));
+      $("#example, #example2, #example3, #example4").popover();
+    });
+         
+  }
 
 
-  $('#editar_parte.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
+  $('a.edit-parte').on('click', function () { //Agregar los datos correspondientes al modal-delete
 
-    $('#guardar_cambio').attr("insert",2);
-    $('#myModal').modal('show');// Mostrar modal
-    var modal =$('#myModal'); 
-    
-
-    var nompar_id=$(this).attr("id_parte"); 
+    var modal =$('#Modal-Parte'); 
+    var id=$(this).attr("id_parte"); //nombre_parte
     var titulo=$(this).parent().children('span').html();
+    var parte_text=$('#parte_'+id+'_text').html();
+    var par_id=$('#parte_'+id+'_text').attr("par_id");
+    var info=$(this).attr("info_parte"); 
+
+    modal.modal('show');// Mostrar modal   
     modal.find('.modal-title').text(titulo);//Cambiar El Titulo del Modal
+    $('#informacion_parte').html("<i class='icon-info-sign'></i> "+info);
+    $("#par_id").val(par_id); 
+    $("#nompar_id").val(id); 
     
 
-    var parte_text=$('#parte_'+nompar_id+'_text').html();// Pasar de mostrar_arte a editar_parte
-    $('#contenido_modal').html(parte_text);
-
-    var par_id=$('#parte_'+nompar_id+'_text').attr("par_id"); 
-    var pro_id=$('#pro_id').val();
-    var doc_id=1; 
-
-    $('#guardar_cambio').attr("crit_id",0);//Cambiar atributo id_parte del Boton
-    agregar_tabla_criterios(nompar_id,par_id,pro_id,doc_id);
-
+  
     //$('#id_alert').css('display','none'); //Oculta la alerta de informacion  
     $('#contenido_modal').css('height','250px'); //Cuadrar la informacion  
     $('#contenido_modal').css('padding','15px 40px 15px 40px'); //      
     $('#contenido_modal').css('overflow','auto');
 
+    $('#Editor_Texto').html(parte_text);
+    $('#Editor_Texto').addClass('Text-evaluar');
+
+    $('#id_alert').html('<textarea style="margin: 0px 0px 10px; width: 876px; height: 85px;"> hola</textarea>');
+
+    
+
     $('#guardar_cambio').attr("par_id",par_id);
+
+     agregar_tabla_criterios(id);
     
   });
+
+
+
 
 
   $('#guardar_cambio.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete

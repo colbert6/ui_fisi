@@ -1,7 +1,5 @@
 //--------------BUSQUEDA DE DATOS ---------------------//
 var pro_id=$('#pro_id').val(); 
-var resp=$('#resp').val(); 
-var tipo_resp=$('#tipo_resp').val(); 
 
 var cantidad_partes=$("#cantidad_partes").val();
 var partes_listas=0;
@@ -13,7 +11,7 @@ var partes_listas=0;
   
   function buscar_datos_proyecto(){
    
-    $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id,resp:resp,tipo_resp:tipo_resp},function(datos){//Buscar datos del proyecto
+    $.post(base_url+"proyecto/buscar_proyecto",{pro_id:pro_id},function(datos){//Buscar datos del proyecto
         var obj = JSON.parse(datos);
         if(obj.length){
           $('#nombre_proyecto').html(obj["0"].pro_nombre);          
@@ -97,7 +95,7 @@ var partes_listas=0;
 
   
   $('a.edit-parte').on('click', function () { //Agregar los datos correspondientes al modal-delete
-
+    
     var modal =$('#Modal-Parte'); 
     var id=$(this).attr("id_parte"); //nombre_parte
     var titulo=$(this).parent().children('span').html();
@@ -133,7 +131,7 @@ var partes_listas=0;
       t = _.template($("#Criterios-Partejs").html());
 
       var data = JSON.parse(data);
-      $("#Criterios-Parte").html(t({data:data}));
+      $("#Criterios-Parte").html(t({data:data,casilla_evaluacion :false}));
       $("#example, #example2, #example3, #example4").popover();
     });
          
