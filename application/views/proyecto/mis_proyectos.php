@@ -20,7 +20,7 @@
                   <tr>
                     <th>Item</th>
                     <th>Codigo</th>
-                    <th>Titulo</th>
+                    <th style="width: 30%">Titulo</th>
                     <th>Fecha</th>
                     <th colspan="3">Acciones</th>                          
                   </tr>

@@ -90,8 +90,8 @@
         var row = table.row( tr );
         $("#modal_detail").modal({show: true});
         
-        $("#esc").html(row.data().escuela);
-        $("#alu").html(row.data().alu_nombres);
+        $("#esc").html(row.data().division);
+        $("#alu").html(row.data().nombre_responsable);
         $("#tipro").html(row.data().tipo_proyecto);
         $("#liinv").html(row.data().linea);
         $("#codpro").html(row.data().pro_codigo);

@@ -16,9 +16,9 @@ var partes_listas=0;
         if(obj.length){
           $('#nombre_proyecto').html(obj["0"].pro_nombre);          
           $('#pro_fac').html(obj["0"].fac_descripcion.toUpperCase());
-          $('#pro_esc').html(obj["0"].esc_descripcion.toUpperCase());
+          $('#pro_esc').html(obj["0"].division.toUpperCase());
           $('#pro_alu').html(obj["0"].alu_nombres.toUpperCase());
-          $('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
+          //$('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
           $('#pro_fecha').html(obj["0"].fecha);
         }       
         

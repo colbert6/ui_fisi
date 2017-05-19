@@ -18,17 +18,34 @@
             return $query;         
         }
 
-        //Seleccionar Poroyectos del usuario logueado
+        //Seleccionar Poroyectos del usuario logueado (mis_proyectos)
         function select_proyecto_responsable($responsable,$tipo_responsable){
-            $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,
-                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , e.esc_descripcion as escuela
+            if($tipo_responsable==4){
+              $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as nombre_responsable,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , e.esc_descripcion as division
                 FROM tipo_proyecto as tp 
                 INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
                 INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
                 INNER JOIN escuela as e ON a.esc_id=e.esc_id 
                 INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+                INNER JOIN facultad as f ON f.fac_id=e.fac_id 
 
                 WHERE p.responsable_id='$responsable' and p.tipo_responsable=$tipo_responsable";
+
+            }else {
+              $sql="SELECT p.*, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre_responsable,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , da.dep_descripcion as division
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN docente as d ON p.responsable_id=d.doc_id 
+                INNER JOIN departamento as da ON da.dep_id=d.dep_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+                INNER JOIN facultad as f ON f.fac_id=da.fac_id 
+
+                WHERE p.responsable_id='$responsable' and p.tipo_responsable=$tipo_responsable";
+            }
+                        
+
             $query=$this->db->query($sql);  
             return $query;               
         }
@@ -100,21 +117,47 @@
         }
 
 
-        function select_id($pro_id,$resp,$tipo_resp){
+        function select_id($pro_id,$responsable,$tipo_responsable){
+            if($tipo_responsable==4){
+              $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as nombre_responsable,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , e.esc_descripcion as division
+                        ,f.*,extract(year from pro_fecha_registro) as fecha
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
+                INNER JOIN escuela as e ON a.esc_id=e.esc_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+                INNER JOIN facultad as f ON f.fac_id=e.fac_id 
 
-          //hacer consulta dependiendo del tipo
-           $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno||' '||a.alu_apellido_materno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion,f.*,extract(year from pro_fecha_registro) as fecha
-           FROM tipo_proyecto as tp INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
-           INNER JOIN escuela as e ON e.esc_id=a.esc_id INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id INNER JOIN facultad as f ON f.fac_id=e.fac_id 
-           WHERE p.pro_id=$pro_id";
+                WHERE p.responsable_id='$responsable' and p.tipo_responsable=$tipo_responsable
+
+                and p.pro_id=$pro_id";
+
+            }else {
+              $sql="SELECT p.*, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre_responsable,
+                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea , da.dep_descripcion as division
+                        ,f.*,extract(year from pro_fecha_registro) as fecha
+                FROM tipo_proyecto as tp 
+                INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
+                INNER JOIN docente as d ON p.responsable_id=d.doc_id 
+                INNER JOIN departamento as da ON da.dep_id=d.dep_id 
+                INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
+                INNER JOIN facultad as f ON f.fac_id=da.fac_id 
+
+                WHERE p.responsable_id='$responsable' and p.tipo_responsable=$tipo_responsable
+
+                and p.pro_id=$pro_id";
+            }
+                        
+
             $query=$this->db->query($sql);  
-            return $query;  
+            return $query;               
         }
 
         function select_asesor($pro_id){
             $sql="SELECT doc.doc_id, coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre , ase.ase_confirmado, ase.ase_designado
-                    FROM  asesor as ase INNER JOIN docente as doc
-                        ON ase.doc_id=doc.doc_id 
+                    FROM  asesor as ase 
+                    INNER JOIN docente as doc ON ase.doc_id=doc.doc_id 
                     WHERE ase.pro_id=$pro_id";
             $query=$this->db->query($sql);  
             return $query;            

@@ -141,6 +141,7 @@ class login extends CI_Controller {
 					'correo'=> $usuario[0]['doc_correo'],
 					'escuela'=> $usuario[0]['dep_descripcion'],
 					'facultad'=> $usuario[0]['fac_descripcion'],
+					'fac_id'=> $usuario[0]['fac_id'],
 					'fac_abreviatura'=> $usuario[0]['fac_abreviatura'],
 					'logo_facultad'=> $usuario[0]['fac_logo']);
 

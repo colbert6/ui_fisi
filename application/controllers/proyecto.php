@@ -44,7 +44,7 @@
                     'eje'=> $this->eje_tematico_model->select($this->fac_id)->result_array(),
                     'semestre'=> $this->semestre_academico_model->Select()->result_array(),
                     'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
-            
+
             $this->load->view('proyecto/registrar_proyecto.php',$data);        
         }
         

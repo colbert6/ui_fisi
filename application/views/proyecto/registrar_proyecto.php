@@ -101,7 +101,7 @@
                   </div>
                 </div>   
 
-                <div class="control-group">
+                <!--div class="control-group">
                   <label class="control-label">Colaboradores</label>
                   
                   <div class="controls">
@@ -117,7 +117,7 @@
                     <div class="todo span6" id="Lista-Colaboradores"></div>
                   </div>
 
-                </div>
+                </div-->
                 
                 
                 <div class="control-group">
