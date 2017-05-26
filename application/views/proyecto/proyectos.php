@@ -1,5 +1,7 @@
+<!---MOSTRAR PROYECTOS PARA SUS MODERADORES-->
+
   <div id="content-header" style="margin-top: -20px;">
-    <h1><center>Proyectos como Asesor </center></h1>
+    <h1><center>Proyectos como  <?php echo $modo; ?></center></h1>
   </div>
 
   <div class="container-fluid" style="z-index: 1001;">
@@ -8,12 +10,12 @@
 
         <div class="span12">    
 
-        <button onclick="loader('proyecto/registrar_proyecto');" url="" type="button" class="btn btn-primary"> 
+        <button onclick="loader('proyecto/proyectos/<?php echo$ir; ?>');" url="" type="button" class="btn btn-primary"> 
         Proyectos como Jurado</button> 
 
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-              <h5>Proyectos Registrados</h5>
+              <h5>Proyectos en los que se participa como <?php echo $modo; ?></h5>
             </div>
             <div class="widget-content nopadding">
 
@@ -41,7 +43,7 @@
   </div>
 
 
-<script src="<?= base_url();?>application/views/proyecto/ext/proyectos.js" type="text/javascript"></script>  
+<script src="<?= base_url();?>application/views/proyecto/ext/proyecto_<?php echo $modo;?>.js" type="text/javascript"></script>  
 
 <!-- MODAL  -->
 <style type="text/css">

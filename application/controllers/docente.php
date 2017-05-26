@@ -2,10 +2,12 @@
  
     class docente extends CI_Controller
     {   
-        
+        private $fac_id;
+
         function __construct(){
             parent::__construct();    
-            $this->load->model('docente_model');     
+            $this->load->model('docente_model');   
+            $this->fac_id=$this->session->userdata('fac_id');  
         }
         
         public function index()
@@ -27,7 +29,7 @@
 
         public function Asesor_json(){    
           //$eje=$_POST['valor'] ;          
-          $query = $this->docente_model->listar_asesores()->result();
+          $query = $this->docente_model->listar_asesores($this->fac_id)->result();
           echo json_encode($query);    
         }
     }

@@ -123,7 +123,7 @@ class login extends CI_Controller {
 		$usuario = $this->login_model->logueardocente($user,$clave);
 
 		if(count($usuario) == 1){
-			if($usuario[0]['com_funcion']=='Encargado'){
+			if($usuario[0]['com_funcion']=='UI'){
 				$tipo="Director UI";
 				$id_tipo="2";
 			}else {

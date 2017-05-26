@@ -44,16 +44,6 @@
                
 
                 <div class="control-group">
-                  <label class="control-label">Codigo</label>
-                  <div class="controls">
-                    <input type="hidden" readonly="" name="proyecto_id" class="span7 m-wrap" value="0">
-                    <input type="text" readonly="" class="span4 m-wrap" id="codigo" name="codigo">
-                    <button class="btn btn-primary" url="" type="button" onclick="GenerarCodigo();">Generar</button>
-                  </div>
-                </div> 
-
-
-                <div class="control-group">
                   <label class="control-label">Responsable</label>
                   <div class="controls">
                     <input type="hidden" name="responsable" value="<?php echo $cod_usu ?>">
@@ -123,17 +113,21 @@
                 <div class="control-group">
                   <label class="control-label">*Semestre Academico :</label>
                   <div class="controls">
-                    <select  class="span4" name="semestre" id="semestre">
-                        <option value="" > Seleccione ...</option>
-
-                        <?php  $max_sem=count($semestre);
-                          for ($i=$max_sem-2;$i<$max_sem;$i++){ //Aca va la lista de los modulos padres ?> 
-                          <option value="<?php echo $semestre[$i]['sem_id'];?>"><?php echo $semestre[$i]['sem_descripcion']?></option>
-                        <?php } ?>                     
-                    </select>
+                     <input type="hidden" name="semestre" id="semestre" value="<?php echo $semestre[0]['sem_id']; ?>">
+                     <input type="text" readonly="" class="span4 m-wrap" id="semestre" value="<?php echo $semestre[0]['sem_descripcion'];  ?>">
+                    
                   </div>
                 </div>                
                 
+                <div class="control-group">
+                  <label class="control-label">Codigo</label>
+                  <div class="controls">
+                    <input type="hidden" readonly="" name="proyecto_id" class="span7 m-wrap" value="0">
+                    <input type="text" readonly="" class="span4 m-wrap" id="codigo" name="codigo">
+                    <button class="btn btn-primary" url="" type="button" onclick="GenerarCodigo();">Generar</button>
+                  </div>
+                </div> 
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-success"  id="Guarda"><span class="icon-ok" aria-hidden="true"></span>Guardar</button>
 

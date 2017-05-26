@@ -24,9 +24,10 @@ var table =$('#tab').DataTable( {
           }
                 
         },
-        { "data": "alu_nombres" },
+        
         { "data": "pro_nombre" },
         { "data": "linea" },
+        { "data": "alu_nombres" },
         
         {
             "className":      'mostrar-proyecto',

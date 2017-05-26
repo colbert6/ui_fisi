@@ -52,14 +52,14 @@
 
         //Seleccionar Poroyectos de la facultad del usuario logueado
         function select_proyectos_facultad($fac_id){
-            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,e.*,tp.tipro_descripcion,l.linin_descripcion
+            $sql="SELECT p.*,coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as nombre,e.*,tp.tipro_descripcion,l.linin_descripcion
                 FROM tipo_proyecto as tp 
                 INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
-                INNER JOIN alumno as a ON p.alu_id=a.alu_id 
+                INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
                 INNER JOIN escuela as e ON e.esc_id=a.esc_id  
                 INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
 
-                WHERE e.fac_id= $fac_id";
+                WHERE e.fac_id= '$fac_id' ";
             $query=$this->db->query($sql);  
             return $query;         
         }
@@ -67,14 +67,14 @@
         //Seleccionar Poroyectos que tienen como asesor al usuario logueado
         function select_proyecto_asesor($asesor){
             $sql="SELECT p.*, coalesce(a.alu_nombre||' '||a.alu_apellido_paterno) as alu_nombres,
-                        tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea
+                         tp.tipro_descripcion as tipo_proyecto ,l.linin_descripcion as linea
                 FROM tipo_proyecto as tp 
                 INNER JOIN proyecto as p ON tp.tipro_id=p.tipro_id 
                 INNER JOIN asesor as ase ON ase.pro_id=p.pro_id 
                 INNER JOIN alumno as a ON p.responsable_id=a.alu_id 
                 INNER JOIN linea_investigacion as l ON l.linin_id=p.linin_id 
 
-                WHERE ase.pro_id=p.pro_id and ase.doc_id=$asesor";
+                WHERE ase.pro_id=p.pro_id and ase.doc_id='$asesor'";
             $query=$this->db->query($sql);  
             return $query;            
         }        
@@ -154,6 +154,19 @@
             return $query;               
         }
 
+        function generar_codigo($fac_id){
+            $sql="SELECT count (pro_id) as correlativo
+                  FROM proyecto as p
+                  INNER JOIN alumno as a ON p.responsable_id=a.alu_id
+                  INNER JOIN escuela as e ON a.esc_id=e.esc_id
+                  WHERE 
+                    e.fac_id ='07' and
+                    extract(year from now())=extract(year from pro_fecha_registro) and
+                    extract(month from now())=extract(month from pro_fecha_registro)";
+            $query=$this->db->query($sql);  
+            return $query;            
+        }
+
         function select_asesor($pro_id){
             $sql="SELECT doc.doc_id, coalesce(doc.doc_nombre||' '||doc.doc_apellido_paterno) as nombre , ase.ase_confirmado, ase.ase_designado
                     FROM  asesor as ase 
@@ -200,12 +213,36 @@
         }
         
         function insertar_proyecto($data){
+            //$correlativo=generar_codigo($data['fac_id']);
+
+            $fac_id=$data['fac_id'];
+            $sql="SELECT count (pro_id) as correlativo
+                  FROM proyecto as p
+                  INNER JOIN alumno as a ON p.responsable_id=a.alu_id
+                  INNER JOIN escuela as e ON a.esc_id=e.esc_id
+                  WHERE 
+                    e.fac_id ='$fac_id' and
+                    extract(year from now())=extract(year from pro_fecha_registro) and
+                    extract(month from now())=extract(month from pro_fecha_registro)";
+
+            $correlativo=$this->db->query($sql)->result_array(); 
+            $num_correlativo=$correlativo[0]['correlativo']+1;
+
+            $tipo_responsable='';
+            if($data['tipo_responsable']==04 ){
+              $tipo_responsable='A';
+            }else{
+              $tipo_responsable='D';
+            }
+
+            $codigo=date('Y')."-".date('m')."-".trim($data['fac_abreviatura'])."-".$tipo_responsable."-". $num_correlativo; 
+
             $datos=array('responsable_id'=> $data['responsable_id'] ,
                          'tipo_responsable'=> $data['tipo_responsable'] ,
                            'linin_id'=>$data['linin_id'] ,
                            'tipro_id'=> $data['tipro_id'] ,
                            'pro_nombre'=> $data['pro_nombre'] ,
-                           'pro_codigo'=> $data['pro_codigo'] ,
+                           'pro_codigo'=> $codigo,
                            'sem_id'=> $data['sem_id'] ,
                            'pro_fecha_registro'=>date("Y-m-d H:i:s"),
                            'estado'=> 0);

@@ -1,6 +1,15 @@
 
 
 function GenerarCodigo(){
+
+
+  $.post(base_url+"proyecto/generar_codigo",function(datos){
+      var obj = JSON.parse(datos);
+      if(obj.length){
+        alert(obj["0"].correlativo);
+      }
+  });  
+
   $("#codigo").val(new Date().getTime());  
 }
 

@@ -75,23 +75,34 @@ var partes_listas=0;
      modal.find('.modal-title').text('Asesor del Proyecto');
      nombre=$("#nombre_proyecto").text();
 
-     $.ajax({
-        url:   base_url+'docente/Asesor_json/',
-        type:  'POST',
-        success: function(data) {
+    if(  $('#id_asesor_proyecto').val()=='0' ){    
 
-          var d = eval(data);
-          html="";
-          for (var i = 0; i < d.length; i++) {
-            html+="<option value='"+d[i]['doc_id']+"' >"+d[i]['nombre']+"</option>";
+      $.ajax({
+          url:   base_url+'docente/Asesor_json/',
+          type:  'POST',
+          success: function(data) {
+
+            var d = eval(data);
+            html="";
+            for (var i = 0; i < d.length; i++) {
+              html+="<option value='"+d[i]['doc_id']+"' >"+d[i]['nombre']+"</option>";
+            }
+            $("#sel_asesor").empty().html(html);
+              
           }
-          $("#sel_asesor").empty().html(html);
-            
-        }
-    });
+      });
+
+    }else{
+
+      html= $('#asesor_proyecto').html();
+      $('#AsesorAsignadoPro').html(html);
+      
+    }
+
+
+
 
   }
-
 
   
   $('a.edit-parte').on('click', function () { //Agregar los datos correspondientes al modal-delete
@@ -136,6 +147,9 @@ var partes_listas=0;
     });
          
   }
+
+
+  //--------------------------------
   
   $('#guardar_nombre.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
     // TOMAR DATOS NECESARIOS
@@ -183,6 +197,27 @@ var partes_listas=0;
               }
           }
       });
+  });
+
+  $('#guardar_asesor.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
+    // TOMAR DATOS NECESARIOS
+    nompar_id=$("nompar_id").val();
+      $.ajax({
+          data:  $("#form-EditAsesor").serialize(),
+          url:   base_url+'proyecto/Guardar_asesorPro',
+          type:  'POST',
+          success: function(data) {
+              data=data.trim();
+              $('#Modal-EditAsesor').modal('hide');
+              if (data=='I' || data=='M') {
+                  alerta("GUARDADO CORRECTAMENTE");
+                  buscar_datos_proyecto();
+              }else {
+                  alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+              }
+          }
+      });
+
   });
 
   function Progreso_Proyecto(){

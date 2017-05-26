@@ -11,6 +11,15 @@
             $query=$this->db->query($sql);
             return $query;
         }
+
+        function Select_ultimo(){
+            $sql="SELECT * 
+            	FROM semestre_academico 
+            	ORDER BY sem_id DESC 
+            	LIMIT 1";
+            $query=$this->db->query($sql);
+            return $query;
+        }
 		
 	}
 ?>

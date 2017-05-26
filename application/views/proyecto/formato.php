@@ -215,7 +215,7 @@
           <div class="modal-body">
             <form  id="form-EditAsesor" action="#" class="j-forms" novalidate>
                 <input type="hidden" value="<?php echo $pro_id ?>" name="pro_id">
-                <input type="hidden" id="nompar" name="nompar" value="NombreProyecto">
+                <input type="hidden" id="nompar" name="nompar" value="AsesorProyecto">
                 <div class="row-fluid">
                   
                     <div class="widget-title"> <span class="icon"> <i class="icon-tag"></i> </span>
@@ -239,6 +239,11 @@
                         </div>
                     </div>
 
+                    <div id='AsesorAsignadoPro' class="controls-row">
+                      
+                    </div>
+
+
                 </div> 
             </form>      
 
@@ -246,7 +251,7 @@
 
           <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" id="guardar_nombre">Guardar Cambios</button>
+              <button type="button" class="btn btn-primary" id="guardar_asesor">Guardar Cambios</button>
           </div>
 
         </div><!-- /.modal-content -->

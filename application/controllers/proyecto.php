@@ -4,6 +4,7 @@
     {   
 
         private $fac_id;
+        private $fac_abreviatura;
         private $usuario;
         private $tipo_usu;
         
@@ -20,12 +21,21 @@
             $this->fac_id=$this->session->userdata('fac_id');
             $this->usuario=$this->session->userdata('id');
             $this->tipo_usu=$this->session->userdata('id_tipo');
+            $this->fac_abreviatura=$this->session->userdata('fac_abreviatura');
 
         }
 
-        public function proyectos()//Del Docente como asesor o evaluador
+        public function proyectos($modo='asesor')//Del Docente como asesor o evaluador
         {
-           $this->load->view('proyecto/proyectos.php');         
+            $ir='evaluador';
+            if($modo==$ir){
+                $ir='asesor';
+            }
+            $data= array ( 
+                    'modo'=> $modo,
+                    'ir'=>$ir
+                );
+           $this->load->view('proyecto/proyectos.php',$data);         
         }
 
         public function mis_proyectos()//Del Alumno o Docente
@@ -42,7 +52,7 @@
         {               
             $data= array ( 
                     'eje'=> $this->eje_tematico_model->select($this->fac_id)->result_array(),
-                    'semestre'=> $this->semestre_academico_model->Select()->result_array(),
+                    'semestre'=> $this->semestre_academico_model->Select_ultimo()->result_array(),
                     'tipo_pro'=> $this->tipo_proyecto_model->MostrarTipoProyecto()->result_array());
 
             $this->load->view('proyecto/registrar_proyecto.php',$data);        
@@ -104,12 +114,15 @@
                                'pro_nombre'=> $this->input->post('nombre'),
                                'pro_codigo'=> $this->input->post('codigo'),
                                'sem_id'=> $this->input->post('semestre'),
-                               'colaborador'=> $this->input->post('colaborador')
+                               'colaborador'=> $this->input->post('colaborador'),
+                               'fac_abreviatura'=>$this->fac_abreviatura,
+                               'fac_id'=>$this->fac_id
+
                                );
                 $guardar=$this->proyecto_model->insertar_proyecto($data);
 
 
-            }else if($_POST['proyecto_id']!=0){
+            }else if($_POST['proyecto_id']!=0){//editar --- aun no sirve
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
                                'nompar_id'=> $this->input->post('nompar_id'),
                                'par_contenido'=> $this->input->post('RichTextEditor'));
@@ -119,7 +132,7 @@
         }
 
 
-        public function Guardar_nombrePro()//Guardar Nombre_Proyecto/Parte
+        public function Guardar_nombrePro()//Guardar Nombre_Proyecto
         {   
             if($_POST['nompar']=='NombreProyecto'){//editar el nombre del proyecto
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
@@ -129,12 +142,12 @@
             echo $guardar;   
         }
 
-        public function Guardar_asesor()//Guardar Nombre_Proyecto/Parte
+        public function Guardar_asesorPro()//Guardar Asesor_Proyecto
         {   
-            if($_POST['id_campo']=='pro_nombre'){//editar el nombre del proyecto
+             if($_POST['nompar']=='AsesorProyecto'){//editar el nombre del proyecto
                 $data= array ( 'pro_id'=> $this->input->post('pro_id'),
-                                'pro_nombre'=> $this->input->post('valor'));
-                $guardar=$this->proyecto_model->editar_nombre($data);  
+                               'doc_id'=> $this->input->post('sel_asesor'));
+                $guardar=$this->proyecto_model->insertar_asesor($data);  
             }
             echo $guardar;   
         }
@@ -229,7 +242,12 @@
             echo json_encode( $consulta->result());
         } 
 
-              
+        public function generar_codigo()//Poyecto especifico
+        {   
+            $consulta=$this->proyecto_model->generar_codigo($this->fac_id);
+            //echo "<pre>";            print_r($consulta);exit();
+            echo json_encode( $consulta->result());
+        }               
 
         public function buscar_colaborador()//Poyecto especifico
         {   
