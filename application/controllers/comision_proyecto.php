@@ -2,21 +2,33 @@
  
 class comision_proyecto extends CI_Controller
 {   
+    private $fac_id;
+
     function __construct(){
         parent::__construct(); 
         $this->load->database('default');
-        $this->load->model('comision_proyecto_model'); 
+        $this->load->model('comision_proyecto_model');
+        $this->load->model('proyecto_model');  
+        $this->fac_id=$this->session->userdata('fac_id');
+
     }
 
     public function index()
     {
-        $this->load->view('comision_proyecto/index.php');         
+        $Proyectos = $this->comision_proyecto_model->MostrarProyectos();
+        $ComisionProyecto = $this->comision_proyecto_model->MostrarComisionProyectos();
+        $Docentes = $this->comision_proyecto_model->MostrarDocentes();
+        $Cargos = $this->comision_proyecto_model->MostrarCargos();
+
+        $this->load->view('comision_proyecto/index.php',compact("Proyectos","Docentes","ComisionProyecto","Cargos"));         
     }
 
 
     public function cargar_proyectos()//Poyectos en general
     {   
-        $consulta=$this->comision_proyecto_model->MostrarProyectos();        
+
+
+        $consulta=$this->proyecto_model->select_proyectos_facultad( $this->fac_id);        
         $result= array("draw"=>1,
             "recordsTotal"=>$consulta->num_rows(),
              "recordsFiltered"=>$consulta->num_rows(),
@@ -24,9 +36,10 @@ class comision_proyecto extends CI_Controller
         echo json_encode($result);
     }
     /*----------------*/    
-    public function index2(){  
+    public function index22(){  
         
-
+$this->load->database('default');
+        $this->load->model('comision_proyecto_model'); 
          $query1 = $this->db->query("select count(ce.doc_id) as total, coalesce(d.doc_nombre||' '||d.doc_apellido_paterno) as nombre
                                     from comision_evaluadora as ce 
                                     inner join docente as d on d.doc_id = ce.doc_id 

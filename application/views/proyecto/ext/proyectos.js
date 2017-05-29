@@ -4,15 +4,11 @@ var table =$('#tab').DataTable( {
 
     "processing": true,
     "ajax": {
-        "url": base_url+"proyecto/cargar_proyectos/",
+        "url": base_url+"proyecto/cargar_proyecto_moderador/asesor",
         "type": "POST"
     },
     "columns": [
         { "data": "pro_id" },
-        { "data": "esc_descripcion" },
-        { "data": "alu_nombres" },
-        { "data": "pro_nombre" },
-        { "data": "pro_fecha_registro" },
         { "data": "tipro_id",
           "className": "dt-center",
           "render":  function(data,type,row,meta) {
@@ -28,14 +24,19 @@ var table =$('#tab').DataTable( {
           }
                 
         },
+        
+        { "data": "pro_nombre" },
+        { "data": "linea" },
+        { "data": "alu_nombres" },
+        
         {
-            "className":      'detail-control',
+            "className":      'mostrar-proyecto',
             "orderable":      false,
             "data":           null,
             "defaultContent": ''
         }, 
         {
-            "className":      'mostrar-proyecto',
+            "className":      'detail-control',
             "orderable":      false,
             "data":           null,
             "defaultContent": ''
@@ -86,6 +87,13 @@ var table =$('#tab').DataTable( {
 }  
 
 );
+    $('#tab tbody').on('click', 'td.mostrar-proyecto', function () { 
+        
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        loader('proyecto/evaluar_proyecto/'+row.data().pro_id);       
+        
+    });
 
     $('#tab tbody').on('click', 'td.detail-control', function () { //Agregar los datos correspondientes al modal-deatil
         var tr = $(this).closest('tr');
@@ -100,15 +108,7 @@ var table =$('#tab').DataTable( {
         $("#nompro").html(row.data().pro_nombre);// arreglar
         $("#fecreg").html(row.data().pro_fecha_registro);
     });
-
-
-     $('#tab tbody').on('click', 'td.mostrar-proyecto', function () { 
-        
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
-        relocate(base_url+'proyecto/mostrar_proyecto/',{'pro_id':row.data().pro_id});       
-        
-    });
+    
 
     $('#tab tbody').on('click', 'td.bajar-doc', function () { //Agregar los datos correspondientes al modal-delete
         var tr = $(this).closest('tr');

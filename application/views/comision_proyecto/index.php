@@ -33,8 +33,8 @@
                             <th>Responsable</th>
                             <th>Nombre de Proyecto</th>
                             <th>Tipo</th>
-                            <th>Fecha Registro</th>
-                            <th colspan="4">Jurado</th>                          
+                            <th>Acción</th>
+                            <th colspan="4" style="width: 85px">Jurado</th>                          
                           </tr>
                         </thead>
 
@@ -115,7 +115,16 @@
     left: 38%;
 
   }
+  #AsignarComision {
+    width: 1150px;
+    left: 30%;
 
+  }
+  #ModalJURADO {
+    width: 1150px;
+    left: 30%;
+
+  }
   .text_detail {
     padding: 7px 10px;
   }  
@@ -161,6 +170,158 @@
 
 <!-- MODAL  -->
 
-<script type="text/javascript">
+<!-- MODAL COMISION PROYECTO -->
+  <div class="modal fade" id="AsignarComision" tabindex="-1" role="dialog" >
+      <div class="modal-dialog">
+          <div class="modal-content">
 
-</script>
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <center>
+                    <h3 class="modal-title"><i class="fa fa-users"></i> Asignar Comision Evaluadora o Jurado </h3>
+                  </center>
+              </div>
+
+              <div class="modal-body">
+
+                  <div class="row-fluid">
+
+                    <div class="span12" id="FomularioProyecto">
+
+                      <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"><i class="icon-repeat"></i></span>
+                          <h5>Informacion del Proyecto</h5>
+                        </div>
+
+                        <div class="widget-content nopadding">
+                          <form class="form-horizontal" id="ForComisionEvaluadora">
+                            <input type="hidden" name="codproyecto" id="codproyecto">
+                            <div class="control-group span11">
+                              <label class="control-label">Proyecto :</label>
+                              <div class="controls">
+                                <input type="text" id="ACnombrePro" disabled="" class="span12">
+                              </div>
+                            </div>
+
+                            <div class="control-group span5">
+                              <label class="control-label">Docente :</label>
+                              <div class="controls">
+                                <select id="docente" value="docente" class="span12">
+                                  <option value="docente">Elegir Docente</option>
+                                    <?php foreach ($Docentes as $value): ?>
+                                      <option value="<?php echo $value->doc_id;?>"><?php echo $value->doc_nombre." ".$value->doc_apellido_paterno." ".$value->doc_apellido_materno; ?>
+                                      </option>
+                                    <?php endforeach ?>
+                                </select>
+                              </div>
+                            </div>
+                            
+                            <div class="control-group">
+                              <div class="controls span2">
+                                  &nbsp;
+                                  <button class="btn btn-warning btn-xs" style="margin-bottom:1px;" data-toggle="modal" data-target="#Grafico"><span class="icon-plus-sign"></span> Ver </button>
+                              </div>
+                              &nbsp;
+                              <label class="control-label">Funcion :&nbsp;</label>
+                              <div>
+                                <select id="cargo" value="cargo" class="span2 m-">
+                                  <option value="cargo"> Elegir Funcion</option>
+                                    <?php foreach ($Cargos as $value): ?>
+                                      <option value="<?php echo $value->carg_id;?>"><?php echo $value->carg_descripcion;?>
+                                      </option>
+                                    <?php endforeach ?>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <div class="controls" align="center">
+                                  <button type="button" class="btn btn-success" style="margin-bottom:1px;" data-placement="right" onclick="return Asignar(this.form);"><span class=" icon-ok-sign" aria-hidden="true"> Asignar </button>
+                              </div>                              
+                            </div>
+
+                          </form>
+                        </div>
+
+                      </div>  
+                    </div>  
+
+                    <div class="span11" id="tabladetalle1">
+                      <div class="widget-box">
+                       
+                        <div class="widget-content nopadding">
+                          <form id="form_detalle_comisiones">
+                            <input type="hidden" id="proyecto_id_detalle" name="proyecto_id">
+                            <table class="table table-bordered data-table" id="TablaDetalleComision">
+                              <thead>
+                                <tr>
+                                  <th>Proyecto</th>
+                                  <th>Docente</th>
+                                  <th>Función</th>
+                                  <th>Acción</th>
+                                </tr>
+                              </thead>
+
+                              <tbody id="lista">
+                              </tbody>
+
+                            </table>
+                          </form>
+                        </div>
+                      </div>                      
+                    </div>
+
+                  </div>  
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" id="guardar_nombre">Guardar Cambios</button>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->   
+
+
+
+  <!-- MODAL  -->
+
+ <div class="modal fade" id="ModalJurado"  tabindex="-1" role="dialog">
+  
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">MIEMBROS DEL JURADO</h4>
+          </div>
+
+          <div class="modal-body">
+            <table class="table table-bordered data-table" id="TablaDetalleComision">
+              <thead>
+                <tr>
+                  <th>Proyecto</th>
+                  <th>Docente</th>
+                  <th>Función</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+
+              <tbody id="lista">
+              </tbody>
+
+            </table>
+
+          </div>
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="guardar_nombre">Guardar Cambios</button>
+          </div>
+
+        </div><!-- /.modal-content -->
+
+    </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->    

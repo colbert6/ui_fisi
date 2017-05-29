@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 if(PhpUploader_GetNamespace()!="RTE")
 	throw(new Exception("Uploader Namespace Error"));
 
-if(!@$_SESSION)session_start();
+//if(!@$_SESSION)session_start();
 
 
 // php.ini add line : extension="ext/php_gd2.dll"

@@ -48,14 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'postgres';
-$db['default']['password'] = 'postgres';
-$db['default']['database'] = 'pemopi';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = 'pemopi_colbert6';
+$db['default']['password'] = '@Colbert1234';
+$db['default']['database'] = 'pemopi_tesis';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
+$db['default']['db_debug'] = FALSE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = '';
 $db['default']['char_set'] = 'utf8';

@@ -11,7 +11,7 @@
 
     $rte=new RichTextEditor();
 	$rte->Text=$text;
-	$rte->Width="853px";
+	$rte->Width='920px';
 	$rte->ResizeMode="disabled";
 	$rte->name="RichText";
 

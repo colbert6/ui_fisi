@@ -1,4 +1,4 @@
-.fix_hgt{ /*Clase de Div = Cuerpo de Secciones */
+  .fix_hgt{ /*Clase de Div = Cuerpo de Secciones */
     height: 410px;
   }
   .observaciones{ /*Clase de Div = Cuerpo de observaciones */
@@ -54,13 +54,14 @@
 
 
   #Modal-Parte  {
-    width: 1180px;
-    left: 30%;
+    width: 95%;
+    left: 23.5%;
   }
 
   #Modal-Parte > div > div > .modal-body {
-    height: 435px;
+    height: 500px;
     max-height: 600px;
+    padding: 0px 15px 0px 15px;
   }
 
   #Modal-EditNombre {
@@ -73,15 +74,15 @@
     left: 40%;
   }
 
-  #Modal-Parte > div > div > .modal-body {
-    height: 435px;
+  #Modal-EditAsesor > div > div > .modal-body,#Modal-EditNombre > div > div > .modal-body {
+    height: 500px;
     max-height: 600px;
+
   }
 
   .modal.fade.in {
-    top: 6%;
+    top: 5%;
   }
-
 
   li{
     line-height: 15px; 
@@ -91,6 +92,15 @@
     border-bottom: 0px; 
   }
 
+  #Criterios-Parte  {
+    position: initial;
+  }
 
+
+  .Text-evaluar{
+    height: 300px; 
+    padding: 2% 4% 2% 4%;
+    overflow: scroll;
+  }
 
   

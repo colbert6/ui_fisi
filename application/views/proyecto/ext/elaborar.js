@@ -1,5 +1,6 @@
 //--------------BUSQUEDA DE DATOS ---------------------//
 var pro_id=$('#pro_id').val(); 
+
 var cantidad_partes=$("#cantidad_partes").val();
 var partes_listas=0;
 
@@ -15,9 +16,9 @@ var partes_listas=0;
         if(obj.length){
           $('#nombre_proyecto').html(obj["0"].pro_nombre);          
           $('#pro_fac').html(obj["0"].fac_descripcion.toUpperCase());
-          $('#pro_esc').html(obj["0"].esc_descripcion.toUpperCase());
+          $('#pro_esc').html(obj["0"].division.toUpperCase());
           $('#pro_alu').html(obj["0"].alu_nombres.toUpperCase());
-          $('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
+          //$('#pro_lugar').html(obj["0"].pro_ciudad.toUpperCase());
           $('#pro_fecha').html(obj["0"].fecha);
         }       
         
@@ -74,27 +75,38 @@ var partes_listas=0;
      modal.find('.modal-title').text('Asesor del Proyecto');
      nombre=$("#nombre_proyecto").text();
 
-     $.ajax({
-        url:   base_url+'docente/Asesor_json/',
-        type:  'POST',
-        success: function(data) {
+    if(  $('#id_asesor_proyecto').val()=='0' ){    
 
-          var d = eval(data);
-          html="";
-          for (var i = 0; i < d.length; i++) {
-            html+="<option value='"+d[i]['doc_id']+"' >"+d[i]['nombre']+"</option>";
+      $.ajax({
+          url:   base_url+'docente/Asesor_json/',
+          type:  'POST',
+          success: function(data) {
+
+            var d = eval(data);
+            html="";
+            for (var i = 0; i < d.length; i++) {
+              html+="<option value='"+d[i]['doc_id']+"' >"+d[i]['nombre']+"</option>";
+            }
+            $("#sel_asesor").empty().html(html);
+              
           }
-          $("#sel_asesor").empty().html(html);
-            
-        }
-    });
+      });
+
+    }else{
+
+      html= $('#asesor_proyecto').html();
+      $('#AsesorAsignadoPro').html(html);
+      
+    }
+
+
+
 
   }
 
-
   
   $('a.edit-parte').on('click', function () { //Agregar los datos correspondientes al modal-delete
-
+    
     var modal =$('#Modal-Parte'); 
     var id=$(this).attr("id_parte"); //nombre_parte
     var titulo=$(this).parent().children('span').html();
@@ -130,11 +142,14 @@ var partes_listas=0;
       t = _.template($("#Criterios-Partejs").html());
 
       var data = JSON.parse(data);
-      $("#Criterios-Parte").html(t({data:data}));
+      $("#Criterios-Parte").html(t({data:data,casilla_evaluacion :false}));
       $("#example, #example2, #example3, #example4").popover();
     });
          
   }
+
+
+  //--------------------------------
   
   $('#guardar_nombre.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
     // TOMAR DATOS NECESARIOS
@@ -182,6 +197,27 @@ var partes_listas=0;
               }
           }
       });
+  });
+
+  $('#guardar_asesor.btn').on('click', function () { //Agregar los datos correspondientes al modal-delete
+    // TOMAR DATOS NECESARIOS
+    nompar_id=$("nompar_id").val();
+      $.ajax({
+          data:  $("#form-EditAsesor").serialize(),
+          url:   base_url+'proyecto/Guardar_asesorPro',
+          type:  'POST',
+          success: function(data) {
+              data=data.trim();
+              $('#Modal-EditAsesor').modal('hide');
+              if (data=='I' || data=='M') {
+                  alerta("GUARDADO CORRECTAMENTE");
+                  buscar_datos_proyecto();
+              }else {
+                  alerta("HA OCURRIDO UN ERROR - LLAMAR A SOPORTE");                
+              }
+          }
+      });
+
   });
 
   function Progreso_Proyecto(){

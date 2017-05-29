@@ -11,7 +11,7 @@
         {              
 
             //$_POST['text']
-            $data = array ( 'text' => 'hola');
+            //$data = array ( 'text' => 'hola');
             $this->load->view('rich_text/editor_text.php');           
         }
        

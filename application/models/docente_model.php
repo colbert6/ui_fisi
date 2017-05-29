@@ -24,8 +24,11 @@
             return $query;
         }
 
-        function listar_asesores(){
-            $sql="SELECT  d.doc_id,coalesce(d.doc_nombre||' '||d.doc_apellido_paterno||' '||d.doc_apellido_materno) as nombre FROM docente AS d";
+        function listar_asesores($fac_id){
+            $sql="SELECT  d.doc_id,coalesce(d.doc_apellido_paterno||' '||d.doc_apellido_materno||' '||d.doc_nombre) as nombre FROM docente AS d
+                INNER JOIN departamento AS de ON de.dep_id = d.dep_id
+                WHERE de.fac_id='$fac_id'
+                ORDER BY d.doc_apellido_paterno ASC";
             $query=$this->db->query($sql);
             return $query;
         }

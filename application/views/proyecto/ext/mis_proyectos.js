@@ -1,15 +1,15 @@
 
-
     //var base_url definida en header
     var table =$('#tab').DataTable( {
 
         "processing": true,
         "ajax": {
-            "url": base_url+"proyecto/cargar_mis_proyectos/"+cod_usu+"/"+tipo_usu,
+            "url": base_url+"proyecto/cargar_mis_proyectos/",
             "type": "POST"
         },
         "columns": [
             { "data": "pro_id" },
+            { "data": "pro_codigo" },
             { "data": "pro_nombre" },
             { "data": "pro_fecha_registro" }, 
             {
@@ -19,13 +19,13 @@
                 "defaultContent": ''
             },
             {
-                "className":      'bajar-doc',
+                "className":      'detail-control',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
             },
             {
-                "className":      'detail-control',
+                "className":      'bajar-doc',
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ''
@@ -73,7 +73,7 @@
         var tr = $(this).closest('tr');
         var row = table.row( tr );
         
-        loader("proyecto/elaborar_proyecto/"+row.data().pro_id);
+       loader("proyecto/elaborar_proyecto/"+row.data().pro_id);
     } );
 
     $('#tab tbody').on('click', 'td.bajar-doc', function () { //Agregar los datos correspondientes al modal-form
@@ -90,13 +90,13 @@
         var row = table.row( tr );
         $("#modal_detail").modal({show: true});
         
-        $("#codigo").html(row.data().alu_codigo);
-        $("#nombre").html(row.data().nombre);
-        $("#dni").html(row.data().alu_dni);
-        $("#sexo").html(row.data().alu_sexo);
-        $("#fec_nac").html(row.data().alu_fecha_nacimiento);
-        $("#ubigeo").html(row.data().ubigeo);// arreglar
-        $("#est_civil").html(row.data().alu_estado_civil);
+        $("#esc").html(row.data().division);
+        $("#alu").html(row.data().nombre_responsable);
+        $("#tipro").html(row.data().tipo_proyecto);
+        $("#liinv").html(row.data().linea);
+        $("#codpro").html(row.data().pro_codigo);
+        $("#nompro").html(row.data().pro_nombre);// arreglar
+        $("#fecreg").html(row.data().pro_fecha_registro);
 
     });
 

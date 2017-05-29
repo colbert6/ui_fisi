@@ -34,9 +34,6 @@
             </div>
             <script>   
                     var base_url="<?= base_url(); ?>";
-                    var cod_usu="<?php echo $cod_usu; ?>";
-                    var tipo_usu="<?php echo $id_tipo; ?>";
-
             </script> <!-- Declaración de Base a Java-->
 
             <div id="search">
@@ -55,24 +52,7 @@
                     <span class="badge badge-important "style="float:right;margin-top:0.7%;"><?php echo  $correo_usu; ?></span>               
                 </div>
             </div>
-            <div id="content" style="padding: 0px 13px;">
-                <div id="content-header" style="margin-top: -20px;">
-                    <center><h1>Bienvenido</h1></center> 
-                </div>
-                <div class="container-fluid">
-                    <hr>
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <center>
-                                <h4>Plataforma de Elaboracion y Monitoreo de Proyectos de Investigación</h4>
-                                <img src="<?= base_url();?>librerias/img/logo/unsm.jpg" class="logo-universidad ">
-                                <img src='<?php  echo base_url()."librerias/img/logo/".$logo_fac; ?>' class="logo-facultad">
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+           
 
 
         
