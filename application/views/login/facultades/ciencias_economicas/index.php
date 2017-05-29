@@ -31,7 +31,7 @@
             <div id="search">
                 <div style="height: 6px;"></div>
                 <a href="<?php echo base_url();?>login"><b>Inicio</b></a> &nbsp;  &nbsp;
-                <a href="<?php echo base_url();?>login"><b> Volver </b></a> &nbsp;  &nbsp;
+                <a href="<?php echo base_url();?>login/facultades"><b> Volver </b></a> &nbsp;  &nbsp;
                 <a data-target="#Login" data-toggle="modal"><i class="icon-lock"></i> <b> Ingresar </b></a> &nbsp;  &nbsp;
             </div>
 

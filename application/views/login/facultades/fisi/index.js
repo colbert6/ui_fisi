@@ -85,7 +85,7 @@ Highcharts.chart('EPISI', {
 
         series: [{
             name: 'Indicadores',
-            data: [80],
+            data: [55],
             tooltip: {
                 valueSuffix: ' %'
             }

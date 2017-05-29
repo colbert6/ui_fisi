@@ -85,7 +85,7 @@ Highcharts.chart('FISI', {
 
         series: [{
             name: 'Indicadores',
-            data: [80],
+            data: [55],
             tooltip: {
                 valueSuffix: ' %'
             }
